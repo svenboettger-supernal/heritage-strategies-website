@@ -1,0 +1,59 @@
+---
+import Heading from "@components/Heading.astro";
+
+export interface Props {
+  index: number;
+  total: number;
+  title: string;
+  body: string;
+  onDark?: boolean;
+}
+
+const { index, total, title, body, onDark = false } = Astro.props;
+const ordinal = String(index).padStart(2, "0");
+const totalStr = String(total).padStart(2, "0");
+---
+
+<li
+  class:list={[
+    "relative flex flex-col gap-5 pt-8 md:pt-10",
+    "border-t",
+    onDark ? "border-on-dark" : "border-default",
+  ]}
+>
+  {/* Copper pip on the hairline */}
+  <span
+    aria-hidden="true"
+    class="absolute -top-[3px] left-0 h-1.5 w-1.5 rounded-full"
+    style="background: hsl(var(--brand-copper));"
+  ></span>
+
+  <div class="flex items-baseline justify-between gap-4">
+    <span
+      class:list={[
+        "font-mono text-[12.5px] tracking-[0.14em]",
+        onDark ? "text-ink-muted-on-dark" : "text-ink-muted",
+      ]}
+      data-figures="tabular"
+    >
+      {ordinal} <span class="opacity-50">/ {totalStr}</span>
+    </span>
+  </div>
+
+  <Heading
+    size="display-sm"
+    as="h3"
+    class:list={["text-balance", onDark ? "text-ink-on-dark" : "text-ink"]}
+  >
+    {title}
+  </Heading>
+
+  <p
+    class:list={[
+      "text-[15px] leading-relaxed",
+      onDark ? "text-ink-muted-on-dark" : "text-ink-muted",
+    ]}
+  >
+    {body}
+  </p>
+</li>

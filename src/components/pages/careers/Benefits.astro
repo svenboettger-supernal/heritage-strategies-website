@@ -1,0 +1,61 @@
+---
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+
+const benefits = [
+  {
+    eyebrow: "Compensation",
+    body: "Competitive base salary, calibrated to a senior estate-planning or family-office market, with production-aligned incentives tied to engagement quality and tenure. Never commission-driven on product placement.",
+  },
+  {
+    eyebrow: "Health",
+    body: "Medical, dental, and vision coverage, sourced through Heritage Benefit Solutions. The firm uses the same plan architecture it designs for its corporate clients.",
+  },
+  {
+    eyebrow: "Retirement",
+    body: "401(k) with an employer match and discretionary profit-sharing for tenured staff. Vesting and contribution schedules are reviewed annually with each employee.",
+  },
+  {
+    eyebrow: "Time",
+    body: "Generous paid time off, summer Fridays through Labor Day, paid parental leave, and bereavement leave. A serious profession requires real rest. The firm runs on it.",
+  },
+  {
+    eyebrow: "Practice",
+    body: "Full reimbursement for CFP, ChFC, CLU, CPA, and JD exam fees, plus continuing-education tuition and registration. Heritage covers the time as well as the cost.",
+  },
+  {
+    eyebrow: "Community",
+    body: "Paid time for board service and volunteer engagement with the organizations Heritage supports, including St. Francis Hospital Foundation, Ronald McDonald House, Breaking Ground, LICADD, and the Children's Medical Fund.",
+  },
+];
+---
+
+<Section background="page" padding="loose" width="default">
+  <div class="max-w-screen-prose">
+    <Eyebrow>Benefits</Eyebrow>
+    <Heading size="display-lg" class="mt-5 text-balance">
+      How Heritage takes care of the people who do the work.
+    </Heading>
+    <p class="mt-6 font-editorial text-[1.0625rem] leading-[1.6] text-ink-muted">
+      The package is built the way the practice is built. Stable, considered, designed for a long career.
+    </p>
+  </div>
+
+  <ul class="mt-16 grid border-t border-default sm:grid-cols-2 lg:grid-cols-3">
+    {benefits.map((b, idx) => (
+      <li
+        class:list={[
+          "p-8 md:p-10 border-b border-default",
+          "sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(odd)]:border-default",
+          "lg:[&:nth-child(odd)]:border-r-0 lg:[&:not(:nth-child(3n))]:border-r lg:[&:not(:nth-child(3n))]:border-default",
+        ]}
+      >
+        <Eyebrow>{b.eyebrow}</Eyebrow>
+        <p class="mt-4 font-editorial text-[1.0625rem] leading-[1.6] text-ink">
+          {b.body}
+        </p>
+      </li>
+    ))}
+  </ul>
+</Section>

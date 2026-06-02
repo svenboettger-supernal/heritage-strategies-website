@@ -1,0 +1,243 @@
+/* ---------- Font loading (must come before any other rule) ---------- */
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/500.css";
+@import "@fontsource/cormorant-garamond/600.css";
+@import "@fontsource/eb-garamond/400.css";
+@import "@fontsource/eb-garamond/500.css";
+@import "@fontsource/eb-garamond/600-italic.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/jetbrains-mono/400.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Heritage brand tokens (HSL components only) ---------- */
+:root {
+  /* surfaces */
+  --surface-page: 38 28% 96%;
+  --surface-card: 0 0% 100%;
+  --surface-muted: 38 22% 92%;
+  --surface-dark: 217 55% 14%;
+  --surface-dark-panel: 217 50% 18%;
+
+  /* brand */
+  --brand-navy: 217 50% 22%;
+  --brand-navy-hover: 217 65% 14%;
+  --brand-copper: 20 55% 48%;
+  --brand-copper-deep: 18 60% 32%;
+  --brand-copper-tint: 20 35% 94%;
+
+  /* text */
+  --text-default: 217 40% 12%;
+  --text-muted: 217 18% 36%;
+  --text-placeholder: 217 12% 52%;
+  --text-on-dark: 38 24% 94%;
+  --text-muted-on-dark: 38 14% 70%;
+
+  /* borders (alpha included via rgb-style fallback in css below) */
+  --border-default: 217 40% 12% / 0.10;
+  --border-input: 217 40% 12% / 0.14;
+  --border-strong: 217 40% 12% / 0.18;
+  --border-on-dark: 38 24% 94% / 0.12;
+
+  /* status */
+  --status-success-bg: 140 30% 95%;
+  --status-success-fg: 146 50% 26%;
+  --status-success-br: 140 30% 82%;
+  --status-warning-bg: 38 60% 94%;
+  --status-warning-fg: 28 70% 32%;
+  --status-warning-br: 38 55% 78%;
+  --status-error-bg: 8 50% 95%;
+  --status-error-fg: 4 56% 40%;
+  --status-error-br: 8 50% 84%;
+  --status-info-bg: 217 40% 95%;
+  --status-info-fg: 217 55% 28%;
+  --status-info-br: 217 35% 80%;
+
+  /* viz palette */
+  --viz-0: 217 50% 22%;
+  --viz-1: 210 24% 48%;
+  --viz-2: 20 55% 48%;
+  --viz-3: 150 16% 42%;
+  --viz-4: 340 22% 42%;
+  --viz-5: 38 50% 50%;
+  --viz-6: 28 14% 52%;
+  --viz-7: 220 6% 46%;
+}
+
+/* ---------- Base reset on top of Tailwind preflight ---------- */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    color-scheme: light;
+  }
+
+  body {
+    background-color: hsl(var(--surface-page));
+    color: hsl(var(--text-default));
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  }
+
+  /* Display headings — Cormorant Garamond, only on marketing surfaces; app uses Inter */
+  .font-display,
+  .display h1,
+  .display h2 {
+    font-family: "Cormorant Garamond", Cormorant, Garamond, serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  /* Editorial body */
+  .prose-editorial {
+    font-family: "EB Garamond", Garamond, Georgia, serif;
+    font-size: 1.125rem;
+    line-height: 1.65;
+    font-feature-settings: "onum" 1, "kern" 1, "liga" 1;
+  }
+
+  /* Tabular figures in data contexts */
+  table,
+  .figure,
+  .sheet,
+  .amount,
+  pre,
+  code,
+  [data-figures="tabular"] {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1, "kern" 1;
+  }
+
+  /* Focus ring — global */
+  :focus-visible {
+    outline: 2px solid hsl(var(--brand-navy));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Selection */
+  ::selection {
+    background: hsl(var(--brand-navy));
+    color: hsl(var(--text-on-dark));
+  }
+
+  /* Image defaults */
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Anchor defaults — heritage navy on light */
+  a {
+    color: hsl(var(--brand-navy));
+    text-decoration-color: hsl(var(--brand-navy) / 0.35);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: color 250ms ease, text-decoration-color 250ms ease;
+  }
+  a:hover {
+    color: hsl(var(--brand-navy-hover));
+    text-decoration-color: hsl(var(--brand-navy-hover));
+  }
+
+  /* Headings on dark surfaces */
+  .on-dark a {
+    color: hsl(var(--text-on-dark));
+    text-decoration-color: hsl(var(--text-on-dark) / 0.4);
+  }
+  .on-dark a:hover {
+    color: hsl(var(--text-on-dark));
+    text-decoration-color: hsl(var(--text-on-dark));
+  }
+}
+
+@layer components {
+  /* The signature thin hairline used once per major section break.
+     Reads as the diagonal light streak on the existing Heritage hero. */
+  .hairline {
+    height: 1px;
+    width: 60%;
+    background: hsl(var(--border-default));
+    transform: rotate(-1.5deg);
+    transform-origin: left center;
+    margin: 0 auto;
+  }
+  .on-dark .hairline {
+    background: hsl(0 0% 100% / 0.32);
+  }
+
+  /* Small-caps eyebrow */
+  .eyebrow {
+    font-family: Inter, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: hsl(var(--text-muted));
+  }
+  .on-dark .eyebrow {
+    color: hsl(var(--text-muted-on-dark));
+  }
+
+  /* Card surface */
+  .card {
+    background: hsl(var(--surface-card));
+    border: 1px solid hsl(var(--border-default));
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  /* Generic content section spacing */
+  .section {
+    padding-top: clamp(4rem, 7vw, 7rem);
+    padding-bottom: clamp(4rem, 7vw, 7rem);
+  }
+  .section-tight {
+    padding-top: clamp(2.5rem, 5vw, 4rem);
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  /* Force borders to read with alpha-included tokens (Tailwind's border-color doesn't auto-merge alpha) */
+  .border-default {
+    border-color: hsl(var(--border-default));
+  }
+  .border-input {
+    border-color: hsl(var(--border-input));
+  }
+  .border-strong {
+    border-color: hsl(var(--border-strong));
+  }
+  .border-on-dark {
+    border-color: hsl(var(--border-on-dark));
+  }
+}

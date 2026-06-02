@@ -1,0 +1,60 @@
+---
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+
+const columns = [
+  {
+    eyebrow: "Fiduciary, not a sales channel",
+    body: "Heritage is a fiduciary practice. Compensation is structured around the quality of advice and the durability of the work, never around product placement. The firm earns its keep by being the calmest, most accurate voice in the room. If your previous seat rewarded volume over judgment, this will feel like a different category of work, because it is.",
+  },
+  {
+    eyebrow: "The work is technically demanding",
+    body: "A typical week sits inside trust language, estate distribution math, large-case underwriting, and intergenerational structures across multiple jurisdictions. Heritage Book engagements run for years; the analysis behind them is read by attorneys, trustees, accountants, and the principals themselves. The bar is set by what the next professional in the chain expects when the document reaches their desk.",
+  },
+  {
+    eyebrow: "Small enough that good work is visible",
+    body: "Heritage runs as a senior practice with a deliberately small team. Your work is not buried under three layers of partner review. Principals see it. Families see it. Careers compound here the way they compound in a serious law firm or a sophisticated family office, not the way they compound on a sales floor.",
+  },
+];
+---
+
+<Section background="page" padding="loose" width="default">
+  <div class="grid gap-16 md:gap-20 lg:grid-cols-[1fr_2fr] items-start">
+    <div>
+      <Eyebrow>The practice</Eyebrow>
+      <Heading size="display-lg" class="mt-5 text-balance">
+        A steward's practice, not a sales floor.
+      </Heading>
+      <p class="mt-7 font-editorial text-[1.125rem] leading-[1.6] text-ink-muted max-w-md">
+        Heritage was founded to do one thing well: build, refresh, and steward the full estate picture for ultra-high-net-worth families and the operating companies that built their wealth. The firm hires accordingly.
+      </p>
+    </div>
+
+    <ul class="grid gap-12 sm:grid-cols-1 lg:grid-cols-1">
+      {columns.map((col) => (
+        <li class="flex flex-col">
+          <Eyebrow>{col.eyebrow}</Eyebrow>
+          <p class="mt-4 font-editorial text-[1.1875rem] leading-[1.65] text-ink max-w-prose">
+            {col.body}
+          </p>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <div class="mt-20 grid gap-12 md:grid-cols-2 max-w-screen-prose">
+    <div>
+      <Eyebrow>Philanthropy is part of the firm</Eyebrow>
+      <p class="mt-4 font-editorial text-[1.0625rem] leading-[1.6] text-ink">
+        Philanthropy is an integral part of the identity and culture of Heritage. The partners contribute to the communities in which they live and work, and team members are expected to engage. The firm supports St. Francis Hospital, the OHSU Foundation, Northwell Health Foundation, Breaking Ground, LICADD, Ronald McDonald House, and the Children's Medical Fund, with focus areas in the treatment of disease, the lives of young and underprivileged populations, and Veterans and their families.
+      </p>
+    </div>
+    <div>
+      <Eyebrow>What we look for</Eyebrow>
+      <p class="mt-4 font-editorial text-[1.0625rem] leading-[1.6] text-ink">
+        Practitioners who do not need to be the loudest person in the room to be heard. Five-plus years inside a serious estate-planning practice, a trusts-and-estates group, a sophisticated family office, or a large-case insurance practice. CFP, ChFC, CLU, CPA, or JD welcome and reimbursed. Discretion is a baseline credential, not a nice-to-have.
+      </p>
+    </div>
+  </div>
+</Section>

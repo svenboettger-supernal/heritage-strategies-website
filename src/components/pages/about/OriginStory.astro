@@ -1,0 +1,35 @@
+---
+import Section from "@components/Section.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Heading from "@components/Heading.astro";
+import Prose from "@components/Prose.astro";
+---
+
+<Section background="muted" padding="loose" width="default">
+  <div class="grid gap-16 md:grid-cols-[1fr_2fr] md:gap-20">
+    <div>
+      <Eyebrow>Origin</Eyebrow>
+      <Heading size="display-md" class="mt-4 text-balance">
+        How the firm came to be.
+      </Heading>
+      <p class="mt-6 text-[14px] leading-relaxed text-ink-muted max-w-[18rem]">
+        A short reading of the firm's first forty years. The names matter. The decisions matter more.
+      </p>
+    </div>
+
+    <Prose size="lg">
+      <p>
+        Heritage Strategies begins, in practice, with a 1978 graduation from Fairfield University and a first job inside the Individual Financial Distribution division of CIGNA. The work was estate planning for affluent families, and the apprenticeship was long. Thomas J. Fanning, Sr. spent more than a decade inside CIGNA building the case-design instinct that still anchors the firm today.
+      </p>
+      <p>
+        In 1990, Tom Sr. partnered with former CIGNA colleagues to establish a national life-insurance brokerage. The partnership grew on the strength of a handful of family relationships that had begun a decade earlier and have continued, generation by generation, into the present. National Financial Partners acquired the partnership in 2002 and listed on the New York Stock Exchange. Tom Sr. served as President of the practice through 2009.
+      </p>
+      <p>
+        In 2009, he reacquired the practice and founded Heritage Strategies LLC. The intent was specific. A firm small enough to know every family by name, deliberate enough to read every trust document the family signed, and independent enough to sit on the family's side of the table for the long horizons estate planning actually requires. Chris Halvey, who had joined the prior partnership in 2008, came with him. Keith McMahon joined the same year. Tom Fanning Jr. joined as an Associate in 2011 and was named Partner in 2016. Jennifer Mejia joined as Chief Operating Officer in 2021.
+      </p>
+      <p>
+        What anchors the firm today is the same thing that anchored it in 1990: a small group of senior people who do the careful work themselves, alongside the family's own attorneys, accountants, and trustees. The product of that work is a single document the family owns and controls. The document changes as the family changes. It holds up the day it is needed.
+      </p>
+    </Prose>
+  </div>
+</Section>

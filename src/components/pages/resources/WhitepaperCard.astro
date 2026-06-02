@@ -1,0 +1,37 @@
+---
+import PlaceholderImage from "@components/PlaceholderImage.astro";
+import Button from "@components/Button.astro";
+
+export interface Props {
+  title: string;
+  summary: string;
+  /** Subject line used in the mailto request. */
+  subject: string;
+}
+
+const { title, summary, subject } = Astro.props;
+
+const href = `mailto:info@heritagesllc.com?subject=${encodeURIComponent(
+  `Whitepaper request: ${subject}`
+)}`;
+---
+
+<article class="flex flex-col h-full">
+  <PlaceholderImage aspect="portrait" label="Whitepaper" />
+
+  <div class="mt-6 flex flex-col flex-1">
+    <h3 class="font-display font-medium text-[1.5rem] leading-snug text-balance text-ink">
+      {title}
+    </h3>
+
+    <p class="mt-4 text-[14.5px] leading-relaxed text-ink-muted font-editorial flex-1">
+      {summary}
+    </p>
+
+    <div class="mt-8">
+      <Button href={href} variant="ghost" size="sm">
+        Request the paper
+      </Button>
+    </div>
+  </div>
+</article>

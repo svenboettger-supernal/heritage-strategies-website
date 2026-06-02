@@ -1,0 +1,77 @@
+---
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+
+const pillars = [
+  {
+    eyebrow: "Estate architecture",
+    title: "Simplify the complex, then keep it simple.",
+    body: "Heritage consolidates every entity, trust, policy, and account onto a single living schedule. Complex structures become readable, by the family and by the advisors the family will hand them to next.",
+    glyph: "rings",
+  },
+  {
+    eyebrow: "Multi-generational planning",
+    title: "Innovative concepts, applied with restraint.",
+    body: "Heritage enhances multi-generation planning with techniques drawn from forty years of work alongside ultra-high-net-worth families. The objective is durability, not novelty.",
+    glyph: "horizon",
+  },
+  {
+    eyebrow: "Accountability",
+    title: "Execution that does not drift.",
+    body: "Heritage instills accountability for consistent execution across attorneys, trustees, accountants, and operating-company management. Owner, date, next step, on every line.",
+    glyph: "anchor",
+  },
+];
+---
+
+<Section background="page" padding="loose" width="default">
+  <div class="grid gap-16 md:gap-20 md:grid-cols-[1fr_2fr] items-start">
+    <div>
+      <Eyebrow>What Heritage does</Eyebrow>
+      <Heading size="display-lg" class="mt-5 text-balance">
+        Quiet, fiduciary work for families with complex balance sheets.
+      </Heading>
+      <p class="mt-7 text-[1.0625rem] leading-relaxed text-ink-muted max-w-md">
+        Heritage was founded in 2009 to do one thing well: build, refresh, and steward the full estate picture for ultra-high-net-worth families and the operating companies that built their wealth. We work alongside, and never in place of, the advisors a family already trusts.
+      </p>
+    </div>
+
+    <ul class="grid gap-10 sm:grid-cols-3">
+      {pillars.map((pillar) => (
+        <li class="flex flex-col">
+          <span aria-hidden="true" class="block">
+            {pillar.glyph === "rings" && (
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <circle cx="16" cy="20" r="9" stroke="hsl(217 40% 12% / 0.55)" stroke-width="0.9" />
+                <circle cx="24" cy="20" r="9" stroke="hsl(217 40% 12% / 0.55)" stroke-width="0.9" />
+              </svg>
+            )}
+            {pillar.glyph === "horizon" && (
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <line x1="4" y1="22" x2="36" y2="22" stroke="hsl(217 40% 12% / 0.55)" stroke-width="0.9" />
+                <circle cx="20" cy="22" r="6" stroke="hsl(217 40% 12% / 0.55)" stroke-width="0.9" fill="none" />
+                <line x1="4" y1="28" x2="36" y2="28" stroke="hsl(217 40% 12% / 0.35)" stroke-width="0.7" />
+              </svg>
+            )}
+            {pillar.glyph === "anchor" && (
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="11" r="2.5" stroke="hsl(217 40% 12% / 0.55)" stroke-width="0.9" />
+                <line x1="20" y1="13.5" x2="20" y2="30" stroke="hsl(217 40% 12% / 0.55)" stroke-width="0.9" />
+                <path d="M11 24 C 14 30, 26 30, 29 24" stroke="hsl(217 40% 12% / 0.55)" stroke-width="0.9" fill="none" stroke-linecap="round" />
+              </svg>
+            )}
+          </span>
+
+          <p class="mt-6 eyebrow">{pillar.eyebrow}</p>
+          <h3 class="mt-3 font-display text-[1.55rem] leading-snug text-balance text-ink">
+            {pillar.title}
+          </h3>
+          <p class="mt-4 text-[15px] leading-relaxed text-ink-muted">
+            {pillar.body}
+          </p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Section>

@@ -1,0 +1,29 @@
+---
+import Section from "@components/Section.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Heading from "@components/Heading.astro";
+import PlaceholderImage from "@components/PlaceholderImage.astro";
+---
+
+<Section background="muted" padding="default" width="default">
+  <header class="max-w-screen-prose">
+    <Eyebrow>Direct scheduling</Eyebrow>
+    <Heading size="display-md" as="h2" class="mt-6 text-balance">
+      Or, book directly.
+    </Heading>
+    <p class="mt-6 text-[1.0625rem] leading-relaxed font-editorial text-ink max-w-prose">
+      Members of the firm hold weekly time for confidential conversations. If you prefer to choose a slot directly, our scheduling board is below.
+    </p>
+  </header>
+
+  <div class="mt-12">
+    {/* placeholder: live Calendly embed to be provided by Heritage per SOW §6.4 */}
+    <PlaceholderImage
+      aspect="wide"
+      label="Heritage Strategies booking calendar (Calendly integration)"
+    />
+    <p class="mt-6 text-[14px] leading-relaxed text-ink-muted max-w-prose">
+      Until the live booking link is available, please use the form above and we will reply with a time.
+    </p>
+  </div>
+</Section>

@@ -1,0 +1,80 @@
+---
+import Eyebrow from "@components/Eyebrow.astro";
+import Heading from "@components/Heading.astro";
+
+// Placeholder lecture titles per SOW §6.3 — Heritage to provide specific
+// lectures, dates, and venues. Source for activity description is the
+// firm site (heritagesllc.com/thomas-j-fanning-sr/): "Mr. Fanning lectures
+// for corporations, insurance companies, and accounting/law firms on
+// estate planning and business strategy topics."
+const lectures = [
+  {
+    title: "Generational wealth preservation beyond the estate tax",
+    venue: "Industry keynote",
+    detail: "Venue and date to be confirmed",
+    audience: "Family office and trust practitioners",
+  },
+  {
+    title: "Business continuity for founder-owners",
+    venue: "Corporate insurance panel",
+    detail: "Date to be confirmed",
+    audience: "Carrier underwriting and advisory leadership",
+  },
+  {
+    title: "The Heritage Book: a living document for multi-family wealth",
+    venue: "Accounting and law-firm CPE",
+    detail: "Date to be confirmed",
+    audience: "Trust and estate attorneys, CPAs",
+  },
+  {
+    title: "Multi-jurisdictional trust planning",
+    venue: "Industry forum",
+    detail: "Date to be confirmed",
+    audience: "Family office principals and fiduciary counsel",
+  },
+];
+---
+
+<section class="border-t border-default pt-16 md:pt-20">
+  <header class="mb-10 md:mb-14 max-w-screen-prose">
+    <Eyebrow>Speaking &amp; lecturing</Eyebrow>
+    <Heading size="display-md" as="h2" class="mt-5 text-balance">
+      Lectures by Mr. Fanning.
+    </Heading>
+    <p class="mt-6 font-editorial text-[1.0625rem] leading-[1.65] text-ink-muted">
+      Mr. Fanning lectures for corporations, insurance companies, and accounting and law firms on estate planning and business strategy. Recent and recurring topics include:
+    </p>
+  </header>
+
+  {/* placeholder: Heritage to provide specific lectures, dates, venues per SOW §6.3 */}
+  <ol class="border-t border-default">
+    {lectures.map((lecture, idx) => (
+      <li class="grid grid-cols-1 md:grid-cols-[3.5rem_1fr_14rem] gap-x-10 gap-y-3 py-8 border-b border-default">
+        <span
+          data-figures="tabular"
+          class="font-mono text-[0.8125rem] text-ink-muted pt-1"
+          aria-hidden="true"
+        >
+          {String(idx + 1).padStart(2, "0")}
+        </span>
+
+        <div class="max-w-screen-prose">
+          <p class="eyebrow">{lecture.venue}</p>
+          <h3 class="mt-3 font-display font-medium text-[1.45rem] leading-[1.25] tracking-[-0.005em] text-ink text-balance">
+            {lecture.title}
+          </h3>
+          <p class="mt-3 font-editorial text-[1rem] leading-[1.6] text-ink-muted">
+            For {lecture.audience}.
+          </p>
+        </div>
+
+        <p
+          data-figures="tabular"
+          class="md:text-right text-[0.8125rem] font-medium tracking-[0.04em] text-ink-muted uppercase md:pt-2"
+        >
+          {lecture.detail}
+        </p>
+      </li>
+    ))}
+  </ol>
+</section>

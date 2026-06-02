@@ -1,0 +1,84 @@
+---
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Button from "@components/Button.astro";
+
+export interface Props {
+  eyebrow?: string;
+  heading: string;
+  body?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  background?: "dark" | "page" | "muted";
+}
+
+const {
+  eyebrow = "Next step",
+  heading,
+  body,
+  ctaLabel = "Request a confidential conversation",
+  ctaHref,
+  secondaryLabel,
+  secondaryHref,
+  background = "dark",
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const resolvedCta = ctaHref ?? `${base}/contact/`;
+const resolvedSecondary = secondaryHref
+  ? secondaryHref.startsWith("http")
+    ? secondaryHref
+    : `${base}${secondaryHref.startsWith("/") ? "" : "/"}${secondaryHref}`
+  : undefined;
+const isDark = background === "dark";
+---
+
+<Section background={background} padding="loose">
+  <div class="grid gap-10 md:grid-cols-[1.2fr_1fr] md:items-end">
+    <div>
+      <Eyebrow class={isDark ? "text-ink-muted-on-dark" : ""}>{eyebrow}</Eyebrow>
+      <Heading
+        size="display-lg"
+        as="h2"
+        class:list={["mt-6 text-balance", isDark ? "text-ink-on-dark" : "text-ink"]}
+      >
+        {heading}
+      </Heading>
+      {body && (
+        <p
+          class:list={[
+            "mt-6 max-w-prose text-[1.1rem] leading-relaxed",
+            isDark ? "text-ink-muted-on-dark" : "text-ink-muted",
+          ]}
+        >
+          {body}
+        </p>
+      )}
+    </div>
+    <div class="flex flex-wrap items-center gap-x-8 gap-y-4 md:justify-end">
+      <Button
+        href={resolvedCta}
+        variant={isDark ? "on-dark" : "primary"}
+        size="lg"
+      >
+        {ctaLabel}
+      </Button>
+      {resolvedSecondary && secondaryLabel && (
+        <a
+          href={resolvedSecondary}
+          class:list={[
+            "text-[14px] font-medium tracking-[0.01em] no-underline border-b pb-1 transition-colors duration-fast",
+            isDark
+              ? "text-ink-on-dark/85 hover:text-ink-on-dark border-on-dark hover:border-ink-on-dark"
+              : "text-ink hover:text-brand-navy border-default hover:border-strong",
+          ]}
+        >
+          {secondaryLabel}
+        </a>
+      )}
+    </div>
+  </div>
+</Section>

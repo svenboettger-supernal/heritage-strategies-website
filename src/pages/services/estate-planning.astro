@@ -1,0 +1,279 @@
+---
+import { getEntry } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import FAQ from "@components/FAQ.astro";
+import Quote from "@components/Quote.astro";
+import AudienceCard from "@components/pages/services/AudienceCard.astro";
+import CTABand from "@components/pages/services/CTABand.astro";
+
+const service = await getEntry("services", "estate-planning");
+const summary = service?.data.summary ?? "";
+const bullets = service?.data.bullets ?? [];
+const audiences = service?.data.audiences ?? [];
+
+const testimonial = await getEntry("testimonials", "family-office-principal");
+
+const audienceCopy: Record<string, { eyebrow: string; body: string }> = {
+  "Ultra-high-net-worth families": {
+    eyebrow: "Family",
+    body: "Multi-generational families with concentrated, illiquid, or multi-jurisdictional wealth. Heritage holds the full balance sheet and the trust map across every entity.",
+  },
+  "Founders preparing a liquidity event": {
+    eyebrow: "Pre-liquidity",
+    body: "Founders inside the window between term sheet and close. Heritage models the post-transaction estate before the wire hits and structures around the model, not after it.",
+  },
+  "Owners planning a business succession": {
+    eyebrow: "Succession",
+    body: "Operating-business owners moving the company to the next generation or to a non-family operator. Heritage coordinates the estate plan with the succession plan so neither outruns the other.",
+  },
+  "Trustees of large irrevocable trusts": {
+    eyebrow: "Trustee",
+    body: "Trustees of long-horizon irrevocable trusts who need a single, readable picture of the instrument, the assets, and the beneficiary impact at any point in time.",
+  },
+};
+
+const bulletEssays = [
+  {
+    title: "Simplify complex estate and tax-efficient investment strategies",
+    body: "Complexity is the cost of multi-generational wealth. Heritage does not remove the complexity. The firm renders it so the family can act on it. Schedules, flow diagrams, and distribution charts reduce a thirty-entity picture to a single readable plan.",
+  },
+  {
+    title: "Provide actionable intelligence",
+    body: "Reporting is not the deliverable. Actionable intelligence is. Every section of the Book ends in a decision: an owner, a date, an open question, or a closed one. Families do not leave a refresh meeting with a binder. They leave with a list.",
+  },
+  {
+    title: "Instill accountability for consistent execution",
+    body: "A plan that is never executed is a plan that did not exist. Heritage tracks open items against attorneys, trustees, and operating teams. When the family is busy with the business, the calendar still moves. The firm holds the clock.",
+  },
+  {
+    title: "Leverage proprietary products to mitigate risk and preserve assets",
+    body: "Heritage's case design layers insurance and structured products against the actual underlying balance sheet, not against a generic illustration. Coverage, ownership, and beneficiary structure are designed to the model.",
+  },
+  {
+    title: "Evolve with the ever-changing financial and tax landscape",
+    body: "Tax regimes shift. Operating businesses change shape. The plan moves with the law and with the company. Each annual refresh rebuilds the model against the current code and the current facts.",
+  },
+  {
+    title: "Enhance multi-generation planning techniques",
+    body: "The Book is built to be read by people the principal will never meet. Naming conventions, document provenance, and the cadence of refresh cycles are all chosen so the next generation can step into the chair without a translation layer.",
+  },
+];
+
+const faqs = [
+  {
+    question: "What is the typical engagement length?",
+    answer:
+      "Engagements are ongoing. Heritage Strategies has served families continuously since the firm was founded in 2009, and the partners bring more than sixty years of combined experience. The Heritage Book is a living document, refreshed annually at minimum and updated whenever a triggering event requires it.",
+  },
+  {
+    question: "Do you replace my existing attorney?",
+    answer:
+      "No. Heritage works alongside the family's existing counsel. The drafting attorney drafts. Heritage provides the data picture, the modeling, and the accountability layer that allows the attorney to do their best work. Most engagements begin by reading every existing trust document line by line.",
+  },
+  {
+    question: "How do you coordinate with my accountant?",
+    answer:
+      "The accountant sees the same artifacts the family sees: the consolidated schedules, the flow diagrams, the distribution charts. Heritage and the accountant work to the same reconciled balance sheet, which removes a recurring source of friction in year-end planning.",
+  },
+  {
+    question: "What happens during a liquidity event timeline?",
+    answer:
+      "Heritage models the post-transaction estate before the wire hits. The model informs the structure, not the other way around. Founders inside the window between term sheet and close are an explicit audience for the practice, and the firm has run this cycle alongside counsel many times.",
+  },
+  {
+    question: "How do you handle multi-jurisdictional families?",
+    answer:
+      "Heritage holds the full picture across jurisdictions and coordinates with each jurisdiction's counsel. The flow diagrams and distribution charts are jurisdiction-aware. [HERITAGE-TO-CONFIRM: list of jurisdictions in which the firm regularly engages outside counsel]",
+  },
+  {
+    question: "Do you advise on grantor trust structures?",
+    answer:
+      "Heritage models grantor and non-grantor trust scenarios as part of standard case design. The firm does not draft the trust instrument itself; the drafting attorney does. Heritage's role is to model the dollar flows, the income-tax consequences, and the distribution outcomes so the attorney drafts against a complete picture.",
+  },
+  {
+    question: "What is the firm's stance on dynasty trusts?",
+    answer:
+      "Dynasty trusts are a tool, not a strategy. The right answer depends on the family's jurisdiction, the operating business, and the beneficiary picture across generations the principal will not live to see. Heritage models the scenario before it recommends a structure. [HERITAGE-TO-CONFIRM: any preferred dynasty-trust jurisdictions the firm tends to use]",
+  },
+  {
+    question: "How do you read trust language?",
+    answer:
+      "Sentence by sentence. Every existing instrument is read against the current balance sheet and mapped to the dollar paths it actually creates. The firm has reviewed documents drafted forty years ago by attorneys long retired, and traced their provisions to outcomes the original principals never modeled.",
+  },
+  {
+    question: "How often do we refresh the document?",
+    answer:
+      "Annually at minimum, and on any triggering event: a death, a sale, a new entity, a change in tax regime, a trustee transition. Heritage holds the refresh calendar so the document moves even when the family is busy with the operating business.",
+  },
+  {
+    question: "How is fee structure determined?",
+    answer:
+      "Fees are set in writing at engagement and depend on the shape of the balance sheet, the number of entities, and the cadence of refresh cycles required. The firm's posture is fiduciary. [HERITAGE-TO-CONFIRM: published fee bands or engagement-letter standard, if the firm wishes to disclose]",
+  },
+  {
+    question: "Do you accept commissions from product placement?",
+    answer:
+      "Where commissions or fees apply on insurance or product placement, they are disclosed in writing at engagement. The Heritage Book is not a sales channel for any carrier or manager. The work product, and the partners' time, is what the family is paying for.",
+  },
+  {
+    question: "What is the firm's regulatory affiliation?",
+    answer:
+      "Securities and investment advisory services are offered through M Holdings Securities, Inc., a registered broker-dealer and investment advisor, member FINRA and SIPC. Heritage Strategies LLC is independently owned and operated and is a member of M Financial Group. Form CRS and FINRA BrokerCheck are available on request.",
+  },
+];
+---
+
+<Layout
+  title="Estate & Business Continuity | Heritage Strategies"
+  description="Comprehensive estate and business continuity planning for high-net-worth families and the operating companies that built their wealth."
+  pathname="/services/estate-planning/"
+>
+  {/* Editorial hero — parchment */}
+  <Section background="page" padding="loose" width="default">
+    <div class="grid gap-12 md:grid-cols-[1.4fr_1fr] md:items-end">
+      <div>
+        <Eyebrow>Service</Eyebrow>
+        <Heading size="display-xl" as="h1" class="mt-8 text-balance">
+          Estate and business continuity.
+        </Heading>
+        <p class="mt-8 max-w-prose text-[1.2rem] leading-relaxed font-editorial text-ink">
+          {summary}
+        </p>
+      </div>
+
+      <aside class="md:justify-self-end md:max-w-xs">
+        <p class="eyebrow text-[11.5px] mb-3">At a glance</p>
+        <dl class="space-y-3 text-[14.5px] leading-relaxed">
+          <div class="flex justify-between gap-6 border-b border-default pb-2">
+            <dt class="text-ink-muted">Practice</dt>
+            <dd class="text-ink">Estate &amp; continuity</dd>
+          </div>
+          <div class="flex justify-between gap-6 border-b border-default pb-2">
+            <dt class="text-ink-muted">Engagement</dt>
+            <dd class="text-ink">Ongoing</dd>
+          </div>
+          <div class="flex justify-between gap-6 border-b border-default pb-2">
+            <dt class="text-ink-muted">Refresh cadence</dt>
+            <dd class="text-ink" data-figures="tabular">Annual, minimum</dd>
+          </div>
+          <div class="flex justify-between gap-6">
+            <dt class="text-ink-muted">Coordinates with</dt>
+            <dd class="text-ink">Counsel, CPAs, trustees</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </Section>
+
+  {/* Numbered editorial blocks — 2-col on desktop */}
+  <Section background="muted" padding="loose" width="default">
+    <header class="mb-14 max-w-prose">
+      <Eyebrow>What the practice does</Eyebrow>
+      <Heading size="display-lg" as="h2" class="mt-6 text-balance">
+        Six commitments, applied to every engagement.
+      </Heading>
+    </header>
+
+    <div class="grid gap-x-12 gap-y-14 md:grid-cols-2">
+      {bulletEssays.map((b, idx) => (
+        <article class="flex flex-col gap-4">
+          <div class="flex items-baseline gap-4">
+            <span
+              class="font-mono text-[12.5px] tracking-[0.14em] text-brand-copper"
+              data-figures="tabular"
+            >
+              {String(idx + 1).padStart(2, "0")}
+            </span>
+            <span
+              aria-hidden="true"
+              class="block h-px w-12 bg-default"
+            ></span>
+          </div>
+          <h3 class="font-display font-medium text-[1.65rem] leading-[1.2] text-ink text-balance">
+            {b.title}
+          </h3>
+          <p class="text-[15.5px] leading-relaxed text-ink-muted max-w-prose">
+            {b.body}
+          </p>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  {/* Who we work with */}
+  <Section background="page" padding="default" width="default">
+    <header class="mb-12 max-w-prose">
+      <Eyebrow>Who we work with</Eyebrow>
+      <Heading size="display-lg" as="h2" class="mt-6 text-balance">
+        Families and principals the practice was built for.
+      </Heading>
+    </header>
+
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {audiences.map((a) => {
+        const copy = audienceCopy[a] ?? {
+          eyebrow: "Audience",
+          body: "",
+        };
+        return (
+          <AudienceCard
+            eyebrow={copy.eyebrow}
+            title={a}
+            body={copy.body}
+          />
+        );
+      })}
+    </div>
+  </Section>
+
+  {/* Anonymized case vignette */}
+  {testimonial && (
+    <Section background="muted" padding="default" width="default">
+      <div class="grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16 md:items-start">
+        <div>
+          <Eyebrow>A note from the table</Eyebrow>
+          <p class="mt-5 text-[14.5px] leading-relaxed text-ink-muted max-w-xs">
+            Drawn from a four-generation operating family, shared with permission, anonymized at client request.
+          </p>
+        </div>
+        <div class="bg-surface-card border border-default p-8 md:p-12">
+          <Quote
+            attribution={testimonial.data.attribution}
+            anonymized={testimonial.data.anonymized}
+          >
+            {testimonial.data.quote}
+          </Quote>
+        </div>
+      </div>
+    </Section>
+  )}
+
+  {/* FAQ */}
+  <Section background="page" padding="default" width="default">
+    <div class="grid gap-12 md:grid-cols-[1fr_1.6fr] md:gap-16">
+      <header>
+        <Eyebrow>Common questions</Eyebrow>
+        <Heading size="display-lg" as="h2" class="mt-6 text-balance">
+          What families ask first.
+        </Heading>
+        <p class="mt-6 text-[15px] leading-relaxed text-ink-muted max-w-xs">
+          Twelve questions that come up in a first conversation. Specifics of fee structure and engagement scope are reviewed privately.
+        </p>
+      </header>
+      <FAQ items={faqs} />
+    </div>
+  </Section>
+
+  <CTABand
+    eyebrow="Begin a conversation"
+    heading="A first conversation is for listening."
+    body="The partners review the shape of the balance sheet, the existing instruments, and the open questions. The proposal, if any, comes later."
+    ctaLabel="Schedule a confidential conversation"
+    secondaryLabel="The Heritage Book methodology"
+    secondaryHref="/services/methodology/"
+    background="dark"
+  />
+</Layout>

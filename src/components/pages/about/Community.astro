@@ -1,0 +1,65 @@
+---
+import Section from "@components/Section.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Heading from "@components/Heading.astro";
+
+const organizations = [
+  "St Francis Hospital",
+  "OHSU Foundation",
+  "Northwell Health Foundation",
+  "Breaking Ground",
+  "LICADD",
+  "Ronald McDonald House",
+  "Children's Medical Fund",
+];
+
+const causes = [
+  "Treatment of diseases",
+  "Improving lives of young and underprivileged populations",
+  "Supporting Veterans and their families",
+];
+---
+
+<Section background="page" padding="loose" width="default" id="community-impact">
+  <div class="grid gap-12 md:gap-20 lg:grid-cols-2">
+    <div class="max-w-xl">
+      <Eyebrow>Community impact</Eyebrow>
+      <Heading size="display-md" class="mt-4 text-balance">
+        Philanthropy as a working part of the firm.
+      </Heading>
+
+      <div class="mt-8 space-y-6 text-[1.1rem] leading-relaxed font-editorial text-ink">
+        <p>
+          Philanthropy is part of how the firm is built. The partners give time, capital, and judgment to a small set of organizations where the work is direct and the impact is measurable. The same instinct that drives careful estate planning drives the giving. Choose the right partners. Stay for a long time. Do the work.
+        </p>
+        <p>
+          The principals serve on boards, advise boards, volunteer on practical projects, and help the organizations raise awareness for their work. The list below is not aspirational. It is where the firm shows up.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <p class="eyebrow">Organizations we support</p>
+        <ul class="mt-4 border-t border-default">
+          {organizations.map((org) => (
+            <li class="border-b border-default py-4 text-[16px] leading-relaxed text-ink">
+              {org}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="mt-14">
+        <p class="eyebrow">Causes</p>
+        <ul class="mt-4 border-t border-default">
+          {causes.map((cause) => (
+            <li class="border-b border-default py-4 text-[15px] leading-relaxed text-ink-muted">
+              {cause}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</Section>

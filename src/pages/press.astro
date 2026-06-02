@@ -1,0 +1,84 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+
+import Hero from "@components/pages/press/Hero.astro";
+import PressList from "@components/pages/press/PressList.astro";
+import Awards from "@components/pages/press/Awards.astro";
+import Speaking from "@components/pages/press/Speaking.astro";
+import MediaKit from "@components/pages/press/MediaKit.astro";
+import PressContact from "@components/pages/press/PressContact.astro";
+import CTABand from "@components/pages/press/CTABand.astro";
+
+const allPress = (await getCollection("press", ({ data }) => data.status === "published"))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const industry = allPress
+  .filter((entry) => entry.data.tag === "industry")
+  .map((entry) => ({
+    date: entry.data.date,
+    publication: entry.data.publication,
+    title: entry.data.title,
+    summary: entry.data.summary,
+    url: entry.data.url,
+  }));
+
+const speaking = allPress
+  .filter((entry) => entry.data.tag === "speaking")
+  .map((entry) => ({
+    date: entry.data.date,
+    publication: entry.data.publication,
+    title: entry.data.title,
+    summary: entry.data.summary,
+    url: entry.data.url,
+  }));
+---
+
+<Layout
+  title="Press & Recognition · Heritage Strategies"
+  description="Press mentions, industry recognition, board service, and speaking engagements of Heritage Strategies LLC and its principals."
+  pathname="/press/"
+>
+  <Hero />
+
+  <section class="bg-surface-page py-20 md:py-28">
+    <Container width="default">
+      {industry.length > 0 && (
+        <PressList
+          eyebrow="In the industry"
+          heading="Industry recognition and board service."
+          items={industry}
+        />
+      )}
+
+      {speaking.length > 0 && (
+        <div class="mt-20 md:mt-28">
+          <PressList
+            eyebrow="Speaking &amp; service"
+            heading="Advisory boards, foundation work, and chairs."
+            items={speaking}
+          />
+        </div>
+      )}
+
+      <div class="mt-20 md:mt-28">
+        <Awards />
+      </div>
+
+      <div class="mt-20 md:mt-28">
+        <Speaking />
+      </div>
+
+      <div class="mt-20 md:mt-28">
+        <MediaKit />
+      </div>
+
+      <div class="mt-20 md:mt-28">
+        <PressContact />
+      </div>
+    </Container>
+  </section>
+
+  <CTABand />
+</Layout>

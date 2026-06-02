@@ -1,0 +1,44 @@
+---
+export interface Props {
+  /** Visual size — independent of semantic level. */
+  size?: "display-xl" | "display-lg" | "display-md" | "display-sm" | "h3" | "h4" | "h5";
+  /** Semantic HTML level. Defaults to size-matched (display sizes → h2 unless overridden). */
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  /** Toggle Cormorant Garamond display serif. Defaults to true for display sizes, false otherwise. */
+  display?: boolean;
+  class?: string;
+  balance?: boolean;
+}
+
+const {
+  size = "display-md",
+  as,
+  display,
+  class: className = "",
+  balance = true,
+} = Astro.props;
+
+const isDisplay = display ?? size.startsWith("display");
+const Tag = (as ?? (size === "display-xl" ? "h1" : size.startsWith("display") ? "h2" : "h3")) as string;
+
+const sizeClass: Record<NonNullable<Props["size"]>, string> = {
+  "display-xl": "text-display-xl",
+  "display-lg": "text-display-lg",
+  "display-md": "text-display-md",
+  "display-sm": "text-display-sm",
+  h3: "text-xl font-semibold leading-snug",
+  h4: "text-lg font-semibold leading-snug",
+  h5: "text-base font-semibold leading-snug",
+};
+---
+
+<Tag
+  class:list={[
+    sizeClass[size],
+    isDisplay ? "font-display font-medium" : "font-sans",
+    balance && "text-balance",
+    className,
+  ]}
+>
+  <slot />
+</Tag>

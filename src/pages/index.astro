@@ -1,0 +1,32 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+import Hero from "@components/pages/home/Hero.astro";
+import TrustStrip from "@components/pages/home/TrustStrip.astro";
+import ValueProps from "@components/pages/home/ValueProps.astro";
+import Milestones from "@components/pages/home/Milestones.astro";
+import ServicesPreview from "@components/pages/home/ServicesPreview.astro";
+import TestimonialSection from "@components/pages/home/TestimonialSection.astro";
+import InsightsPreview from "@components/pages/home/InsightsPreview.astro";
+import CtaBand from "@components/pages/home/CtaBand.astro";
+import NewsletterSignup from "@components/pages/home/NewsletterSignup.astro";
+
+const description =
+  "Heritage Strategies LLC is an estate-planning multi-family office for ultra-high-net-worth families navigating generational transitions, liquidity events, and the long work of preserving a multi-generational balance sheet. Independent fiduciary practice founded 2009.";
+---
+
+<Layout
+  title="Heritage Strategies"
+  description={description}
+  pathname="/"
+>
+  <Hero />
+  <TrustStrip />
+  <ValueProps />
+  <Milestones />
+  <ServicesPreview />
+  <TestimonialSection />
+  <InsightsPreview />
+  <CtaBand />
+  <NewsletterSignup />
+</Layout>

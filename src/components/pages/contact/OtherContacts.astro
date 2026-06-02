@@ -1,0 +1,38 @@
+---
+import Section from "@components/Section.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+
+interface Contact {
+  label: string;
+  email: string;
+}
+
+const contacts: Contact[] = [
+  { label: "General inquiries", email: "info@heritagesllc.com" },
+  { label: "Press inquiries", email: "press@heritagesllc.com" },
+  { label: "Careers", email: "careers@heritagesllc.com" },
+];
+
+const linkClass =
+  "block mt-3 text-[1.0625rem] font-editorial text-ink no-underline hover:underline underline-offset-4 decoration-1 transition-colors break-words";
+---
+
+<Section background="page" padding="tight" width="default" as="aside">
+  <div
+    class="grid gap-10 md:gap-0 md:grid-cols-3 border-t border-default pt-12"
+  >
+    {contacts.map((c, idx) => (
+      <div
+        class:list={[
+          "md:px-10 first:md:pl-0 last:md:pr-0",
+          idx > 0 && "md:border-l md:border-default",
+        ]}
+      >
+        <Eyebrow>{c.label}</Eyebrow>
+        <a href={`mailto:${c.email}`} class={linkClass}>
+          {c.email}
+        </a>
+      </div>
+    ))}
+  </div>
+</Section>

@@ -1,0 +1,52 @@
+---
+import Container from "@components/Container.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import WaxSeal from "@components/WaxSeal.astro";
+---
+
+<section
+  class="relative bg-surface-page text-ink"
+  aria-label="Careers at Heritage Strategies"
+>
+  {/* Soft parchment atmosphere: quiet copper and navy tints, no marketing motion */}
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 pointer-events-none"
+    style="background:
+      radial-gradient(70% 60% at 12% 18%, hsl(20 55% 48% / 0.06), transparent 65%),
+      radial-gradient(80% 70% at 92% 88%, hsl(217 50% 22% / 0.05), transparent 70%);"
+  ></div>
+
+  {/* Signature thin hairline streak, light variant */}
+  <span
+    aria-hidden="true"
+    class="absolute left-[6%] right-[18%] top-[58%] h-px -rotate-[1.4deg] origin-left"
+    style="background: linear-gradient(90deg, hsl(217 40% 12% / 0), hsl(217 40% 12% / 0.18) 32%, hsl(217 40% 12% / 0.18) 70%, hsl(217 40% 12% / 0));"
+  ></span>
+
+  <Container width="default" class="relative py-24 md:py-36">
+    <div class="max-w-3xl">
+      <div class="flex items-center gap-4">
+        <WaxSeal orientation="mark-only" size={52} ariaLabel="Heritage Strategies wax seal" />
+        <Eyebrow>Careers</Eyebrow>
+      </div>
+
+      <Heading
+        size="display-xl"
+        as="h1"
+        class="mt-10 text-balance"
+      >
+        Build a practice you could not anywhere else.
+      </Heading>
+
+      <p class="mt-8 max-w-2xl font-editorial text-[1.2rem] md:text-[1.3rem] leading-[1.6] text-ink">
+        Heritage hires for a long career, not a quarter. The work, when it is done well, looks slow on the surface and exact underneath. We look for practitioners who read trust language for sport, who think in decades, and who would rather be the second pair of eyes on a complex matter than the loudest voice in a room.
+      </p>
+
+      <p class="mt-6 max-w-2xl text-[15px] leading-relaxed text-ink-muted">
+        Founded 1998 lineage, established as Heritage Strategies in 2009. Woodbury, New York. Member of M Financial Group.
+      </p>
+    </div>
+  </Container>
+</section>

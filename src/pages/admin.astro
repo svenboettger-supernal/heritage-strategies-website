@@ -1,0 +1,75 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Button from "@components/Button.astro";
+import Hairline from "@components/Hairline.astro";
+import WaxSeal from "@components/WaxSeal.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const description = "Heritage editorial CMS, restricted access.";
+---
+
+<Layout
+  title="Administration"
+  description={description}
+  pathname="/admin/"
+  showHeader={false}
+  showFooter={false}
+>
+  <div class="min-h-screen bg-surface-dark text-ink-on-dark on-dark flex flex-col">
+    <div class="flex-1 flex flex-col items-center justify-center px-6 sm:px-8 lg:px-12 py-20">
+      <div class="w-full max-w-screen-narrow">
+        <div class="flex flex-col items-center text-center">
+          <a href={`${base}/`} class="no-underline" aria-label="Heritage Strategies, return to public site">
+            <WaxSeal orientation="vertical" size={88} onDark />
+          </a>
+
+          <div class="mt-12 w-full">
+            <Eyebrow class="mb-6">Restricted access</Eyebrow>
+            <Heading size="display-lg" as="h1" class="mb-8 text-ink-on-dark">
+              Heritage Strategies
+              <span class="block font-display italic opacity-80 text-[0.7em] mt-2">Editorial</span>
+            </Heading>
+
+            <div class="mx-auto mb-10 flex justify-center">
+              <Hairline color="light" widthPct={22} />
+            </div>
+
+            <p class="font-editorial text-[17px] md:text-[18px] leading-[1.7] text-ink-muted-on-dark max-w-prose mx-auto">
+              This is the content management interface for the Heritage Strategies website. Access requires firm credentials. The interface is provisioned by the Content Master AI Employee engagement and will be available to the editorial team once that workstream is finalized.
+            </p>
+
+            <div class="mt-12 flex flex-col items-center gap-4">
+              <Button
+                href="mailto:info@heritagesllc.com?subject=CMS%20Access%20Request"
+                variant="on-dark"
+                size="md"
+              >
+                Request access
+              </Button>
+              <a
+                href={`${base}/`}
+                class="font-sans text-[13px] tracking-[0.02em] text-ink-muted-on-dark no-underline hover:text-ink-on-dark underline-offset-4 hover:underline"
+              >
+                Return to public site &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-on-dark">
+      <div class="mx-auto max-w-screen-wide px-6 sm:px-8 lg:px-12 py-6">
+        <p
+          class="font-sans text-[12px] tracking-[0.02em] text-ink-muted-on-dark"
+          style="font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1;"
+        >
+          Heritage Strategies LLC &middot; Editorial &middot; Restricted
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,80 @@
+---
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Button from "@components/Button.astro";
+import WaxSeal from "@components/WaxSeal.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<section
+  class="relative bg-surface-dark text-ink-on-dark on-dark overflow-hidden min-h-[88vh] flex items-center"
+  aria-label="Heritage Strategies, home"
+>
+  {/* Atmospheric background: quiet navy depth, no gradients or marketing motion */}
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 pointer-events-none"
+    style="background:
+      radial-gradient(120% 80% at 18% 22%, hsl(217 50% 22% / 0.55), transparent 62%),
+      radial-gradient(140% 90% at 82% 78%, hsl(217 65% 9% / 0.55), transparent 70%);"
+  ></div>
+
+  {/* Signature thin hairline streak, crossing the hero */}
+  <span
+    aria-hidden="true"
+    class="absolute left-[8%] right-[18%] top-[42%] h-px -rotate-[2.1deg] origin-left"
+    style="background: linear-gradient(90deg, hsl(0 0% 100% / 0), hsl(0 0% 100% / 0.42) 28%, hsl(0 0% 100% / 0.42) 72%, hsl(0 0% 100% / 0));"
+  ></span>
+
+  <div class="relative mx-auto w-full max-w-screen-default px-6 sm:px-8 lg:px-12 py-28 md:py-36">
+    <div class="max-w-3xl">
+      <div class="flex items-center gap-4">
+        <WaxSeal orientation="mark-only" size={64} onDark ariaLabel="Heritage Strategies wax seal" />
+        <Eyebrow class="text-ink-muted-on-dark">Heritage Strategies LLC · since 2009</Eyebrow>
+      </div>
+
+      <Heading
+        size="display-xl"
+        as="h1"
+        class="mt-10 text-ink-on-dark text-balance"
+      >
+        Your family's wealth, intact and intentional, across generations you won't live to see.
+      </Heading>
+
+      <p class="mt-8 max-w-2xl text-lg md:text-[1.2rem] leading-relaxed text-ink-muted-on-dark">
+        Heritage is an estate-planning multi-family office for ultra-high-net-worth families navigating a generational handoff, a liquidity event, or the long, careful work of preserving a multi-generational balance sheet. We work alongside your attorneys, trustees, and accountants to build a single, living plan, owned and dated, that holds up the day it is needed.
+      </p>
+
+      <div class="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
+        <Button
+          href={`${base}/contact/`}
+          variant="on-dark"
+          size="lg"
+          ariaLabel="Request a confidential conversation"
+        >
+          Request a confidential conversation
+        </Button>
+        <a
+          href={`${base}/services/methodology/`}
+          class="text-[14px] font-medium tracking-[0.01em] text-ink-on-dark/85 hover:text-ink-on-dark no-underline border-b border-on-dark hover:border-ink-on-dark pb-1"
+        >
+          The Heritage Book methodology
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {/* Quiet corner pip: copper identity accent, used once */}
+  <span
+    aria-hidden="true"
+    class="absolute right-6 md:right-10 bottom-6 md:bottom-10 flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-ink-muted-on-dark"
+  >
+    <span
+      class="inline-block h-1.5 w-1.5 rounded-full"
+      style="background: hsl(20 55% 48%);"
+    ></span>
+    Woodbury, New York
+  </span>
+</section>

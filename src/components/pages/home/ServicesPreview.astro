@@ -1,0 +1,57 @@
+---
+import { getCollection } from "astro:content";
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const ordered = ["methodology", "estate-planning", "heritage-benefit-solutions"];
+const all = await getCollection("services");
+const services = ordered
+  .map((slug) => all.find((s) => s.slug === slug))
+  .filter((s): s is (typeof all)[number] => Boolean(s));
+---
+
+<Section background="page" padding="loose" width="default">
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 md:mb-20">
+    <div class="max-w-2xl">
+      <Eyebrow>Practice</Eyebrow>
+      <Heading size="display-lg" class="mt-5 text-balance">
+        Three engagements, one continuous discipline.
+      </Heading>
+    </div>
+    <a
+      href={`${base}/services/`}
+      class="text-[14px] font-medium tracking-[0.01em] text-brand-navy hover:text-brand-navy-hover underline underline-offset-4 decoration-1 shrink-0"
+    >
+      All services →
+    </a>
+  </div>
+
+  <ul class="grid gap-6 md:gap-7 md:grid-cols-3">
+    {services.map((service) => {
+      const deepDive = service.data.deepDive ?? `/services/${service.slug}/`;
+      const href = `${base}${deepDive}`;
+      return (
+        <li>
+          <a
+            href={href}
+            class="group flex h-full flex-col bg-surface-card border border-default rounded p-7 md:p-8 no-underline transition-colors duration-fast hover:border-strong"
+          >
+            <Eyebrow>{service.data.eyebrow ?? "Service"}</Eyebrow>
+            <h3 class="mt-5 font-display font-medium text-[1.7rem] leading-snug text-ink text-balance group-hover:text-brand-navy transition-colors duration-fast">
+              {service.data.title}
+            </h3>
+            <p class="mt-5 text-[15px] leading-relaxed text-ink-muted line-clamp-3">
+              {service.data.summary}
+            </p>
+            <span class="mt-auto pt-8 text-[13px] font-medium tracking-[0.01em] text-brand-navy">
+              Explore the service →
+            </span>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</Section>

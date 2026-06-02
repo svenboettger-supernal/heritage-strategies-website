@@ -1,0 +1,121 @@
+---
+import Button from "@components/Button.astro";
+
+export interface Props {
+  categories: string[];
+}
+
+const { categories } = Astro.props;
+const all = ["All", ...categories];
+---
+
+<nav
+  class="border-y border-default bg-surface-page"
+  aria-label="Filter insights by category"
+>
+  <div class="mx-auto max-w-screen-default px-6 sm:px-8 lg:px-12 py-6">
+    <div
+      class="flex flex-wrap items-center gap-2 md:gap-3"
+      data-category-filter
+    >
+      <span
+        class="eyebrow text-[11.5px] mr-2 md:mr-3 shrink-0"
+      >
+        Filter
+      </span>
+      {all.map((cat, idx) => (
+        <button
+          type="button"
+          data-category={cat}
+          data-active={idx === 0 ? "true" : "false"}
+          class:list={[
+            "category-pill inline-flex items-center justify-center rounded font-sans font-medium tracking-[0.01em] transition-colors duration-fast px-4 py-2 text-[13px] border",
+            idx === 0
+              ? "bg-brand-navy text-ink-on-dark border-brand-navy"
+              : "bg-transparent text-ink border-default hover:border-strong hover:bg-surface-muted",
+          ]}
+          aria-pressed={idx === 0 ? "true" : "false"}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Category filter — toggles [data-category] visibility on cards below.
+  // Featured insight is excluded from filtering by design (it always renders).
+  const root = document.querySelector<HTMLElement>("[data-category-filter]");
+  if (root) {
+    const pills = Array.from(
+      root.querySelectorAll<HTMLButtonElement>(".category-pill")
+    );
+    const cards = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-insight-card]")
+    );
+    const grid = document.querySelector<HTMLElement>("[data-insights-grid]");
+    const emptyState = document.querySelector<HTMLElement>(
+      "[data-insights-empty]"
+    );
+
+    const setActive = (target: HTMLButtonElement) => {
+      pills.forEach((p) => {
+        const isTarget = p === target;
+        p.dataset.active = isTarget ? "true" : "false";
+        p.setAttribute("aria-pressed", isTarget ? "true" : "false");
+        if (isTarget) {
+          p.classList.remove(
+            "bg-transparent",
+            "text-ink",
+            "border-default",
+            "hover:border-strong",
+            "hover:bg-surface-muted"
+          );
+          p.classList.add(
+            "bg-brand-navy",
+            "text-ink-on-dark",
+            "border-brand-navy"
+          );
+        } else {
+          p.classList.remove(
+            "bg-brand-navy",
+            "text-ink-on-dark",
+            "border-brand-navy"
+          );
+          p.classList.add(
+            "bg-transparent",
+            "text-ink",
+            "border-default",
+            "hover:border-strong",
+            "hover:bg-surface-muted"
+          );
+        }
+      });
+    };
+
+    const applyFilter = (category: string) => {
+      let visible = 0;
+      cards.forEach((card) => {
+        const match =
+          category === "All" || card.dataset.category === category;
+        card.style.display = match ? "" : "none";
+        if (match) visible += 1;
+      });
+      if (emptyState) {
+        emptyState.style.display = visible === 0 ? "" : "none";
+      }
+      if (grid) {
+        grid.setAttribute("aria-busy", "false");
+      }
+    };
+
+    pills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const category = pill.dataset.category ?? "All";
+        setActive(pill);
+        applyFilter(category);
+      });
+    });
+  }
+</script>

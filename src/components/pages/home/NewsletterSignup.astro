@@ -1,0 +1,80 @@
+---
+import Eyebrow from "@components/Eyebrow.astro";
+---
+
+<aside
+  class="bg-surface-page border-t border-default"
+  aria-label="Heritage Insights newsletter"
+>
+  <div class="mx-auto max-w-screen-default px-6 sm:px-8 lg:px-12 py-16 md:py-20">
+    <div class="grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-center">
+      <div class="max-w-md">
+        <Eyebrow>Heritage Insights</Eyebrow>
+        <p class="mt-4 font-display text-[1.75rem] leading-snug text-balance text-ink">
+          Occasional notes on estate planning and business continuity.
+        </p>
+        <p class="mt-4 text-[14.5px] leading-relaxed text-ink-muted">
+          Quarterly at most. No product pitches, no third-party offers, no urgency.
+        </p>
+      </div>
+
+      <form
+        method="GET"
+        action="mailto:info@heritagesllc.com"
+        enctype="text/plain"
+        class="flex flex-col gap-3"
+        aria-label="Subscribe to Heritage Insights"
+      >
+        {/* mailto subject pre-filled */}
+        <input
+          type="hidden"
+          name="subject"
+          value="Heritage Insights: subscribe"
+        />
+
+        <label for="newsletter-email" class="text-[12.5px] font-medium tracking-[0.06em] uppercase text-ink-muted">
+          Email address
+        </label>
+
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input
+            id="newsletter-email"
+            name="body"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            required
+            placeholder="you@example.com"
+            class="flex-1 bg-surface-card border border-input rounded px-4 py-3 text-[15px] text-ink placeholder:text-ink-placeholder shadow-input focus:outline-none focus:ring-2 focus:ring-brand-navy focus:border-brand-navy"
+          />
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center bg-brand-navy text-ink-on-dark rounded px-6 py-3 text-sm font-medium tracking-[0.01em] hover:bg-brand-navy-hover transition-colors duration-fast"
+          >
+            Subscribe
+          </button>
+        </div>
+
+        <p class="text-[12px] leading-relaxed text-ink-muted mt-1 max-w-md">
+          Subscribing opens your mail client with a pre-addressed message to info@heritagesllc.com. Your address is not stored on this site. See our <a href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/privacy/`} class="text-brand-navy underline underline-offset-2 decoration-[hsl(var(--brand-navy)/0.4)]">privacy policy</a>.
+        </p>
+      </form>
+    </div>
+  </div>
+</aside>
+
+<script>
+  // Build a proper mailto link on submit so the user lands in their mail client
+  // with the address pre-filled in the body. We avoid sending email data over
+  // the wire and keep the privacy posture intact.
+  const form = document.querySelector<HTMLFormElement>('form[aria-label="Subscribe to Heritage Insights"]');
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const input = form.querySelector<HTMLInputElement>('#newsletter-email');
+    const email = (input?.value ?? "").trim();
+    if (!email) return;
+    const subject = encodeURIComponent("Heritage Insights: subscribe");
+    const body = encodeURIComponent(`Please add the following address to the Heritage Insights list:\n\n${email}\n\nThank you.`);
+    window.location.href = `mailto:info@heritagesllc.com?subject=${subject}&body=${body}`;
+  });
+</script>

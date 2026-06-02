@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Heritage Strategies LLC">
+  <defs>
+    <radialGradient id="bg" cx="30%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="hsl(217 50% 18%)"/>
+      <stop offset="100%" stop-color="hsl(217 60% 10%)"/>
+    </radialGradient>
+    <radialGradient id="seal" cx="40%" cy="35%" r="62%">
+      <stop offset="0%" stop-color="hsl(22 65% 58%)"/>
+      <stop offset="55%" stop-color="hsl(20 55% 48%)"/>
+      <stop offset="100%" stop-color="hsl(15 50% 30%)"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- subtle atmospheric streak -->
+  <line x1="60" y1="380" x2="1140" y2="340" stroke="hsl(0 0% 100% / 0.18)" stroke-width="1"/>
+  <line x1="60" y1="385" x2="1140" y2="345" stroke="hsl(0 0% 100% / 0.10)" stroke-width="1"/>
+  <!-- seal -->
+  <g transform="translate(120, 200)">
+    <path d="M70 0
+             C 110 0 144 24 154 66
+             C 162 100 148 138 114 158
+             C 86 174 48 174 22 158
+             C -10 138 -20 100 -14 66
+             C -6 26 30 0 70 0 Z"
+          fill="url(#seal)" stroke="hsl(15 55% 22%)" stroke-width="2"/>
+    <text x="36" y="112" font-family="'Cormorant Garamond', serif" font-size="62" font-weight="600" fill="hsl(15 60% 18%)" letter-spacing="-2">H</text>
+    <text x="78" y="124" font-family="'Cormorant Garamond', serif" font-size="62" font-weight="600" fill="hsl(15 60% 18%)" letter-spacing="-2">S</text>
+  </g>
+  <!-- wordmark -->
+  <g fill="hsl(38 24% 94%)" font-family="'Cormorant Garamond', serif">
+    <text x="370" y="320" font-size="88" font-weight="500" letter-spacing="3">HERITAGE</text>
+    <text x="370" y="402" font-size="72" font-weight="500" letter-spacing="3" opacity="0.92">STRATEGIES <tspan font-size="44" letter-spacing="5">LLC</tspan></text>
+  </g>
+  <text x="370" y="478" font-family="Inter, sans-serif" font-size="22" font-weight="500" letter-spacing="3" fill="hsl(38 14% 70%)">EARNED · UNHURRIED · INTACT ACROSS GENERATIONS</text>
+</svg>

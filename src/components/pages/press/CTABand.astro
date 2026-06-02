@@ -1,0 +1,54 @@
+---
+import Heading from "@components/Heading.astro";
+import Button from "@components/Button.astro";
+import Hairline from "@components/Hairline.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<section class="relative bg-surface-dark text-ink-on-dark on-dark overflow-hidden">
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 pointer-events-none"
+    style="background:
+      radial-gradient(100% 80% at 78% 28%, hsl(217 50% 22% / 0.45), transparent 60%),
+      radial-gradient(120% 90% at 8% 82%, hsl(217 65% 9% / 0.5), transparent 65%);"
+  ></div>
+
+  <div class="relative mx-auto max-w-screen-default px-6 sm:px-8 lg:px-12 py-24 md:py-32">
+    <div class="grid gap-12 md:grid-cols-[1.4fr_1fr] md:items-end">
+      <div>
+        <Hairline color="light" widthPct={24} class="mb-10" />
+        <Heading
+          size="display-lg"
+          as="h2"
+          class="text-ink-on-dark text-balance max-w-2xl"
+        >
+          Looking to interview a principal?
+        </Heading>
+        <p class="mt-7 max-w-xl text-lg leading-relaxed text-ink-muted-on-dark font-editorial">
+          We answer in person, not by chatbot. Tell us the publication, the angle, and a date that works, and we will reply within two business days.
+        </p>
+      </div>
+
+      <div class="md:justify-self-end">
+        <Button
+          href={`${base}/contact/`}
+          variant="on-dark"
+          size="lg"
+          ariaLabel="Request a press conversation"
+        >
+          Request a conversation
+        </Button>
+        <p class="mt-5 text-[13px] tracking-[0.04em] text-ink-muted-on-dark max-w-xs">
+          Or write to
+          {" "}
+          <a
+            href="mailto:press@heritagesllc.com"
+            class="text-ink-on-dark underline underline-offset-4 decoration-[hsl(0_0%_100%/0.4)]"
+          >press@heritagesllc.com</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

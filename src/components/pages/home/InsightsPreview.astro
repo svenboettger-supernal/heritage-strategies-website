@@ -1,0 +1,81 @@
+---
+import { getCollection } from "astro:content";
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const all = await getCollection("insights");
+const insights = all
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+const formatter = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<Section background="page" padding="loose" width="default">
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 md:mb-20">
+    <div class="max-w-2xl">
+      <Eyebrow>Notes from the firm</Eyebrow>
+      <Heading size="display-lg" class="mt-5 text-balance">
+        Quiet writing on the work itself.
+      </Heading>
+    </div>
+    <a
+      href={`${base}/resources/`}
+      class="text-[14px] font-medium tracking-[0.01em] text-brand-navy hover:text-brand-navy-hover underline underline-offset-4 decoration-1 shrink-0"
+    >
+      All insights →
+    </a>
+  </div>
+
+  <ul class="grid gap-x-8 gap-y-12 md:grid-cols-3">
+    {insights.map((insight) => {
+      const href = `${base}/resources/${insight.slug}/`;
+      return (
+        <li>
+          <article class="flex flex-col h-full">
+            <div class="flex items-center gap-3 text-[12px] tracking-[0.06em] uppercase text-ink-muted">
+              <span class="font-medium">{insight.data.category}</span>
+              <span aria-hidden="true" class="opacity-60">·</span>
+              <time
+                datetime={insight.data.date.toISOString()}
+                class="font-medium"
+              >
+                {formatter.format(insight.data.date)}
+              </time>
+            </div>
+
+            <h3 class="mt-5 font-display font-medium text-[1.65rem] leading-snug text-balance text-ink">
+              <a
+                href={href}
+                class="no-underline text-ink hover:text-brand-navy transition-colors duration-fast"
+              >
+                {insight.data.title}
+              </a>
+            </h3>
+
+            <p class="mt-4 text-[15.5px] leading-relaxed text-ink-muted line-clamp-3">
+              {insight.data.summary}
+            </p>
+
+            <div class="mt-auto pt-7 flex items-center gap-4 text-[13px] text-ink-muted">
+              {insight.data.readingTime && <span>{insight.data.readingTime} read</span>}
+              <a
+                href={href}
+                class="ml-auto font-medium tracking-[0.01em] text-brand-navy no-underline border-b border-[hsl(var(--brand-navy)/0.35)] hover:border-brand-navy pb-0.5"
+              >
+                Read insight →
+              </a>
+            </div>
+          </article>
+        </li>
+      );
+    })}
+  </ul>
+</Section>

@@ -1,0 +1,70 @@
+---
+import Section from "@components/Section.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Heading from "@components/Heading.astro";
+import Button from "@components/Button.astro";
+import PlaceholderImage from "@components/PlaceholderImage.astro";
+
+const mapsHref =
+  "https://www.google.com/maps/search/?api=1&query=135+Crossways+Park+Dr+%23402+Woodbury+NY+11797";
+---
+
+<Section background="page" padding="default" width="default">
+  <div class="grid gap-10 lg:gap-16 lg:grid-cols-2 lg:items-center">
+    {/* Left: stylized location mark over a placeholder landscape */}
+    <div class="relative">
+      {/* placeholder: licensed map graphic or commissioned aerial of Crossways Park to be supplied by Heritage per SOW §6.2 */}
+      <PlaceholderImage
+        aspect="landscape"
+        label="Crossways Park, Woodbury, NY"
+      />
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 flex items-center justify-center"
+      >
+        <div class="text-center px-6">
+          <p
+            class="font-display text-[2.25rem] md:text-[2.75rem] leading-[1.05] tracking-[0.08em] text-ink"
+          >
+            WOODBURY
+          </p>
+          <p
+            class="mt-2 font-mono text-[11px] tracking-[0.32em] text-ink-muted uppercase"
+            data-figures="tabular"
+          >
+            40.8190&deg; N &nbsp;&middot;&nbsp; 73.4654&deg; W
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Right: how to find us */}
+    <div class="max-w-prose">
+      <Eyebrow>How to find us</Eyebrow>
+      <Heading size="display-md" as="h2" class="mt-6 text-balance">
+        Visiting the office.
+      </Heading>
+
+      <p class="mt-6 text-[1.0625rem] leading-relaxed font-editorial text-ink">
+        Crossways Park is located off Crossways Park Drive in Woodbury, Long Island. Visitor parking is available on-site. Visitors are received in the firm's reception lounge on the fourth floor.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <Button
+          href={mapsHref}
+          variant="ghost"
+          size="md"
+          target="_blank"
+          rel="noopener noreferrer"
+          ariaLabel="Open Heritage Strategies office in Google Maps (opens in a new tab)"
+        >
+          Open in Google Maps
+          <span aria-hidden="true" class="ml-1">&rarr;</span>
+        </Button>
+        <span class="text-[13px] text-ink-muted">
+          135 Crossways Park Dr #402, Woodbury, NY 11797
+        </span>
+      </div>
+    </div>
+  </div>
+</Section>

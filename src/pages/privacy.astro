@@ -1,0 +1,99 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Prose from "@components/Prose.astro";
+import Hairline from "@components/Hairline.astro";
+import Button from "@components/Button.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const description =
+  "How Heritage Strategies LLC collects, uses, stores, and protects personal information provided through this website.";
+---
+
+<Layout
+  title="Privacy Policy"
+  description={description}
+  pathname="/privacy/"
+>
+  <Section background="page" width="prose" padding="loose">
+    <article>
+      <header class="mb-12 md:mb-16">
+        <Eyebrow class="mb-5">Legal</Eyebrow>
+        <Heading size="display-md" as="h1" class="mb-6">Privacy Policy</Heading>
+        <p
+          class="font-sans text-[12px] leading-relaxed text-ink-muted"
+          style="font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1;"
+        >
+          Effective date: January 1, 2021. Last updated: 2026-06-03.
+        </p>
+        <div class="mt-10">
+          <Hairline widthPct={28} />
+        </div>
+      </header>
+
+      <Prose>
+        <p>
+          Heritage Strategies takes the protection of personal privacy seriously and maintains this policy to ensure that the information visitors and clients share with the firm remains secure. The pages that follow describe the data Heritage collects through this website, how that data is used, where it is stored, and the choices available to the people who provide it.
+        </p>
+
+        <h2>Data we collect</h2>
+        <p>
+          Heritage collects only what is voluntarily provided. When a visitor sends a message through the contact form, requests a confidential conversation, or subscribes to firm communications, the information shared in that exchange is the information Heritage keeps. The firm does not purchase contact lists and does not build profiles from sources the visitor has not chosen to provide.
+        </p>
+
+        <h2>How we use data</h2>
+        <p>
+          Heritage uses the information provided to respond to the request at hand and to maintain the relationship that follows. The firm does not sell, rent, or trade personal data to any third party without express permission. Information is shared internally only with the Heritage staff whose work requires it, and externally only with the advisors and counterparties a client has expressly authorized.
+        </p>
+
+        <h2>Storage and retention</h2>
+        <p>
+          Personal information is maintained in a secure database accessible only to Heritage employees, and only for the purposes described above. Data is retained for as long as the account or working relationship is active. When a visitor or client requests deletion, Heritage removes the information from active systems within a reasonable period, subject to the record-keeping obligations the firm holds as a regulated financial-services practice.
+        </p>
+
+        <h2>Technical data</h2>
+        <p>
+          When a visitor uses this site, the firm records standard technical information for analytics and security: IP addresses, URLs visited, referring pages, and related session data. Cookies are used to maintain sessions, remember preferences, and gather aggregate traffic data. This information is not used to identify individual visitors outside the contexts described in this policy.
+        </p>
+
+        <h2>Third-party services</h2>
+        <p>
+          This site uses <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">Google Analytics</a> to understand traffic patterns. Google maintains its own privacy policy and provides a cookie opt-out mechanism. Heritage does not control how Google handles the data its services collect; visitors who wish to limit that collection should review Google's documentation directly.
+        </p>
+
+        <h2>Cookie consent</h2>
+        <p>
+          The first time a visitor arrives at this site, a small banner appears at the bottom of the page asking for consent to non-essential cookies. Visitors may accept or decline. Declining stops analytics and preference cookies from being set. A small set of strictly essential cookies, the ones required for the site to function, are set regardless of the choice made, because the site cannot operate without them.
+        </p>
+
+        <h2>Changes to this policy</h2>
+        <p>
+          Heritage reserves the right to update this policy as the firm's practices and the regulatory landscape evolve. When material changes are made, the effective date at the top of the page is revised. Visitors are encouraged to review the policy from time to time.
+        </p>
+
+        <h2>Privacy contact</h2>
+        <p>
+          Questions about this policy, or requests to review or delete personal information, may be directed to:
+        </p>
+        <p>
+          Heritage Strategies LLC<br />
+          135 Crossways Park Dr #402<br />
+          Woodbury, NY 11797<br />
+          <a href="mailto:info@heritagesllc.com">info@heritagesllc.com</a>
+        </p>
+      </Prose>
+
+      <div class="mt-16 pt-10 border-t border-default">
+        <p class="font-sans text-[13px] leading-relaxed text-ink-muted max-w-screen-narrow">
+          If you have any questions about how Heritage handles your information, please write to <a href="mailto:info@heritagesllc.com" class="text-ink underline-offset-4">info@heritagesllc.com</a>.
+        </p>
+        <div class="mt-6">
+          <Button href={`${base}/contact/`} variant="primary" size="md">Contact</Button>
+        </div>
+      </div>
+    </article>
+  </Section>
+</Layout>

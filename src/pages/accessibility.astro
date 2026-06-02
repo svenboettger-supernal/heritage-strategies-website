@@ -1,0 +1,62 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Prose from "@components/Prose.astro";
+import Hairline from "@components/Hairline.astro";
+
+const description =
+  "Heritage Strategies LLC accessibility statement. The firm aims to conform to WCAG 2.1 Level AA across this site.";
+---
+
+<Layout
+  title="Accessibility Statement"
+  description={description}
+  pathname="/accessibility/"
+>
+  <Section background="page" width="prose" padding="loose">
+    <article>
+      <header class="mb-12 md:mb-16">
+        <Eyebrow class="mb-5">Legal</Eyebrow>
+        <Heading size="display-md" as="h1" class="mb-6">Accessibility Statement</Heading>
+        <p
+          class="font-sans text-[12px] leading-relaxed text-ink-muted"
+          style="font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1;"
+        >
+          Effective date: 2026-06-03.
+        </p>
+        <div class="mt-10">
+          <Hairline widthPct={28} />
+        </div>
+      </header>
+
+      <Prose>
+        <h2>Our commitment</h2>
+        <p>
+          Heritage Strategies is committed to providing a website accessible to the widest possible audience, regardless of technology or ability. The firm aims to conform to the Web Content Accessibility Guidelines version 2.1, Level AA, published by the World Wide Web Consortium. Accessibility is treated as part of the craft of the site, not as an after-the-fact remediation.
+        </p>
+
+        <h2>What we've done</h2>
+        <p>
+          The site is built on semantic HTML with a sensible heading hierarchy, full keyboard navigation, and visible focus indicators on every interactive element. Body text is rendered at contrast ratios that meet or exceed AA on the warm parchment ground. Imagery carries descriptive alt text, and captions are provided on video where applicable. There is no autoplay media. A skip-to-content link is available at the top of every page. Motion preferences are honored: when a visitor sets <code>prefers-reduced-motion</code>, the site removes non-essential transitions and animations.
+        </p>
+
+        <h2>Known limitations</h2>
+        <p>
+          Some embedded third-party content, including scheduling tools, document and PDF viewers, and external video embeds, may not fully meet WCAG 2.1 AA. Heritage will work to remediate these as accessible alternatives become available, and will offer a direct contact path for anyone who encounters a barrier in the meantime.
+        </p>
+
+        <h2>Contact for accessibility issues</h2>
+        <p>
+          If you encounter a barrier on this site, please write to <a href="mailto:accessibility@heritagesllc.com">accessibility@heritagesllc.com</a> or call <a href="tel:+12124851536">212.485.1536</a>. Heritage will respond within two business days and will work to resolve the issue or provide the requested information in an accessible alternative format.
+        </p>
+
+        <h2>Continuous improvement</h2>
+        <p>
+          Heritage reviews accessibility regularly as the site evolves and as new content is added. This statement will be updated to reflect material changes in the firm's approach, the technical baseline of the site, and the feedback received from the people who use it.
+        </p>
+      </Prose>
+    </article>
+  </Section>
+</Layout>

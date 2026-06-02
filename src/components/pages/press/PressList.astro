@@ -1,0 +1,42 @@
+---
+import Eyebrow from "@components/Eyebrow.astro";
+import Heading from "@components/Heading.astro";
+import PressEntry from "@components/pages/press/PressEntry.astro";
+
+export interface PressItem {
+  date: Date;
+  publication: string;
+  title: string;
+  summary?: string;
+  url?: string;
+}
+
+export interface Props {
+  eyebrow: string;
+  heading: string;
+  items: PressItem[];
+}
+
+const { eyebrow, heading, items } = Astro.props;
+---
+
+<section class="border-t border-default pt-16 md:pt-20">
+  <header class="mb-10 md:mb-14">
+    <Eyebrow>{eyebrow}</Eyebrow>
+    <Heading size="display-md" as="h2" class="mt-5 text-balance">
+      {heading}
+    </Heading>
+  </header>
+
+  <div class="border-t border-default">
+    {items.map((item) => (
+      <PressEntry
+        date={item.date}
+        publication={item.publication}
+        title={item.title}
+        summary={item.summary}
+        url={item.url}
+      />
+    ))}
+  </div>
+</section>

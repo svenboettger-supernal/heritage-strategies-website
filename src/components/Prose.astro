@@ -1,0 +1,17 @@
+---
+export interface Props {
+  size?: "default" | "lg";
+  class?: string;
+}
+const { size = "default", class: className = "" } = Astro.props;
+---
+
+<div
+  class:list={[
+    "prose prose-editorial max-w-screen-prose",
+    size === "lg" && "text-[1.1875rem] leading-[1.7]",
+    className,
+  ]}
+>
+  <slot />
+</div>

@@ -1,0 +1,19 @@
+---
+import TrustBar from "@components/TrustBar.astro";
+
+const items = [
+  "Founded 2009",
+  "Member, M Financial Group",
+  "Securities through M Holdings Securities · FINRA / SIPC",
+  "Estate-planning practice for high-net-worth families",
+];
+---
+
+<aside
+  class="bg-surface-page border-y border-default"
+  aria-label="Heritage credentials"
+>
+  <div class="mx-auto max-w-screen-wide px-6 sm:px-8 lg:px-12 py-6 md:py-7">
+    <TrustBar items={items} />
+  </div>
+</aside>

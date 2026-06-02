@@ -1,0 +1,28 @@
+---
+export interface Props {
+  items: string[];
+  onDark?: boolean;
+  class?: string;
+}
+
+const { items, onDark = false, class: className = "" } = Astro.props;
+---
+
+<ul
+  class:list={[
+    "divide-y border-t border-b",
+    onDark ? "divide-[hsl(var(--border-on-dark))] border-on-dark" : "divide-[hsl(var(--border-default))] border-default",
+    className,
+  ]}
+>
+  {items.map((item) => (
+    <li
+      class:list={[
+        "py-4 text-[15px] leading-relaxed",
+        onDark ? "text-ink-on-dark" : "text-ink",
+      ]}
+    >
+      {item}
+    </li>
+  ))}
+</ul>

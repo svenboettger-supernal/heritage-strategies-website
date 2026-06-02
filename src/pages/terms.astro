@@ -1,0 +1,105 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Prose from "@components/Prose.astro";
+import Hairline from "@components/Hairline.astro";
+
+const description =
+  "Terms of Service for the Heritage Strategies LLC website. Placeholder text pending counsel approval.";
+---
+
+<Layout
+  title="Terms of Service"
+  description={description}
+  pathname="/terms/"
+>
+  <Section background="page" width="prose" padding="loose">
+    <article>
+      <header class="mb-12 md:mb-16">
+        <Eyebrow class="mb-5">Legal</Eyebrow>
+        <Heading size="display-md" as="h1" class="mb-6">Terms of Service</Heading>
+        <p
+          class="font-sans text-[12px] leading-relaxed text-ink-muted"
+          style="font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1;"
+        >
+          Effective date: 2026-06-03. <span class="italic">Forthcoming, subject to counsel approval.</span>
+        </p>
+        <div class="mt-10">
+          <Hairline widthPct={28} />
+        </div>
+      </header>
+
+      <Prose>
+        <p>
+          These Terms of Service are being finalized by Heritage's counsel. The placeholder below outlines the scope; the binding version will appear here once approved.
+        </p>
+
+        <!-- placeholder: subject to counsel approval per SOW §6.5 -->
+        <h2>Acceptance of terms</h2>
+        <p>
+          By accessing or using this website, visitors agree to the terms set out here. Visitors who do not accept these terms should not use the site.
+        </p>
+
+        <!-- placeholder: subject to counsel approval per SOW §6.5 -->
+        <h2>Use of the website</h2>
+        <p>
+          This site is published for informational purposes. The content is not investment, legal, or tax advice, and is not intended to substitute for the advice of a qualified professional. Visitors should consult their own advisors before acting on anything presented here.
+        </p>
+
+        <!-- placeholder: subject to counsel approval per SOW §6.5 -->
+        <h2>Intellectual property</h2>
+        <p>
+          The text, images, graphics, marks, and underlying structure of this site are the property of Heritage Strategies LLC or used under license. The Heritage Strategies name and the HS wax-seal monogram are marks of the firm. No portion of the site may be reproduced, redistributed, or used to imply affiliation without prior written permission.
+        </p>
+
+        <!-- placeholder: subject to counsel approval per SOW §6.5 -->
+        <h2>No advice via the website</h2>
+        <p>
+          Nothing on this site constitutes a recommendation, solicitation, or offer to engage Heritage Strategies LLC in a fiduciary or advisory capacity. A working relationship with the firm exists only when documented in a written engagement signed by both parties. The site is not a substitute for that engagement.
+        </p>
+
+        <!-- placeholder: subject to counsel approval per SOW §6.5 -->
+        <h2>Linking</h2>
+        <p>
+          This site may link to third-party resources as a convenience to visitors. Heritage Strategies LLC does not control those resources, does not endorse their content, and is not responsible for their availability, accuracy, or practices.
+        </p>
+
+        <!-- placeholder: subject to counsel approval per SOW §6.5 -->
+        <h2>Securities disclosure</h2>
+        <p>
+          Securities and Investment Advisory Services offered through M Holdings Securities, Inc., a Registered Broker/Dealer and Investment Advisor, Member FINRA/SIPC. Heritage Strategies LLC is independently owned and operated. Heritage Strategies LLC is a Member of M Financial Group.
+        </p>
+        <p>
+          Registered Representatives are registered to conduct securities business and licensed to conduct insurance business in limited states. This site is for information purposes and should not be construed as legal or tax advice and is not intended to replace the advice of a qualified attorney, financial or tax advisor or plan provider.
+        </p>
+
+        <!-- placeholder: subject to counsel approval per SOW §6.5 -->
+        <h2>Governing law</h2>
+        <p>
+          These terms are governed by the laws of the State of New York, United States, without reference to its conflicts-of-laws principles. Final jurisdiction and venue language is pending review by counsel.
+        </p>
+
+        <!-- placeholder: subject to counsel approval per SOW §6.5 -->
+        <h2>Changes to terms</h2>
+        <p>
+          Heritage reserves the right to update these terms as the firm's practices and the regulatory landscape evolve. The effective date at the top of the page reflects the most recent revision.
+        </p>
+
+        <!-- placeholder: subject to counsel approval per SOW §6.5 -->
+        <h2>Contact</h2>
+        <p>
+          Questions about these terms may be directed to <a href="mailto:info@heritagesllc.com">info@heritagesllc.com</a>.
+        </p>
+      </Prose>
+
+      <aside class="mt-16 pt-10 border-t border-default">
+        <p class="eyebrow mb-3">Note</p>
+        <p class="font-editorial text-[17px] leading-relaxed text-ink max-w-screen-narrow">
+          This page is intentionally light. Heritage's counsel will provide the binding text before public launch.
+        </p>
+      </aside>
+    </article>
+  </Section>
+</Layout>

@@ -1,0 +1,274 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import FAQ from "@components/FAQ.astro";
+import HairlineList from "@components/pages/services/HairlineList.astro";
+import CTABand from "@components/pages/services/CTABand.astro";
+
+const groupBenefits = [
+  "Medical",
+  "Dental",
+  "Vision",
+  "Life and AD&D",
+  "Short-Term Disability",
+  "Long-Term Disability",
+  "Hospital Indemnity",
+  "Critical Illness",
+  "Pet Insurance",
+  "Identity Theft",
+  "Legal Services",
+];
+
+const altFunding = [
+  "HRA (Health Reimbursement Arrangement)",
+  "The Difference Card",
+  "Self-Funded Plans",
+  "Level Funded Plans",
+  "Creative Contribution Strategies",
+  "Minimum Premium Plans",
+  "PEO (Professional Employer Organization)",
+  "Reference-Based Pricing",
+  "FSA and Dependent Care",
+  "HSA (Health Savings Accounts)",
+  "Parking and Transit",
+  "POP / Section 125 Administration",
+];
+
+const rationale = [
+  {
+    eyebrow: "Creative funding design",
+    title: "Plans designed to the workforce, not to the carrier sheet.",
+    body: "Self-funded, level-funded, minimum-premium, reference-based pricing, PEO. Heritage selects the funding structure against the actual demographics and claims history, then designs around it.",
+  },
+  {
+    eyebrow: "Full compliance",
+    title: "Section 125, ACA, ERISA, and renewal compliance under one engagement.",
+    body: "Plan-year compliance and documentation sit inside the engagement, not on the HR team's calendar. Renewals, filings, and required notices run on the firm's clock.",
+  },
+  {
+    eyebrow: "Unparalleled service",
+    title: "Member service that does not route through a 1-800 number.",
+    body: "Employees reach a named coordinator, not a queue. Claims, eligibility, and enrollment questions are owned and tracked. That is the part employers tell Heritage they did not have before.",
+  },
+];
+
+const faqs = [
+  {
+    question: "What size employer does Heritage Benefit Solutions serve?",
+    answer:
+      "The practice serves mid-market and growth-stage employers. The benefit of the firm's funding-strategy expertise tends to compound above roughly fifty enrolled employees, where alternative funding structures begin to outperform fully insured plans. [HERITAGE-TO-CONFIRM: published employer-size range, if any]",
+  },
+  {
+    question: "How is the relationship with Benefit Mall structured?",
+    answer:
+      "Heritage works with Benefit Mall, the largest general agency in the United States, and a curated set of additional carrier partners. The general-agency relationship gives the firm access to a full spectrum of funding solutions across carriers. Heritage's role is to design the program; the carrier relationships sit underneath.",
+  },
+  {
+    question: "What funding strategies do you actually use?",
+    answer:
+      "Self-funded plans, level-funded plans, minimum-premium plans, reference-based pricing, PEO arrangements, HRA-based designs, and the Difference Card. The right structure depends on workforce shape, claims history, and the employer's risk appetite. The firm models the alternatives before it recommends one.",
+  },
+  {
+    question: "What does plan-year management look like?",
+    answer:
+      "Renewals, required notices, Section 125 documentation, ACA filings, and open enrollment all run on the firm's calendar. Each open item carries an owner and a date. HR teams report that the year-over-year reduction in calendar load is one of the visible deliverables of the engagement.",
+  },
+  {
+    question: "How are HSA, FSA, and dependent-care accounts administered?",
+    answer:
+      "Heritage designs and administers HSA, FSA, dependent-care, and POP / Section 125 plans, including the supporting payroll integration. Employees see a single benefit picture, not a stack of vendor portals. [HERITAGE-TO-CONFIRM: list of specific administration platforms used]",
+  },
+  {
+    question: "Do you work with a PEO or alongside one?",
+    answer:
+      "Both. Heritage designs PEO arrangements where a PEO is the right answer, and works alongside an existing PEO where one is already in place. The firm is not a PEO; it is the benefit-program designer that sits with or without one.",
+  },
+  {
+    question: "How is compensation structured?",
+    answer:
+      "Compensation is disclosed in writing at engagement. Where carrier compensation applies, it is disclosed; where a fee-for-service engagement is more appropriate, the firm contracts on that basis. The firm's posture is fiduciary, not transactional.",
+  },
+  {
+    question: "How does this practice connect to the rest of Heritage?",
+    answer:
+      "Heritage Benefit Solutions is the employer-side practice. Estate and Business Continuity is the family-side practice. Operating-business owners frequently engage both: the firm designs the benefit program for the company and maintains the Heritage Book for the family that owns it. The two practices read from the same firm-wide standard of fiduciary service.",
+  },
+  {
+    question: "What compliance support is included?",
+    answer:
+      "Section 125 / POP administration, ACA reporting support, ERISA-required notices, and plan-document maintenance are part of the engagement. The firm partners with specialist counsel where bespoke ERISA work is required. [HERITAGE-TO-CONFIRM: list of standing ERISA counsel relationships, if disclosable]",
+  },
+  {
+    question: "Can you work with our existing broker on a transition?",
+    answer:
+      "Yes. Many engagements begin as a transition from an incumbent broker. Heritage runs a parallel design exercise during the plan year and steps in at renewal so the employer is never between coverage.",
+  },
+];
+---
+
+<Layout
+  title="Heritage Benefit Solutions | Heritage Strategies"
+  description="Employer-side employee benefits, funding strategy, and compliance support for businesses that want to attract and retain top talent without surrendering the bottom line."
+  pathname="/services/heritage-benefit-solutions/"
+>
+  {/* Editorial hero — parchment */}
+  <Section background="page" padding="loose" width="default">
+    <div class="grid gap-12 md:grid-cols-[1.4fr_1fr] md:items-end">
+      <div>
+        <Eyebrow>Service</Eyebrow>
+        <Heading size="display-xl" as="h1" class="mt-8 text-balance">
+          Heritage Benefit Solutions.
+        </Heading>
+        <p class="mt-8 max-w-prose text-[1.2rem] leading-relaxed font-editorial text-ink">
+          Employer-side employee benefits, funding strategy, and compliance support. Designed for businesses that want to attract and retain top talent without surrendering the bottom line.
+        </p>
+        <p class="mt-5 max-w-prose text-[1.0625rem] leading-relaxed text-ink-muted">
+          Salary is no longer the sole driver. Employees are looking for benefit plans above and beyond the standard packages most employers offer. Heritage Benefit Solutions gives the employer access to a full spectrum of funding solutions, compliance, support, and member service under one engagement.
+        </p>
+      </div>
+
+      <aside class="md:justify-self-end md:max-w-xs">
+        <p class="eyebrow text-[11.5px] mb-3">At a glance</p>
+        <dl class="space-y-3 text-[14.5px] leading-relaxed">
+          <div class="flex justify-between gap-6 border-b border-default pb-2">
+            <dt class="text-ink-muted">Practice</dt>
+            <dd class="text-ink">Employer benefits</dd>
+          </div>
+          <div class="flex justify-between gap-6 border-b border-default pb-2">
+            <dt class="text-ink-muted">Group benefits</dt>
+            <dd class="text-ink" data-figures="tabular">11 lines</dd>
+          </div>
+          <div class="flex justify-between gap-6 border-b border-default pb-2">
+            <dt class="text-ink-muted">Funding structures</dt>
+            <dd class="text-ink" data-figures="tabular">12 options</dd>
+          </div>
+          <div class="flex justify-between gap-6">
+            <dt class="text-ink-muted">General agency</dt>
+            <dd class="text-ink">Benefit Mall</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </Section>
+
+  {/* Two-column catalog */}
+  <Section background="muted" padding="loose" width="default">
+    <header class="mb-12 max-w-prose">
+      <Eyebrow>The catalog</Eyebrow>
+      <Heading size="display-lg" as="h2" class="mt-6 text-balance">
+        Benefits, funding, and tax-advantaged accounts under one engagement.
+      </Heading>
+      <p class="mt-6 text-[1.0625rem] leading-relaxed text-ink-muted max-w-prose">
+        Each business is unique. The firm designs the program against the workforce, the claims history, and the employer's capacity, then selects from the catalog below.
+      </p>
+    </header>
+
+    <div class="grid gap-10 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <div class="flex items-baseline justify-between gap-4 mb-6">
+          <h3 class="font-sans text-[1.05rem] font-semibold tracking-[0.01em] text-ink">
+            Group benefits
+          </h3>
+          <span
+            class="font-mono text-[12px] tracking-[0.14em] text-ink-muted"
+            data-figures="tabular"
+          >
+            {String(groupBenefits.length).padStart(2, "0")} lines
+          </span>
+        </div>
+        <HairlineList items={groupBenefits} />
+      </div>
+
+      <div>
+        <div class="flex items-baseline justify-between gap-4 mb-6">
+          <h3 class="font-sans text-[1.05rem] font-semibold tracking-[0.01em] text-ink">
+            Alternative funding and tax-advantaged accounts
+          </h3>
+          <span
+            class="font-mono text-[12px] tracking-[0.14em] text-ink-muted"
+            data-figures="tabular"
+          >
+            {String(altFunding.length).padStart(2, "0")} options
+          </span>
+        </div>
+        <HairlineList items={altFunding} />
+      </div>
+    </div>
+  </Section>
+
+  {/* Partner mention — text only, no logo */}
+  <Section background="page" padding="default" width="prose">
+    <Eyebrow>The partnership behind the catalog</Eyebrow>
+    <Heading size="display-md" as="h2" class="mt-6 text-balance">
+      Access through the largest general agency in the country.
+    </Heading>
+    <p class="mt-6 text-[1.125rem] leading-[1.65] font-editorial text-ink max-w-prose">
+      Heritage Benefit Solutions works with Benefit Mall, the largest general agency in the United States, and a curated set of additional carrier partners. The general-agency relationship gives the firm access to a full spectrum of funding solutions across carriers, which is what makes the catalog above a real catalog and not a single-carrier menu.
+    </p>
+    <p class="mt-5 text-[1.0625rem] leading-relaxed text-ink-muted max-w-prose">
+      The firm's role is to design the program. The carrier relationships sit underneath, selected against the employer's workforce and risk appetite, not the other way around.
+    </p>
+  </Section>
+
+  {/* Why employers work with HBS — three columns */}
+  <Section background="muted" padding="default" width="default">
+    <header class="mb-14 max-w-prose">
+      <Eyebrow>Why employers work with us</Eyebrow>
+      <Heading size="display-lg" as="h2" class="mt-6 text-balance">
+        Three reasons the engagement holds.
+      </Heading>
+    </header>
+
+    <div class="grid gap-10 md:gap-12 md:grid-cols-3">
+      {rationale.map((r, idx) => (
+        <div class="flex flex-col gap-5 bg-surface-card border border-default p-8">
+          <div class="flex items-baseline gap-3">
+            <span
+              class="font-mono text-[12px] tracking-[0.14em] text-brand-copper"
+              data-figures="tabular"
+            >
+              {String(idx + 1).padStart(2, "0")}
+            </span>
+            <p class="eyebrow text-[11.5px]">{r.eyebrow}</p>
+          </div>
+          <span
+            aria-hidden="true"
+            class="block h-px w-10 bg-default"
+          ></span>
+          <h3 class="font-display font-medium text-[1.5rem] leading-[1.25] text-ink text-balance">
+            {r.title}
+          </h3>
+          <p class="text-[15px] leading-relaxed text-ink-muted">{r.body}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  {/* FAQ */}
+  <Section background="page" padding="default" width="default">
+    <div class="grid gap-12 md:grid-cols-[1fr_1.6fr] md:gap-16">
+      <header>
+        <Eyebrow>Common questions</Eyebrow>
+        <Heading size="display-lg" as="h2" class="mt-6 text-balance">
+          What employers ask first.
+        </Heading>
+        <p class="mt-6 text-[15px] leading-relaxed text-ink-muted max-w-xs">
+          Ten questions that come up in a first conversation. Plan design, funding selection, and compensation specifics are reviewed against the employer's actual workforce.
+        </p>
+      </header>
+      <FAQ items={faqs} />
+    </div>
+  </Section>
+
+  <CTABand
+    eyebrow="Begin a conversation"
+    heading="Talk to Heritage Benefit Solutions."
+    body="A first conversation reviews the workforce, the current funding structure, and the renewal calendar. The firm designs against the facts, not against a template."
+    ctaLabel="Talk to Heritage Benefit Solutions"
+    secondaryLabel="See all services"
+    secondaryHref="/services/"
+    background="dark"
+  />
+</Layout>

@@ -1,0 +1,84 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  pathname?: string;
+  ogImage?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title, description, pathname = "/", ogImage, jsonLd } = Astro.props;
+
+const siteName = "Heritage Strategies";
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const canonical = new URL(`${base}${pathname}`, Astro.site).toString();
+const ogImageUrl = new URL(`${base}/${ogImage ?? "og-image.svg"}`, Astro.site).toString();
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "FinancialService",
+  name: "Heritage Strategies LLC",
+  alternateName: "Heritage Strategies",
+  url: new URL(`${base}/`, Astro.site).toString(),
+  logo: new URL(`${base}/wax-seal.svg`, Astro.site).toString(),
+  description:
+    "Heritage Strategies LLC is an estate-planning multi-family office serving ultra-high-net-worth families. Founded 2009. Independent fiduciary practice.",
+  foundingDate: "2009",
+  email: "info@heritagesllc.com",
+  telephone: "+1-212-485-1536",
+  faxNumber: "+1-212-485-1537",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "135 Crossways Park Dr #402",
+    addressLocality: "Woodbury",
+    addressRegion: "NY",
+    postalCode: "11797",
+    addressCountry: "US",
+  },
+  memberOf: { "@type": "Organization", name: "M Financial Group" },
+  parentOrganization: { "@type": "Organization", name: "M Holdings Securities, Inc." },
+};
+
+const schemas = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <meta name="theme-color" content="#172238" />
+  <meta name="color-scheme" content="light" />
+
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageUrl} />
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+  <link rel="apple-touch-icon" href={`${base}/apple-touch-icon.svg`} />
+
+  <!-- Preconnect (not strictly needed for self-hosted fonts via @fontsource, but harmless) -->
+  <link rel="sitemap" href={`${base}/sitemap-index.xml`} />
+
+  <!-- JSON-LD: Organization (always) + page-specific -->
+  <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+  {schemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+</head>

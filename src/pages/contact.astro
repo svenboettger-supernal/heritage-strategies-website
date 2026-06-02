@@ -1,0 +1,75 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Section from "@components/Section.astro";
+import TrustBar from "@components/TrustBar.astro";
+
+import Hero from "@components/pages/contact/Hero.astro";
+import ContactForm from "@components/pages/contact/ContactForm.astro";
+import OfficeCard from "@components/pages/contact/OfficeCard.astro";
+import ScheduleCall from "@components/pages/contact/ScheduleCall.astro";
+import OfficeLocation from "@components/pages/contact/OfficeLocation.astro";
+import OtherContacts from "@components/pages/contact/OtherContacts.astro";
+
+const description =
+  "Reach Heritage Strategies LLC at 135 Crossways Park Drive, Woodbury, New York. A member of the firm will respond personally. All inquiries are treated as confidential.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FinancialService",
+  name: "Heritage Strategies LLC",
+  url: "https://heritagesllc.com/",
+  email: "info@heritagesllc.com",
+  telephone: "+1-212-485-1536",
+  faxNumber: "+1-212-485-1537",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "135 Crossways Park Dr #402",
+    addressLocality: "Woodbury",
+    addressRegion: "NY",
+    postalCode: "11797",
+    addressCountry: "US",
+  },
+  openingHours: "Mo-Fr 09:00-17:30",
+};
+---
+
+<Layout
+  title="Contact | Heritage Strategies"
+  description={description}
+  pathname="/contact/"
+  jsonLd={jsonLd}
+>
+  <Hero />
+
+  {/* Form + Office two-column row. Form takes the dominant column. */}
+  <Section background="page" padding="tight" width="default">
+    <div class="grid gap-10 lg:gap-14 lg:grid-cols-[1.5fr_1fr] lg:items-start">
+      <div>
+        <ContactForm />
+      </div>
+      <div>
+        <OfficeCard />
+      </div>
+    </div>
+  </Section>
+
+  <ScheduleCall />
+
+  <OfficeLocation />
+
+  <OtherContacts />
+
+  {/* Trust bar: quiet reassurance at the bottom of the page. No additional CTA band. */}
+  <Section background="page" padding="tight" width="default">
+    <div class="border-t border-default pt-10">
+      <TrustBar
+        items={[
+          "Member, M Financial Group",
+          "Securities through M Holdings Securities, FINRA / SIPC",
+          "Founded 2009",
+          "Confidential by default",
+        ]}
+      />
+    </div>
+  </Section>
+</Layout>

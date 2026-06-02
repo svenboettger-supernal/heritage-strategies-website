@@ -1,0 +1,55 @@
+---
+import Eyebrow from "@components/Eyebrow.astro";
+import Heading from "@components/Heading.astro";
+import TrustBar from "@components/TrustBar.astro";
+---
+
+<section
+  class="relative bg-surface-page text-ink overflow-hidden"
+  aria-label="About Heritage Strategies"
+>
+  {/* Atmospheric parchment glow — very quiet, single copper hint */}
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 pointer-events-none"
+    style="background:
+      radial-gradient(120% 90% at 12% 18%, hsl(var(--brand-copper) / 0.05), transparent 55%),
+      radial-gradient(140% 100% at 88% 92%, hsl(var(--brand-navy) / 0.05), transparent 65%);"
+  ></div>
+
+  {/* Single signature hairline, used once per page */}
+  <span
+    aria-hidden="true"
+    class="absolute left-[6%] right-[14%] top-[48%] h-px -rotate-[1.6deg] origin-left"
+    style="background: linear-gradient(90deg, hsl(var(--text-default) / 0), hsl(var(--text-default) / 0.18) 28%, hsl(var(--text-default) / 0.18) 72%, hsl(var(--text-default) / 0));"
+  ></span>
+
+  <div class="relative mx-auto w-full max-w-screen-default px-6 sm:px-8 lg:px-12 py-28 md:py-40">
+    <div class="max-w-3xl">
+      <Eyebrow>The firm</Eyebrow>
+
+      <Heading
+        size="display-xl"
+        as="h1"
+        class="mt-8 text-balance"
+      >
+        An estate-planning multi-family office, since 2009.
+      </Heading>
+
+      <p class="mt-10 max-w-2xl text-lg md:text-[1.2rem] leading-relaxed text-ink-muted font-editorial">
+        Heritage Strategies advises ultra-high-net-worth families on the preservation and transfer of generational wealth. We work alongside the family's attorneys, accountants, and trustees, with one living document the family controls.
+      </p>
+
+      <div class="mt-14">
+        <TrustBar
+          items={[
+            "Founded 2009",
+            "FINRA / SEC affiliated",
+            "Member, M Financial Group",
+            "Woodbury, New York",
+          ]}
+        />
+      </div>
+    </div>
+  </div>
+</section>

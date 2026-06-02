@@ -1,0 +1,77 @@
+---
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import FAQ from "@components/FAQ.astro";
+
+const items = [
+  {
+    question: "What is the typical hiring process at Heritage?",
+    answer:
+      "A first conversation with the partner the role reports to, a working session built around real Heritage Book material, and a final round with a second partner and one peer practitioner. The working session is meant to be useful for both sides. You see the work; we see how you think about it.",
+  },
+  {
+    question: "Who do interviews involve?",
+    answer:
+      "For analyst and case-design seats: Keith McMahon and Chris Halvey, with Tom Sr. or Tom Jr. on the final round. For benefits roles: Marc Hiatrides and Coleen Sherman. For operations and client service: Jennifer Mejia, with the partner the seat supports. Every finalist meets at least one partner.",
+  },
+  {
+    question: "How long does the process take?",
+    answer:
+      "From first conversation to offer is typically three to five weeks. The firm moves at the pace of the candidate's calendar, not the other way around. We will give you a clear timeline at the first conversation and stick to it.",
+  },
+  {
+    question: "What credentials does Heritage prefer?",
+    answer:
+      "Depends on the seat. Analyst seats lean toward CPA, JD, CFP, ChFC, or CLU. Case-design seats lean toward Life, Accident & Health licensing, with CLU or ChFC welcome. Benefits roles lean toward RHU and active NAHU membership. None of these are absolute. A strong practitioner without the alphabet will be reimbursed to earn the credentials that fit the role.",
+  },
+  {
+    question: "Do you sponsor visas?",
+    answer:
+      "[Lorem placeholder: Heritage to confirm current visa-sponsorship policy. Existing site does not address this; the firm has not previously published a stance.]",
+  },
+  {
+    question: "Is the role remote, hybrid, or in-office?",
+    answer:
+      "Heritage is an in-office practice with hybrid flexibility for tenured roles. The work is collaborative and document-dense, and the firm believes the quality of the analysis benefits from being in the same room. New hires typically begin fully in-office and add hybrid days once the partner is confident in the working rhythm.",
+  },
+  {
+    question: "Where is the office located?",
+    answer:
+      "135 Crossways Park Drive, Suite 402, Woodbury, New York 11797. Long Island Rail Road access via the Hicksville station, with parking on site for staff who drive in.",
+  },
+  {
+    question: "What is the firm's approach to professional development?",
+    answer:
+      "Heritage reimburses CFP, ChFC, CLU, CPA, and JD exam and registration fees in full, and pays for continuing-education tuition for designations the firm uses in its practice. Study time is paid time. The firm expects staff to invest in their craft and underwrites that investment directly.",
+  },
+  {
+    question: "Does Heritage support board service or community work?",
+    answer:
+      "Yes. Philanthropy is part of the firm identity. Heritage provides paid time for board service and volunteer engagement at the organizations the firm supports, including St. Francis Hospital Foundation, Ronald McDonald House, Breaking Ground, LICADD, the Children's Medical Fund, the OHSU Foundation, and Northwell Health Foundation. The firm is open to other organizations a team member is committed to.",
+  },
+  {
+    question: "How does compensation differ from commission-driven advisory firms?",
+    answer:
+      "Heritage is a fiduciary practice. Base salary is calibrated to the senior estate-planning and family-office market, and incentive compensation is tied to engagement quality, retention, and the durability of the work the firm delivers. Compensation is not driven by product placement. If your previous seat paid you to sell, this will be a structural change in how you are paid and in how you spend your week.",
+  },
+];
+---
+
+<Section background="card" padding="loose" width="default" id="faq">
+  <div class="grid gap-12 lg:grid-cols-[1fr_2fr] items-start">
+    <div>
+      <Eyebrow>Candidate FAQ</Eyebrow>
+      <Heading size="display-lg" class="mt-5 text-balance">
+        Questions candidates ask before they apply.
+      </Heading>
+      <p class="mt-6 font-editorial text-[1.0625rem] leading-[1.6] text-ink-muted">
+        If a question is not answered here, send it directly. The firm prefers a direct exchange.
+      </p>
+    </div>
+
+    <div>
+      <FAQ items={items} schema={false} />
+    </div>
+  </div>
+</Section>

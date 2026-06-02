@@ -1,0 +1,46 @@
+---
+import Eyebrow from "@components/Eyebrow.astro";
+import Heading from "@components/Heading.astro";
+---
+
+<section class="border-t border-default pt-16 md:pt-20 pb-4">
+  <div class="grid gap-10 md:grid-cols-[1fr_1.2fr] md:gap-x-16 max-w-screen-default">
+    <div>
+      <Eyebrow>Press contact</Eyebrow>
+      <Heading size="display-sm" as="h2" class="mt-5 font-display text-balance">
+        For press inquiries, please contact:
+      </Heading>
+    </div>
+
+    <dl class="font-editorial text-[1.0625rem] leading-[1.65] text-ink">
+      <div class="border-t border-default py-5 grid grid-cols-[10rem_1fr] gap-x-6">
+        <dt class="eyebrow pt-1">Press inquiries</dt>
+        <dd>
+          <a
+            href="mailto:press@heritagesllc.com"
+            class="text-brand-navy underline underline-offset-4 decoration-1"
+          >press@heritagesllc.com</a>
+        </dd>
+      </div>
+      <div class="border-t border-default py-5 grid grid-cols-[10rem_1fr] gap-x-6">
+        <dt class="eyebrow pt-1">General</dt>
+        <dd>
+          <a
+            href="mailto:info@heritagesllc.com"
+            class="text-brand-navy underline underline-offset-4 decoration-1"
+          >info@heritagesllc.com</a>
+        </dd>
+      </div>
+      <div class="border-t border-b border-default py-5 grid grid-cols-[10rem_1fr] gap-x-6">
+        <dt class="eyebrow pt-1">Office</dt>
+        <dd>
+          <a
+            href="tel:+12124851536"
+            data-figures="tabular"
+            class="text-ink no-underline hover:text-brand-navy transition-colors duration-fast"
+          >212.485.1536</a>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>

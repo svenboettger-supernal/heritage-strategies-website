@@ -1,0 +1,35 @@
+---
+import Eyebrow from "@components/Eyebrow.astro";
+import Heading from "@components/Heading.astro";
+
+// Intentionally placeholder per SOW §6.3: "press mentions and any awards —
+// Heritage to provide". Replace with curated award entries once the firm
+// supplies the inventory.
+---
+
+<section class="border-t border-default pt-16 md:pt-20">
+  <header class="mb-10 md:mb-14">
+    <Eyebrow>Recognition</Eyebrow>
+    <Heading size="display-md" as="h2" class="mt-5 text-balance">
+      Awards &amp; honors.
+    </Heading>
+  </header>
+
+  <div class="max-w-screen-prose">
+    <div class="border-l-2 border-brand-copper/60 pl-6 py-2">
+      <p class="font-editorial text-[1.0625rem] leading-[1.7] text-ink">
+        Heritage Strategies LLC is currently inventorying historic awards for inclusion here.
+      </p>
+      <p class="mt-4 font-editorial text-[1.0625rem] leading-[1.7] text-ink-muted">
+        Please contact
+        {" "}
+        <a
+          href="mailto:info@heritagesllc.com?subject=Awards%20and%20Recognition"
+          class="text-brand-navy underline underline-offset-4 decoration-1"
+        >info@heritagesllc.com</a>
+        {" "}
+        to share recognition you would like reflected on this page.
+      </p>
+    </div>
+  </div>
+</section>

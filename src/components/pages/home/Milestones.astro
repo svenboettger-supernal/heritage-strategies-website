@@ -1,0 +1,54 @@
+---
+import Section from "@components/Section.astro";
+import Stat from "@components/Stat.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Heading from "@components/Heading.astro";
+
+const stats = [
+  {
+    value: "60+ years",
+    label: "Partner experience",
+    detail: "Cumulative time spent designing estate and business-continuity plans for ultra-high-net-worth families.",
+  },
+  {
+    value: "Since 2009",
+    label: "Independent practice",
+    detail: "Thomas J. Fanning, Sr. reacquired the practice from National Financial Partners and founded Heritage.",
+  },
+  {
+    value: "Multi-generational",
+    label: "Families served",
+    detail: "Heritage works with multiple ultra-high-net-worth families and the operating companies they built.",
+  },
+  {
+    value: "Single page",
+    label: "Living document",
+    detail: "Asset schedule, trust language, and distribution flows on one continually-refreshed document set.",
+  },
+];
+---
+
+<Section background="muted" padding="default" width="default">
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 md:mb-20">
+    <div class="max-w-xl">
+      <Eyebrow>The shape of the firm</Eyebrow>
+      <Heading size="display-md" class="mt-4 text-balance">
+        Built slowly, on purpose.
+      </Heading>
+    </div>
+    <p class="text-[15px] leading-relaxed text-ink-muted max-w-sm">
+      Heritage is a small, deliberate firm. The numbers below are the ones we are willing to stand behind, not the ones a marketing team might want us to round up.
+    </p>
+  </div>
+
+  <dl
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 border-t border-default pt-12"
+    data-figures="tabular"
+  >
+    {stats.map((s) => (
+      <div class="flex">
+        <Stat value={s.value} label={s.label} detail={s.detail} class="max-w-[14rem]" />
+      </div>
+    ))}
+  </dl>
+</Section>

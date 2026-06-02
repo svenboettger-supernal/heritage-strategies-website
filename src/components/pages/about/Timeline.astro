@@ -1,0 +1,113 @@
+---
+import Section from "@components/Section.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Heading from "@components/Heading.astro";
+
+const milestones = [
+  {
+    year: "1978",
+    headline: "Fairfield University.",
+    body: "Thomas J. Fanning, Sr. graduates and is certified as an estate planner. Begins his career inside the Individual Financial Distribution division of CIGNA.",
+  },
+  {
+    year: "1990",
+    headline: "First partnership founded.",
+    body: "Tom Sr. partners with former CIGNA colleagues to establish a national life-insurance brokerage serving prominent families.",
+  },
+  {
+    year: "2002",
+    headline: "Acquisition by National Financial Partners.",
+    body: "The partnership is acquired by NFP, a NYSE-listed firm. Tom Sr. serves as President of the practice through 2009.",
+  },
+  {
+    year: "2008",
+    headline: "Chris Halvey joins.",
+    body: "Chris joins what will become Heritage's insurance and case-design practice. He still leads that practice today.",
+  },
+  {
+    year: "2009",
+    headline: "Heritage Strategies LLC founded.",
+    body: "Tom Sr. reacquires the practice and establishes Heritage Strategies as an independent estate-planning multi-family office. Keith McMahon joins the same year.",
+  },
+  {
+    year: "2011",
+    headline: "Thomas Fanning Jr. joins.",
+    body: "Tom Jr. joins Heritage as an Associate after graduating from Fairfield University's Dolan School of Business.",
+  },
+  {
+    year: "2016",
+    headline: "Tom Jr. named Partner.",
+    body: "Tom Jr. is named Partner. The next generation of the firm takes ownership of day-to-day platform engagements.",
+  },
+  {
+    year: "2021",
+    headline: "Jennifer Mejia joins as COO.",
+    body: "Jennifer joins from UBS Financial Services after seventeen years in senior leadership, and assumes responsibility for the firm's operations.",
+  },
+];
+---
+
+<Section background="page" padding="loose" width="default" id="timeline">
+  <div class="max-w-3xl mb-14 md:mb-20">
+    <Eyebrow>Timeline</Eyebrow>
+    <Heading size="display-md" class="mt-4 text-balance">
+      Forty years of careful work, in eight dates.
+    </Heading>
+  </div>
+
+  {/* Desktop: horizontal scroll rail. Mobile: vertical stack. */}
+  <div class="relative">
+    {/* Hairline rail running through the row */}
+    <span
+      aria-hidden="true"
+      class="hidden lg:block absolute left-0 right-0 top-[3.25rem] h-px"
+      style="background: hsl(var(--text-default) / 0.10);"
+    ></span>
+
+    <ol
+      class="
+        grid gap-10
+        md:grid-cols-2
+        lg:flex lg:gap-12 lg:overflow-x-auto lg:snap-x lg:snap-mandatory lg:scroll-pl-12 lg:pb-6
+        lg:[scrollbar-width:thin]
+      "
+      data-figures="tabular"
+    >
+      {milestones.map((m) => (
+        <li
+          class="
+            lg:snap-start lg:shrink-0 lg:w-[18rem] xl:w-[20rem]
+            relative pt-0
+          "
+        >
+          <div
+            class="font-display text-display-md leading-none text-ink"
+            data-figures="tabular"
+            style="font-feature-settings: 'tnum' 1, 'lnum' 1;"
+          >
+            {m.year}
+          </div>
+
+          {/* Hairline pip — single copper accent, used once per item */}
+          <span
+            aria-hidden="true"
+            class="mt-5 mb-5 hidden lg:block h-1.5 w-1.5 rounded-full"
+            style="background: hsl(var(--brand-copper));"
+          ></span>
+          <span
+            aria-hidden="true"
+            class="lg:hidden mt-4 block h-px w-12"
+            style="background: hsl(var(--brand-copper));"
+          ></span>
+
+          <h3 class="mt-5 lg:mt-0 text-[15px] font-semibold tracking-[0.01em] text-ink">
+            {m.headline}
+          </h3>
+          <p class="mt-3 text-[14.5px] leading-relaxed text-ink-muted">
+            {m.body}
+          </p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</Section>

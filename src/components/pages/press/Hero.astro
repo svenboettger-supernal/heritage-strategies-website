@@ -1,0 +1,39 @@
+---
+import Eyebrow from "@components/Eyebrow.astro";
+import Heading from "@components/Heading.astro";
+---
+
+<section
+  class="relative bg-surface-page text-ink overflow-hidden"
+  aria-label="Press and recognition"
+>
+  {/* Atmospheric parchment glow — copper hint top-left, navy hint bottom-right */}
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 pointer-events-none"
+    style="background:
+      radial-gradient(120% 90% at 8% 14%, hsl(var(--brand-copper) / 0.05), transparent 55%),
+      radial-gradient(140% 100% at 92% 90%, hsl(var(--brand-navy) / 0.05), transparent 65%);"
+  ></div>
+
+  {/* Single signature hairline, used once per page */}
+  <span
+    aria-hidden="true"
+    class="absolute left-[6%] right-[16%] top-[52%] h-px -rotate-[1.4deg] origin-left"
+    style="background: linear-gradient(90deg, hsl(var(--text-default) / 0), hsl(var(--text-default) / 0.18) 28%, hsl(var(--text-default) / 0.18) 72%, hsl(var(--text-default) / 0));"
+  ></span>
+
+  <div class="relative mx-auto w-full max-w-screen-default px-6 sm:px-8 lg:px-12 py-28 md:py-40">
+    <div class="max-w-3xl">
+      <Eyebrow>Press &amp; Recognition</Eyebrow>
+
+      <Heading size="display-xl" as="h1" class="mt-8 text-balance">
+        What is said of the firm.
+      </Heading>
+
+      <p class="mt-10 max-w-2xl text-lg md:text-[1.2rem] leading-relaxed text-ink-muted font-editorial">
+        Heritage Strategies has been quietly building its practice since 2009. The press, speaking, and board work below reflect what has been visible from the outside.
+      </p>
+    </div>
+  </div>
+</section>

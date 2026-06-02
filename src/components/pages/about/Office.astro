@@ -1,0 +1,59 @@
+---
+import Section from "@components/Section.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Heading from "@components/Heading.astro";
+import PlaceholderImage from "@components/PlaceholderImage.astro";
+---
+
+<Section background="muted" padding="loose" width="default" id="office">
+  <div class="grid gap-10 md:gap-16 lg:grid-cols-2 lg:items-center">
+    <div>
+      <PlaceholderImage
+        aspect="landscape"
+        label="Crossways Park Drive, Woodbury, New York"
+      />
+    </div>
+
+    <div class="max-w-xl">
+      <Eyebrow>Office</Eyebrow>
+      <Heading size="display-md" class="mt-4 text-balance">
+        Woodbury, New York.
+      </Heading>
+
+      <p class="mt-6 text-[1.1rem] leading-relaxed font-editorial text-ink">
+        Heritage works out of a single office in Woodbury, on the north shore of Long Island. The choice is deliberate. The firm's clients are Long Island and New York families, and the work is done in person, in the room, with the family and their advisors.
+      </p>
+
+      <dl class="mt-10 grid gap-6 sm:grid-cols-2 border-t border-default pt-8">
+        <div>
+          <dt class="eyebrow">Address</dt>
+          <dd class="mt-2 text-[15px] leading-relaxed text-ink not-italic">
+            <address class="not-italic">
+              135 Crossways Park Dr #402<br />
+              Woodbury, NY 11797
+            </address>
+          </dd>
+        </div>
+
+        <div>
+          <dt class="eyebrow">Direct</dt>
+          <dd class="mt-2 text-[15px] leading-relaxed text-ink">
+            <a
+              href="tel:+12124851536"
+              class="font-mono text-[14px] text-ink no-underline hover:underline underline-offset-4 decoration-1"
+            >
+              212.485.1536
+            </a>
+            <br />
+            <a
+              href="mailto:info@heritagesllc.com"
+              class="text-[14px] text-ink no-underline hover:underline underline-offset-4 decoration-1"
+            >
+              info@heritagesllc.com
+            </a>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</Section>

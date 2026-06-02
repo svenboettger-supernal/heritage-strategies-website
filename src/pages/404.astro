@@ -1,0 +1,70 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Button from "@components/Button.astro";
+import Hairline from "@components/Hairline.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const description = "The page you're looking for isn't here.";
+
+const destinations = [
+  { label: "Home", href: `${base}/` },
+  { label: "About", href: `${base}/about/` },
+  { label: "Services", href: `${base}/services/` },
+  { label: "The Heritage Book", href: `${base}/services/methodology/` },
+  { label: "Press", href: `${base}/press/` },
+  { label: "Resources", href: `${base}/resources/` },
+  { label: "Careers", href: `${base}/careers/` },
+  { label: "Contact", href: `${base}/contact/` },
+];
+---
+
+<Layout
+  title="Not Found"
+  description={description}
+  pathname="/404/"
+>
+  <Section background="page" width="prose" padding="loose">
+    <div class="max-w-screen-prose">
+      <Eyebrow class="mb-6">
+        <span style="font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1;">404</span>
+      </Eyebrow>
+
+      <Heading size="display-xl" as="h1" class="mb-10">
+        Not on the books.
+      </Heading>
+
+      <Hairline widthPct={32} class="mb-10" />
+
+      <p class="font-editorial text-[19px] md:text-[20px] leading-[1.65] text-ink max-w-screen-narrow">
+        If you arrived here from a link inside the site, please write to <a href="mailto:info@heritagesllc.com" class="text-ink underline-offset-4">info@heritagesllc.com</a> so we can fix it. Otherwise, the table of contents below may help.
+      </p>
+
+      <nav aria-label="Site destinations" class="mt-16">
+        <p class="eyebrow mb-6">Table of contents</p>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-1 max-w-screen-narrow">
+          {destinations.map((d) => (
+            <li class="border-b border-default last:border-b-0 sm:[&:nth-last-child(2)]:border-b-0">
+              <a
+                href={d.href}
+                class="block py-3 font-sans text-[15px] text-ink no-underline hover:text-brand-navy-hover hover:underline underline-offset-4 decoration-1"
+              >
+                {d.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="mt-20 pt-10 border-t border-default">
+        <p class="font-editorial italic text-[18px] leading-relaxed text-ink-muted max-w-screen-narrow mb-6">
+          When in doubt, talk to a member of the firm.
+        </p>
+        <Button href={`${base}/contact/`} variant="primary" size="md">Contact</Button>
+      </div>
+    </div>
+  </Section>
+</Layout>

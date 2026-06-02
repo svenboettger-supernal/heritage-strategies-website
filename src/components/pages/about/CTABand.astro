@@ -1,0 +1,33 @@
+---
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Button from "@components/Button.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<Section background="dark" padding="loose" width="default">
+  <div class="grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-end">
+    <div class="max-w-2xl">
+      <Eyebrow class="text-ink-muted-on-dark">Conversation</Eyebrow>
+      <Heading size="display-md" class="mt-5 text-ink-on-dark text-balance">
+        The next step is a quiet conversation, not a sales call.
+      </Heading>
+      <p class="mt-6 text-[1.05rem] leading-relaxed text-ink-muted-on-dark max-w-xl">
+        Tell us what you are holding, who already advises you, and what you would like the next generation to inherit clearly. We will read carefully and respond in days, not weeks.
+      </p>
+    </div>
+
+    <div class="flex md:justify-end">
+      <Button
+        href={`${base}/contact/`}
+        variant="on-dark"
+        size="lg"
+        ariaLabel="Request a confidential conversation"
+      >
+        Request a Confidential Conversation
+      </Button>
+    </div>
+  </div>
+</Section>

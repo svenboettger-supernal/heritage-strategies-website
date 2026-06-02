@@ -1,0 +1,79 @@
+---
+import PlaceholderImage from "@components/PlaceholderImage.astro";
+import Button from "@components/Button.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+
+export interface Props {
+  href: string;
+  category: string;
+  title: string;
+  summary: string;
+  date: Date;
+  author: string;
+  readingTime?: string;
+}
+
+const { href, category, title, summary, date, author, readingTime } =
+  Astro.props;
+
+const formatter = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<article class="grid gap-10 md:grid-cols-[1.15fr_1fr] md:gap-16 md:items-center">
+  <a
+    href={href}
+    class="block no-underline order-2 md:order-1"
+    aria-label={`Read featured insight: ${title}`}
+  >
+    <PlaceholderImage aspect="wide" label={category} />
+  </a>
+
+  <div class="order-1 md:order-2 flex flex-col">
+    <Eyebrow>Most recent</Eyebrow>
+
+    <p class="mt-4 text-[12px] tracking-[0.06em] uppercase text-ink-muted font-medium">
+      {category}
+    </p>
+
+    <h2 class="mt-4 font-display font-medium text-display-lg leading-[1.1] tracking-[-0.015em] text-ink text-balance">
+      <a
+        href={href}
+        class="no-underline text-ink hover:text-brand-navy transition-colors duration-fast"
+      >
+        {title}
+      </a>
+    </h2>
+
+    <p class="mt-6 max-w-prose font-editorial text-[1.125rem] leading-[1.65] text-ink-muted">
+      {summary}
+    </p>
+
+    <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-ink-muted">
+      <span class="font-medium text-ink">{author}</span>
+      <span aria-hidden="true" class="opacity-60">·</span>
+      <time
+        datetime={date.toISOString()}
+        data-figures="tabular"
+        class="font-medium"
+      >
+        {formatter.format(date)}
+      </time>
+      {readingTime && (
+        <>
+          <span aria-hidden="true" class="opacity-60">·</span>
+          <span data-figures="tabular">{readingTime} read</span>
+        </>
+      )}
+    </div>
+
+    <div class="mt-10">
+      <Button href={href} variant="primary" size="md">
+        Read insight →
+      </Button>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,334 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Hairline from "@components/Hairline.astro";
+import Button from "@components/Button.astro";
+import PlaceholderImage from "@components/PlaceholderImage.astro";
+
+import Hero from "@components/pages/resources/Hero.astro";
+import CategoryFilter from "@components/pages/resources/CategoryFilter.astro";
+import FeaturedInsight from "@components/pages/resources/FeaturedInsight.astro";
+import InsightCard from "@components/pages/resources/InsightCard.astro";
+import WhitepaperCard from "@components/pages/resources/WhitepaperCard.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const all = await getCollection("insights");
+const sorted = all.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const featured = sorted[0];
+const rest = sorted.slice(1);
+
+// Categories present on actual posts; ordered to match the brief.
+const orderedCategories = [
+  "Estate Planning",
+  "Business Continuity",
+  "Employee Benefits",
+  "Family Office",
+  "Firm Notes",
+];
+const presentCategories = orderedCategories.filter((c) =>
+  all.some((i) => i.data.category === c)
+);
+
+const description =
+  "Quiet writing on estate planning, business continuity, and the mechanics of intergenerational wealth, by the Heritage Strategies team.";
+
+// Whitepaper placeholders. Cover PDFs are supplied per the Content Master
+// AI Employee engagement; titles below are illustrative and approved by
+// Heritage as the seed taxonomy for the long-form library.
+const whitepapers = [
+  {
+    title: "The Heritage Book: A field guide for multi-family offices",
+    summary:
+      "How the firm structures a complete picture of a family's estate inside a single living document, from asset inventory to distribution model to refresh cadence.",
+    subject: "The Heritage Book",
+  },
+  {
+    title: "Liquidity event readiness, twenty-four months out",
+    summary:
+      "The window where structure is still pliable, the decisions that need to be made early, and the cost of letting them be made under deadline pressure.",
+    subject: "Liquidity event readiness",
+  },
+  {
+    title: "Reading trust language that outlives its drafter",
+    summary:
+      "A method for refreshing long-dated trust language against the current tax regime and the family circumstance it now needs to express.",
+    subject: "Trust language refresh",
+  },
+  {
+    title: "Employer benefits funding: a fiduciary's decision tree",
+    summary:
+      "Self-funded, level-funded, reference-based pricing, PEO. A clear-eyed comparison of the choices a closely held operating company makes to fund its benefits stack.",
+    subject: "Employer benefits funding",
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: "Heritage Insights",
+  description,
+  url: `https://svenboettger-supernal.github.io${base}/resources/`,
+  publisher: {
+    "@type": "Organization",
+    name: "Heritage Strategies LLC",
+  },
+};
+---
+
+<Layout
+  title="Insights | Heritage Strategies"
+  description={description}
+  pathname="/resources/"
+  jsonLd={jsonLd}
+>
+  <Hero />
+
+  <CategoryFilter categories={presentCategories} />
+
+  {/* Featured insight — large editorial card */}
+  {featured && (
+    <Section background="page" padding="loose" width="default">
+      <FeaturedInsight
+        href={`${base}/resources/${featured.slug}/`}
+        category={featured.data.category}
+        title={featured.data.title}
+        summary={featured.data.summary}
+        date={featured.data.date}
+        author={featured.data.author}
+        readingTime={featured.data.readingTime}
+      />
+    </Section>
+  )}
+
+  {/* Insights grid — all remaining posts, filterable by category */}
+  {rest.length > 0 && (
+    <Section background="muted" padding="default" width="default">
+      <header class="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div class="max-w-prose">
+          <Eyebrow>The library</Eyebrow>
+          <Heading size="display-lg" as="h2" class="mt-5 text-balance">
+            Earlier notes.
+          </Heading>
+        </div>
+        <p class="text-[13.5px] leading-relaxed text-ink-muted max-w-xs md:text-right">
+          Filtered by category above. New writing arrives quietly, on the firm's own schedule.
+        </p>
+      </header>
+
+      <ul
+        class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3"
+        data-insights-grid
+        aria-busy="false"
+      >
+        {rest.map((insight) => (
+          <li>
+            <InsightCard
+              href={`${base}/resources/${insight.slug}/`}
+              category={insight.data.category}
+              title={insight.data.title}
+              summary={insight.data.summary}
+              date={insight.data.date}
+              readingTime={insight.data.readingTime}
+            />
+          </li>
+        ))}
+      </ul>
+
+      <p
+        data-insights-empty
+        class="hidden mt-16 text-center text-[14px] text-ink-muted font-editorial"
+        style="display: none;"
+      >
+        No insights in this category yet. New writing arrives on the firm's own schedule.
+      </p>
+    </Section>
+  )}
+
+  {/* Whitepapers & long-form */}
+  {/* placeholder: whitepaper PDFs to be supplied per the Content Master AI Employee engagement SOW */}
+  <Section background="page" padding="default" width="default">
+    <header class="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+      <div class="max-w-prose">
+        <Eyebrow>Whitepapers &amp; long-form</Eyebrow>
+        <Heading size="display-lg" as="h2" class="mt-5 text-balance">
+          The longer reads.
+        </Heading>
+        <p class="mt-6 max-w-prose text-[1.0625rem] leading-relaxed text-ink-muted font-editorial">
+          Working papers and field guides drawn from a decade of practice. Each is sent on request, in confidence, with a brief note from the partner who owns the material.
+        </p>
+      </div>
+    </header>
+
+    <ul class="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+      {whitepapers.map((paper) => (
+        <li>
+          <WhitepaperCard
+            title={paper.title}
+            summary={paper.summary}
+            subject={paper.subject}
+          />
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  {/* Video section */}
+  {/* placeholder: video file to be supplied per the Brand Video Bundle SOW */}
+  <Section background="muted" padding="default" width="default">
+    <div class="grid gap-12 md:grid-cols-[1.4fr_1fr] md:items-center md:gap-16">
+      <figure>
+        <PlaceholderImage
+          aspect="landscape"
+          label="The Heritage Book in 90 seconds"
+        />
+        <figcaption class="mt-4 text-[12.5px] text-ink-muted tracking-[0.04em]">
+          The Heritage Book in 90 seconds. Tom Fanning Jr., partner.
+        </figcaption>
+      </figure>
+
+      <div>
+        <Eyebrow>From the partners</Eyebrow>
+        <Heading size="display-md" as="h2" class="mt-5 text-balance">
+          The Heritage Book in ninety seconds.
+        </Heading>
+        <p class="mt-6 max-w-prose text-[1.0625rem] leading-relaxed text-ink-muted font-editorial">
+          Tom Fanning Jr. walks through a real Heritage Book engagement, end to end. What gets read on day one, what gets modeled in the first month, what the family sees at the annual refresh.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  {/* Newsletter signup — quiet, single-field */}
+  <aside
+    class="bg-surface-page border-t border-default"
+    aria-label="Heritage Insights newsletter"
+  >
+    <div class="mx-auto max-w-screen-default px-6 sm:px-8 lg:px-12 py-16 md:py-20">
+      <div class="grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-center">
+        <div class="max-w-md">
+          <Eyebrow>Subscribe</Eyebrow>
+          <p class="mt-4 font-display text-[1.75rem] leading-snug text-balance text-ink">
+            Heritage Insights, sent occasionally.
+          </p>
+          <p class="mt-4 text-[14.5px] leading-relaxed text-ink-muted font-editorial">
+            Quarterly at most. No product pitches, no third-party offers, no urgency.
+          </p>
+        </div>
+
+        <form
+          method="GET"
+          action="mailto:info@heritagesllc.com"
+          enctype="text/plain"
+          class="flex flex-col gap-3"
+          aria-label="Subscribe to Heritage Insights"
+          data-newsletter-form
+        >
+          <input
+            type="hidden"
+            name="subject"
+            value="Heritage Insights: subscribe"
+          />
+
+          <label
+            for="resources-newsletter-email"
+            class="text-[12.5px] font-medium tracking-[0.06em] uppercase text-ink-muted"
+          >
+            Email address
+          </label>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input
+              id="resources-newsletter-email"
+              name="body"
+              type="email"
+              inputmode="email"
+              autocomplete="email"
+              required
+              placeholder="you@example.com"
+              class="flex-1 bg-surface-card border border-input rounded px-4 py-3 text-[15px] text-ink placeholder:text-ink-placeholder shadow-input focus:outline-none focus:ring-2 focus:ring-brand-navy focus:border-brand-navy"
+            />
+            <Button type="submit" variant="primary" size="md">
+              Subscribe to Heritage Insights
+            </Button>
+          </div>
+
+          <p class="text-[12px] leading-relaxed text-ink-muted mt-1 max-w-md">
+            Subscribing opens your mail client with a pre-addressed message to info@heritagesllc.com. Your address is not stored on this site. See our <a href={`${base}/privacy/`} class="text-brand-navy underline underline-offset-2 decoration-[hsl(var(--brand-navy)/0.4)]">privacy policy</a>.
+          </p>
+        </form>
+      </div>
+    </div>
+  </aside>
+
+  {/* CTA band — talk to a member of the practice */}
+  <section class="relative bg-surface-dark text-ink-on-dark on-dark overflow-hidden">
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 pointer-events-none"
+      style="background:
+        radial-gradient(100% 80% at 80% 30%, hsl(217 50% 22% / 0.45), transparent 60%),
+        radial-gradient(120% 90% at 10% 80%, hsl(217 65% 9% / 0.5), transparent 65%);"
+    ></div>
+
+    <div class="relative mx-auto max-w-screen-default px-6 sm:px-8 lg:px-12 py-24 md:py-36">
+      <div class="grid gap-12 md:grid-cols-[1.4fr_1fr] md:items-end">
+        <div>
+          <Hairline color="light" widthPct={28} class="mb-10" />
+          <Heading
+            size="display-xl"
+            as="h2"
+            class="text-ink-on-dark text-balance max-w-2xl"
+          >
+            Talk to a member of the practice.
+          </Heading>
+          <p class="mt-7 max-w-xl text-lg leading-relaxed text-ink-muted-on-dark">
+            The writing here is a sample. A conversation is where the firm actually meets the family. Heritage works with a small number of families at a time, and listens first on every engagement.
+          </p>
+        </div>
+
+        <div class="md:justify-self-end">
+          <Button
+            href={`${base}/contact/`}
+            variant="on-dark"
+            size="lg"
+            ariaLabel="Talk to a member of the practice"
+          >
+            Request a conversation
+          </Button>
+          <p class="mt-5 text-[13px] tracking-[0.04em] text-ink-muted-on-dark max-w-xs">
+            Or write to <a href="mailto:info@heritagesllc.com" class="text-ink-on-dark underline underline-offset-4 decoration-[hsl(0_0%_100%/0.4)]">info@heritagesllc.com</a>. We answer in person, not by chatbot.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Newsletter — rebuild a clean mailto so the user lands in their mail client
+  // with the address pre-filled in the body. Mirrors the homepage signup
+  // pattern, scoped to the resources page form.
+  const form = document.querySelector<HTMLFormElement>(
+    "[data-newsletter-form]"
+  );
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const input = form.querySelector<HTMLInputElement>(
+      "#resources-newsletter-email"
+    );
+    const email = (input?.value ?? "").trim();
+    if (!email) return;
+    const subject = encodeURIComponent("Heritage Insights: subscribe");
+    const body = encodeURIComponent(
+      `Please add the following address to the Heritage Insights list:\n\n${email}\n\nThank you.`
+    );
+    window.location.href = `mailto:info@heritagesllc.com?subject=${subject}&body=${body}`;
+  });
+</script>

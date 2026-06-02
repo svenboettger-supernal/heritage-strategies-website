@@ -1,0 +1,22 @@
+---
+export interface Props {
+  value: string;
+  label: string;
+  detail?: string;
+  onDark?: boolean;
+  class?: string;
+}
+const { value, label, detail, onDark = false, class: className = "" } = Astro.props;
+---
+
+<div class:list={["flex flex-col gap-1", className]}>
+  <span class="font-display text-display-md leading-none text-balance" data-figures="tabular">{value}</span>
+  <span class:list={["eyebrow text-[12px]", onDark ? "text-ink-muted-on-dark" : "text-ink-muted"]}>
+    {label}
+  </span>
+  {detail && (
+    <span class:list={["text-sm leading-relaxed mt-1 max-w-xs", onDark ? "text-ink-muted-on-dark" : "text-ink-muted"]}>
+      {detail}
+    </span>
+  )}
+</div>

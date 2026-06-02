@@ -1,0 +1,260 @@
+---
+import { getEntry } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import FAQ from "@components/FAQ.astro";
+import Prose from "@components/Prose.astro";
+import WaxSeal from "@components/WaxSeal.astro";
+import PlaceholderImage from "@components/PlaceholderImage.astro";
+import ProcessStep from "@components/pages/services/ProcessStep.astro";
+import CTABand from "@components/pages/services/CTABand.astro";
+
+const methodology = await getEntry("services", "methodology");
+const summary = methodology?.data.summary ?? "";
+
+const steps = [
+  {
+    title: "Inventory",
+    body: "Every asset schedule consolidated across every entity, account, policy, and trust. Heritage works from the full balance sheet, not from summary statements, before any design decision is made.",
+  },
+  {
+    title: "Map",
+    body: "Trust language read sentence by sentence and mapped to where dollars actually move. The diagram shows the family, the trustees, and the attorneys exactly what the document says, and what it does.",
+  },
+  {
+    title: "Model",
+    body: "Estate distribution modeled at any age and under any tax regime. The family sees who receives what, when, and how much, before a single line of the next document is drafted.",
+  },
+  {
+    title: "Design",
+    body: "Insurance and case design layered against the real underlying balance sheet. Coverage, ownership, and beneficiary structure are designed against the model, not against a generic illustration.",
+  },
+  {
+    title: "Refresh",
+    body: "Annual cadence, full version history, and a document vault that survives the original drafting attorney. Every artifact is owned, dated, and refreshed on a schedule the family controls.",
+  },
+];
+
+const artifacts = [
+  {
+    label: "Asset schedule",
+    caption: "A reconciled schedule of every entity, account, policy, and trust, dated to the day of the refresh cycle.",
+  },
+  {
+    label: "Flow diagram",
+    caption: "Trust language traced to the dollar paths it actually creates. The family sees the document as a circuit, not as prose.",
+  },
+  {
+    label: "Estate distribution chart",
+    caption: "Modeled distributions across heirs at any age and any tax regime. The chart is the question and the answer on a single page.",
+  },
+  {
+    label: "Document vault",
+    caption: "Every artifact under provenance and version history. The original instrument, the redline, the refresh, the next refresh.",
+  },
+];
+
+const faqs = [
+  {
+    question: "Who owns the document?",
+    answer:
+      "The family owns the Heritage Book. Heritage maintains it. The artifacts, the schedules, the redlines, and the version history sit in a vault the family controls and the family's advisors can read from. If the engagement ends, the document goes with the family.",
+  },
+  {
+    question: "How often is it refreshed?",
+    answer:
+      "The Heritage Book is on an annual refresh cadence at minimum. It is updated whenever a triggering event occurs: a death, a liquidity event, a new entity, a change in tax regime, a trustee transition. The refresh is on the calendar before the year begins.",
+  },
+  {
+    question: "Can our existing attorneys read from it?",
+    answer:
+      "That is the point of the document. Trust officers, drafting attorneys, accountants, and family-office staff all read from the same artifacts. Estate planning attorneys have told Heritage that the first draft they wrote against the Heritage Book was sharper than the prior twenty they had written for the same family.",
+  },
+  {
+    question: "Is it audit-trailed?",
+    answer:
+      "Yes. Every section carries an owner and a date. Every change carries a redline. The provenance is on the page, not in someone's memory. The audit trail is part of how the methodology earns the trust the firm claims.",
+  },
+  {
+    question: "How is sensitive data protected?",
+    answer:
+      "Heritage maintains a written privacy policy. Personal information is held only by the firm's authorized staff and the people the client designates. Data is never sold, rented, or traded. The full policy is available on the firm's privacy page. [HERITAGE-TO-CONFIRM: any additional vendor SOC 2 / encryption-at-rest disclosure standards]",
+  },
+  {
+    question: "What happens at a generational transition?",
+    answer:
+      "Generational transitions are the moment the Heritage Book was built for. The next principal inherits a document with provenance, not a binder of paper. The first trustee meeting after a transition begins with the Heritage Book on the table and the lawyers following the cursor.",
+  },
+];
+---
+
+<Layout
+  title="The Heritage Book Methodology | Heritage Strategies"
+  description="A data-driven, holistic methodology for representing, refreshing, and acting on a family's full estate picture. Designed to outlast the principals it was built for."
+  pathname="/services/methodology/"
+>
+  {/* Dark navy hero — fiduciary plate */}
+  <section
+    class="relative bg-surface-dark text-ink-on-dark on-dark overflow-hidden"
+    aria-label="The Heritage Book methodology"
+  >
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 pointer-events-none"
+      style="background:
+        radial-gradient(110% 70% at 20% 25%, hsl(217 50% 22% / 0.55), transparent 62%),
+        radial-gradient(140% 90% at 85% 80%, hsl(217 65% 9% / 0.55), transparent 70%);"
+    ></div>
+
+    {/* Signature hairline */}
+    <span
+      aria-hidden="true"
+      class="absolute left-[8%] right-[18%] top-[58%] h-px -rotate-[2deg] origin-left"
+      style="background: linear-gradient(90deg, hsl(0 0% 100% / 0), hsl(0 0% 100% / 0.42) 28%, hsl(0 0% 100% / 0.42) 72%, hsl(0 0% 100% / 0));"
+    ></span>
+
+    <div class="relative mx-auto w-full max-w-screen-default px-6 sm:px-8 lg:px-12 py-28 md:py-36">
+      <div class="grid gap-12 md:grid-cols-[1.5fr_1fr] md:items-end">
+        <div class="max-w-3xl">
+          <div class="flex items-center gap-4">
+            <WaxSeal orientation="mark-only" size={56} onDark ariaLabel="Heritage Strategies wax seal" />
+            <Eyebrow class="text-ink-muted-on-dark">Methodology</Eyebrow>
+          </div>
+
+          <Heading
+            size="display-xl"
+            as="h1"
+            class="mt-10 text-ink-on-dark text-balance"
+          >
+            The Heritage Book.
+          </Heading>
+
+          <p class="mt-8 max-w-2xl text-lg md:text-[1.2rem] leading-relaxed text-ink-muted-on-dark">
+            {summary} Each section is owned, dated, and refreshed on a schedule the family controls. The document survives the original drafting attorney, the original advisor, and the principal it was first built for.
+          </p>
+        </div>
+
+        <aside class="md:justify-self-end">
+          <p class="eyebrow text-[11.5px] text-ink-muted-on-dark mb-4">Five-step process</p>
+          <ol class="space-y-2.5 text-[14.5px] leading-relaxed text-ink-on-dark">
+            {steps.map((s, i) => (
+              <li class="flex items-baseline gap-4">
+                <span
+                  class="font-mono text-[12px] tracking-[0.14em] text-ink-muted-on-dark"
+                  data-figures="tabular"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span>{s.title}</span>
+              </li>
+            ))}
+          </ol>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  {/* Five-step process visual — folio-plate treatment */}
+  <Section background="page" padding="loose" width="default">
+    <header class="mb-16 max-w-prose">
+      <Eyebrow>The process</Eyebrow>
+      <Heading size="display-lg" as="h2" class="mt-6 text-balance">
+        Five steps, run on the family's calendar.
+      </Heading>
+      <p class="mt-6 text-[1.0625rem] leading-relaxed text-ink-muted max-w-prose">
+        The methodology is sequential and recursive. Each step produces an artifact the next step works from. The full cycle runs at least once a year, and again whenever a triggering event requires it.
+      </p>
+    </header>
+
+    <ol class="grid gap-y-12 gap-x-8 md:grid-cols-5 md:gap-x-6">
+      {steps.map((step, idx) => (
+        <ProcessStep
+          index={idx + 1}
+          total={steps.length}
+          title={step.title}
+          body={step.body}
+        />
+      ))}
+    </ol>
+  </Section>
+
+  {/* Sample artifacts strip */}
+  <Section background="muted" padding="default" width="default">
+    <header class="mb-12 max-w-prose">
+      <Eyebrow>Sample artifacts</Eyebrow>
+      <Heading size="display-lg" as="h2" class="mt-6 text-balance">
+        The Book reads as a set of plates.
+      </Heading>
+      <p class="mt-6 text-[1.0625rem] leading-relaxed text-ink-muted max-w-prose">
+        Each artifact is built once and refreshed on schedule. The family, the trustees, and the attorneys all read from the same page, dated to the same day.
+      </p>
+    </header>
+
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {artifacts.map((art) => (
+        <figure class="flex flex-col gap-4">
+          <PlaceholderImage aspect="portrait" label={art.label} />
+          <figcaption class="flex flex-col gap-2">
+            <p class="eyebrow text-[11px]">{art.label}</p>
+            <p class="text-[14.5px] leading-relaxed text-ink-muted">{art.caption}</p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+    {/* placeholder: production specimens (redacted asset schedule, flow diagram, distribution chart, vault screen) to be provided by Heritage. Captions are real; imagery awaits client supply. */}
+  </Section>
+
+  {/* The discipline behind it — editorial prose */}
+  <Section background="page" padding="loose" width="prose">
+    <Eyebrow>The discipline behind it</Eyebrow>
+    <Heading size="display-lg" as="h2" class="mt-6 text-balance">
+      A document built to outlast the people who built it.
+    </Heading>
+
+    <Prose size="lg" class="mt-10">
+      <p>
+        The Heritage Book is not a binder. A binder is a static thing. The Book is a working set of artifacts that the family, the trustees, and the attorneys read from, mark up, and refresh on a fixed cadence. The discipline is in the cadence, not in the document.
+      </p>
+      <p>
+        Every section carries an owner and a date. When a section is changed, the redline carries an owner and a date. The provenance is on the page, not in someone's memory. That is how the document survives a generational transition, a change of counsel, or the retirement of the partner who first built it. The next person in the chair reads what the prior person decided, when, and why.
+      </p>
+      <p>
+        Refresh runs annually as a minimum. Triggering events run sooner: a death, a sale, a new entity, a change in tax regime, a trustee transition. Heritage holds the calendar. When the family is busy with the operating business, the document still moves. When the year is quiet, the document still moves. The plan does not depend on anyone remembering to ask.
+      </p>
+      <p>
+        Trust language is read sentence by sentence. The firm has reviewed instruments drafted forty years ago by attorneys long retired, and traced their provisions to dollar paths the original principals never modeled. Heritage does not draft. Heritage reads. The drafting attorney works against a clearer balance sheet than they would have built from scratch, and the next document is sharper than the last.
+      </p>
+      <p>
+        The Book is built so that the day it is needed, it holds up. The first trustee meeting after a triggering event begins with the Book on the table. The lawyers follow the cursor. The family asks the hard questions and the answers are already on the page, dated, sourced, and owned.
+      </p>
+    </Prose>
+  </Section>
+
+  {/* FAQ */}
+  <Section background="muted" padding="default" width="default">
+    <div class="grid gap-12 md:grid-cols-[1fr_1.6fr] md:gap-16">
+      <header>
+        <Eyebrow>On the methodology</Eyebrow>
+        <Heading size="display-lg" as="h2" class="mt-6 text-balance">
+          How the Book holds up.
+        </Heading>
+        <p class="mt-6 text-[15px] leading-relaxed text-ink-muted max-w-xs">
+          Specifics of vendor security, audit-trail scope, and engagement scope are reviewed in a confidential conversation.
+        </p>
+      </header>
+      <FAQ items={faqs} />
+    </div>
+  </Section>
+
+  <CTABand
+    eyebrow="Begin a conversation"
+    heading="See what the Book looks like for your family."
+    body="A first conversation is for listening. The partners review the shape of the balance sheet, the existing instruments, and the open questions, then decide together whether the methodology fits."
+    ctaLabel="Request a confidential conversation"
+    secondaryLabel="Estate and Business Continuity"
+    secondaryHref="/services/estate-planning/"
+    background="dark"
+  />
+</Layout>

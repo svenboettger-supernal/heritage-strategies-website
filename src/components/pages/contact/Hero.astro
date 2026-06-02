@@ -1,0 +1,20 @@
+---
+import Section from "@components/Section.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Heading from "@components/Heading.astro";
+---
+
+{/* Editorial parchment hero, deliberately not dark. Contact is the point at
+    which a private conversation begins, and should read as approachable
+    rather than ceremonial. */}
+<Section background="page" padding="loose" width="default" as="header">
+  <div class="max-w-screen-prose">
+    <Eyebrow>Contact</Eyebrow>
+    <Heading size="display-xl" as="h1" class="mt-8 text-balance">
+      Request a Confidential Conversation.
+    </Heading>
+    <p class="mt-8 max-w-prose text-[1.2rem] leading-relaxed font-editorial text-ink">
+      Reach out and a member of the firm will respond personally. We work with families, their advisors, and qualifying introductions. There is no form to filter you out of.
+    </p>
+  </div>
+</Section>

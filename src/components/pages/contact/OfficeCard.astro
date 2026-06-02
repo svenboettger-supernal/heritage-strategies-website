@@ -1,0 +1,68 @@
+---
+import Eyebrow from "@components/Eyebrow.astro";
+import Heading from "@components/Heading.astro";
+import PlaceholderImage from "@components/PlaceholderImage.astro";
+
+const linkClass =
+  "text-ink no-underline hover:underline underline-offset-4 decoration-1 transition-colors";
+---
+
+<aside class="bg-surface-card border border-default rounded p-8 md:p-10 shadow-card-soft">
+  <Eyebrow>The office</Eyebrow>
+  <Heading size="display-sm" class="mt-4 text-balance">
+    Crossways Park Drive
+  </Heading>
+
+  <address class="mt-6 not-italic text-[15.5px] leading-relaxed text-ink font-editorial">
+    135 Crossways Park Dr #402<br />
+    Woodbury, NY 11797
+  </address>
+
+  <dl class="mt-8 grid gap-4 border-t border-default pt-7 text-[14.5px] leading-relaxed">
+    <div class="grid grid-cols-[5.5rem_1fr] items-baseline gap-3">
+      <dt class="eyebrow text-[11px]">Phone</dt>
+      <dd>
+        <a
+          href="tel:+12124851536"
+          class={["font-mono", linkClass].join(" ")}
+          data-figures="tabular"
+        >
+          212.485.1536
+        </a>
+      </dd>
+    </div>
+    <div class="grid grid-cols-[5.5rem_1fr] items-baseline gap-3">
+      <dt class="eyebrow text-[11px]">Email</dt>
+      <dd>
+        <a href="mailto:info@heritagesllc.com" class={linkClass}>
+          info@heritagesllc.com
+        </a>
+      </dd>
+    </div>
+    <div class="grid grid-cols-[5.5rem_1fr] items-baseline gap-3">
+      <dt class="eyebrow text-[11px]">Fax</dt>
+      <dd>
+        <span
+          class="font-mono text-ink"
+          data-figures="tabular"
+        >
+          212.485.1537
+        </span>
+      </dd>
+    </div>
+    <div class="grid grid-cols-[5.5rem_1fr] items-baseline gap-3">
+      <dt class="eyebrow text-[11px]">Hours</dt>
+      <dd class="text-ink">
+        Monday - Friday, 9:00 - 5:30 EST
+      </dd>
+    </div>
+  </dl>
+
+  <div class="mt-8">
+    {/* placeholder: production exterior photography of 135 Crossways Park Drive office, owed by Heritage per SOW §6.2 */}
+    <PlaceholderImage
+      aspect="square"
+      label="Crossways Park Drive office"
+    />
+  </div>
+</aside>

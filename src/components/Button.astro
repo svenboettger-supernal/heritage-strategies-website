@@ -1,0 +1,68 @@
+---
+export interface Props {
+  variant?: "primary" | "ghost" | "on-dark" | "ghost-on-dark" | "text";
+  size?: "sm" | "md" | "lg";
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  class?: string;
+  disabled?: boolean;
+  ariaLabel?: string;
+  rel?: string;
+  target?: string;
+}
+
+const {
+  variant = "primary",
+  size = "md",
+  href,
+  type = "button",
+  class: className = "",
+  disabled = false,
+  ariaLabel,
+  rel,
+  target,
+} = Astro.props;
+
+const sizeClass: Record<NonNullable<Props["size"]>, string> = {
+  sm: "px-4 py-2 text-[13px]",
+  md: "px-5 py-2.5 text-sm",
+  lg: "px-7 py-3.5 text-[15px]",
+};
+
+const variantClass: Record<NonNullable<Props["variant"]>, string> = {
+  primary:
+    "bg-brand-navy text-ink-on-dark hover:bg-brand-navy-hover border border-brand-navy",
+  ghost:
+    "bg-transparent text-ink border border-default hover:border-strong hover:bg-surface-muted",
+  "on-dark":
+    "bg-ink-on-dark text-brand-navy border border-ink-on-dark hover:bg-surface-muted",
+  "ghost-on-dark":
+    "bg-transparent text-ink-on-dark border border-on-dark hover:bg-surface-dark-panel",
+  text:
+    "bg-transparent text-brand-navy hover:text-brand-navy-hover px-0 py-0 underline underline-offset-4 decoration-1",
+};
+
+const baseClass =
+  "inline-flex items-center justify-center gap-2 rounded font-sans font-medium tracking-[0.01em] transition-colors duration-fast disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy";
+
+const classList = [
+  baseClass,
+  variantClass[variant],
+  variant !== "text" && sizeClass[size],
+  className,
+];
+
+const Tag = href ? "a" : "button";
+---
+
+<Tag
+  href={href}
+  type={!href ? type : undefined}
+  rel={href ? rel : undefined}
+  target={href ? target : undefined}
+  aria-label={ariaLabel}
+  aria-disabled={disabled ? "true" : undefined}
+  class:list={classList}
+>
+  <slot />
+</Tag>

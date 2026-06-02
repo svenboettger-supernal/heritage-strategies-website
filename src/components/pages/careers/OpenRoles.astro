@@ -1,0 +1,124 @@
+---
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Button from "@components/Button.astro";
+import { getCollection, render } from "astro:content";
+
+const open = await getCollection("roles", ({ data }) => data.status === "open");
+open.sort((a, b) => b.data.posted.getTime() - a.data.posted.getTime());
+
+const dateFmt = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+
+const rendered = await Promise.all(
+  open.map(async (entry) => {
+    const { Content } = await render(entry);
+    return { entry, Content };
+  }),
+);
+---
+
+<Section background="card" padding="loose" width="default" id="open-roles">
+  <div class="max-w-screen-prose">
+    <Eyebrow>Open roles</Eyebrow>
+    <Heading size="display-lg" class="mt-5 text-balance">
+      Roles currently open at Heritage.
+    </Heading>
+    <p class="mt-6 font-editorial text-[1.0625rem] leading-[1.6] text-ink-muted">
+      Each listing below is a tailored description of a seat that exists today on the firm's bench, written by the partner the role reports to. If a posting interests you, send a note. We respond to every application.
+    </p>
+  </div>
+
+  {open.length === 0 ? (
+    <div class="mt-16 border-t border-default pt-12 max-w-screen-prose">
+      <p class="font-editorial text-[1.25rem] leading-[1.55] text-ink text-balance">
+        No open roles at this time.
+      </p>
+      <p class="mt-5 font-editorial text-[1.0625rem] leading-[1.6] text-ink-muted max-w-prose">
+        We always welcome introductions from practitioners we should know. If your background sits in trusts and estates, large-case underwriting, family-office operations, or insurance and case design, we would like to hear from you.
+      </p>
+      <div class="mt-8">
+        <Button
+          variant="primary"
+          size="md"
+          href="mailto:careers@heritagesllc.com?subject=Introduction%20%E2%80%93%20Heritage%20Strategies"
+        >
+          Send an introduction
+        </Button>
+      </div>
+    </div>
+  ) : (
+    <ul class="mt-16 border-t border-default">
+      {rendered.map(({ entry, Content }) => (
+        <li class="border-b border-default py-10 md:py-14">
+          <div class="grid gap-8 md:grid-cols-[1fr_2fr] items-start">
+            <div>
+              <Eyebrow>{entry.data.department}</Eyebrow>
+              <h3 class="mt-4 font-display font-medium text-[1.75rem] md:text-[2rem] leading-[1.2] text-ink text-balance">
+                {entry.data.title}
+              </h3>
+              <p class="mt-4 text-[13px] tracking-[0.02em] text-ink-muted">
+                <span>{entry.data.location}</span>
+                <span aria-hidden="true" class="opacity-50 mx-2">·</span>
+                <span>{entry.data.type}</span>
+                <span aria-hidden="true" class="opacity-50 mx-2">·</span>
+                <span>Posted {dateFmt.format(entry.data.posted)}</span>
+              </p>
+            </div>
+
+            <div>
+              <p class="font-editorial text-[1.0625rem] leading-[1.6] text-ink">
+                {entry.data.summary}
+              </p>
+
+              <details class="mt-6 group">
+                <summary class="inline-flex items-center gap-2 cursor-pointer list-none text-[14px] font-medium text-brand-navy hover:text-brand-navy-hover">
+                  <span class="group-open:hidden">Read full description</span>
+                  <span class="hidden group-open:inline">Hide full description</span>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    class="transition-transform duration-fast group-open:rotate-180"
+                  >
+                    <polyline points="3 5 7 9 11 5" />
+                  </svg>
+                </summary>
+                <div class="mt-6 prose prose-editorial max-w-screen-prose text-ink">
+                  <Content />
+                </div>
+              </details>
+
+              <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+                <Button
+                  variant="primary"
+                  size="md"
+                  href={`mailto:careers@heritagesllc.com?subject=Application%20%E2%80%93%20${encodeURIComponent(entry.data.title)}`}
+                  ariaLabel={`Apply for ${entry.data.title} via email`}
+                >
+                  Apply via email
+                </Button>
+                <a
+                  href={`mailto:careers@heritagesllc.com?subject=Question%20%E2%80%93%20${encodeURIComponent(entry.data.title)}`}
+                  class="text-[14px] font-medium text-brand-navy hover:text-brand-navy-hover no-underline border-b border-default pb-1 hover:border-strong"
+                >
+                  Ask a question first
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  )}
+</Section>

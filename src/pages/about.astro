@@ -1,0 +1,87 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+import Hero from "@components/pages/about/Hero.astro";
+import OriginStory from "@components/pages/about/OriginStory.astro";
+import Timeline from "@components/pages/about/Timeline.astro";
+import Principals from "@components/pages/about/Principals.astro";
+import TeamGrid from "@components/pages/about/TeamGrid.astro";
+import Office from "@components/pages/about/Office.astro";
+import Community from "@components/pages/about/Community.astro";
+import ProofQuote from "@components/pages/about/ProofQuote.astro";
+import CTABand from "@components/pages/about/CTABand.astro";
+
+// JSON-LD Person schemas for the five principals — improves AI-search citation (GEO).
+const organization = {
+  "@type": "Organization",
+  name: "Heritage Strategies LLC",
+  url: "https://heritagesllc.com/",
+};
+
+const jsonLd: Record<string, unknown>[] = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Thomas J. Fanning, Sr.",
+    jobTitle: "Managing Partner",
+    worksFor: organization,
+    alumniOf: { "@type": "CollegeOrUniversity", name: "Fairfield University" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Thomas Fanning Jr.",
+    jobTitle: "Partner",
+    worksFor: organization,
+    alumniOf: { "@type": "CollegeOrUniversity", name: "Fairfield University, Dolan School of Business" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Chris Halvey",
+    jobTitle: "Managing Director, Insurance & Case Design",
+    worksFor: organization,
+    alumniOf: { "@type": "CollegeOrUniversity", name: "Stony Brook University" },
+    hasCredential: [
+      { "@type": "EducationalOccupationalCredential", name: "CFP®" },
+      { "@type": "EducationalOccupationalCredential", name: "ChFC®" },
+      { "@type": "EducationalOccupationalCredential", name: "CLU®" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Marc Hiatrides",
+    jobTitle: "Partner, Heritage Benefit Solutions",
+    worksFor: organization,
+    hasCredential: [
+      { "@type": "EducationalOccupationalCredential", name: "CLU" },
+      { "@type": "EducationalOccupationalCredential", name: "RHU" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Jennifer Mejia",
+    jobTitle: "Chief Operating Officer",
+    worksFor: organization,
+  },
+];
+---
+
+<Layout
+  title="About · Heritage Strategies"
+  description="Heritage Strategies LLC is an estate-planning multi-family office founded in 2009. Founders, leadership, the office in Woodbury, New York, and the firm's community work."
+  pathname="/about/"
+  jsonLd={jsonLd}
+>
+  <Hero />
+  <OriginStory />
+  <Timeline />
+  <Principals />
+  <TeamGrid />
+  <Office />
+  <Community />
+  <ProofQuote />
+  <CTABand />
+</Layout>

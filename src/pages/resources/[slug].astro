@@ -1,0 +1,265 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Hairline from "@components/Hairline.astro";
+import Button from "@components/Button.astro";
+
+import AuthorBlock from "@components/pages/resources/AuthorBlock.astro";
+import RelatedInsight from "@components/pages/resources/RelatedInsight.astro";
+
+export async function getStaticPaths() {
+  const insights = await getCollection("insights");
+  // Sort newest first so each entry can know its neighbors by date order.
+  const sorted = insights.sort(
+    (a, b) => b.data.date.getTime() - a.data.date.getTime()
+  );
+  return sorted.map((entry, idx) => {
+    // Wrap-around: next two insights by date, cycling through the list.
+    const related = [
+      sorted[(idx + 1) % sorted.length],
+      sorted[(idx + 2) % sorted.length],
+    ].filter((r) => r && r.slug !== entry.slug);
+    return {
+      params: { slug: entry.slug },
+      props: { entry, related },
+    };
+  });
+}
+
+interface PageProps {
+  entry: CollectionEntry<"insights">;
+  related: CollectionEntry<"insights">[];
+}
+
+const { entry, related } = Astro.props as PageProps;
+const { Content } = await entry.render();
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const isoDate = entry.data.date.toISOString();
+const pathname = `/resources/${entry.slug}/`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: entry.data.title,
+  description: entry.data.summary,
+  datePublished: isoDate,
+  author: {
+    "@type": "Organization",
+    name: "Heritage Strategies LLC",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Heritage Strategies LLC",
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `https://svenboettger-supernal.github.io${base}${pathname}`,
+  },
+  articleSection: entry.data.category,
+};
+---
+
+<Layout
+  title={`${entry.data.title} | Heritage Strategies`}
+  description={entry.data.summary}
+  pathname={pathname}
+  jsonLd={jsonLd}
+>
+  {/* Header — parchment, breadcrumb, title, byline */}
+  <section
+    class="relative bg-surface-page text-ink overflow-hidden"
+    aria-label="Insight header"
+  >
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 pointer-events-none"
+      style="background:
+        radial-gradient(120% 80% at 10% 18%, hsl(var(--brand-copper) / 0.04), transparent 55%),
+        radial-gradient(140% 100% at 92% 92%, hsl(var(--brand-navy) / 0.04), transparent 65%);"
+    ></div>
+
+    <div class="relative mx-auto w-full max-w-screen-default px-6 sm:px-8 lg:px-12 pt-20 md:pt-28 pb-12 md:pb-16">
+      <nav
+        aria-label="Breadcrumb"
+        class="text-[12.5px] tracking-[0.06em] uppercase text-ink-muted"
+      >
+        <ol class="flex flex-wrap items-center gap-2">
+          <li>
+            <a
+              href={`${base}/resources/`}
+              class="no-underline text-ink-muted hover:text-ink transition-colors duration-fast"
+            >
+              Insights
+            </a>
+          </li>
+          <li aria-hidden="true" class="opacity-60">/</li>
+          <li class="text-ink">{entry.data.category}</li>
+        </ol>
+      </nav>
+
+      <div class="mt-12 max-w-screen-prose">
+        <Eyebrow>{entry.data.category}</Eyebrow>
+
+        <Heading size="display-lg" as="h1" class="mt-6 text-balance">
+          {entry.data.title}
+        </Heading>
+
+        <p class="mt-8 max-w-prose font-editorial text-[1.1875rem] leading-[1.65] text-ink-muted">
+          {entry.data.summary}
+        </p>
+
+        <div class="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-ink-muted">
+          <span class="font-medium text-ink">{entry.data.author}</span>
+          <span aria-hidden="true" class="opacity-60">·</span>
+          <time
+            datetime={isoDate}
+            data-figures="tabular"
+            class="font-medium"
+          >
+            {dateFormatter.format(entry.data.date)}
+          </time>
+          {entry.data.readingTime && (
+            <>
+              <span aria-hidden="true" class="opacity-60">·</span>
+              <span data-figures="tabular">{entry.data.readingTime} read</span>
+            </>
+          )}
+        </div>
+      </div>
+
+      <div class="mt-12">
+        <Hairline color="dark" widthPct={32} />
+      </div>
+    </div>
+  </section>
+
+  {/* Body — the MDX seed posts already wrap themselves in <Prose>, so we
+      render <Content /> directly and only constrain the measure here.
+      Pull-quote treatment is handled by the prose-editorial typography
+      preset (blockquote borders + Cormorant on display headings). */}
+  <Section background="page" padding="default" width="prose">
+    <article class="insight-body">
+      <Content />
+    </article>
+
+    <AuthorBlock />
+  </Section>
+
+  {/* Related insights — next two by date, wrapping around */}
+  {related.length > 0 && (
+    <Section background="muted" padding="default" width="default">
+      <header class="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div>
+          <Eyebrow>Continue reading</Eyebrow>
+          <Heading size="display-md" as="h2" class="mt-5 text-balance">
+            More from the practice.
+          </Heading>
+        </div>
+        <a
+          href={`${base}/resources/`}
+          class="text-[14px] font-medium tracking-[0.01em] text-brand-navy hover:text-brand-navy-hover underline underline-offset-4 decoration-1 shrink-0"
+        >
+          All insights →
+        </a>
+      </header>
+
+      <ul class="grid gap-x-8 gap-y-12 md:grid-cols-2">
+        {related.map((rel) => (
+          <li>
+            <RelatedInsight
+              href={`${base}/resources/${rel.slug}/`}
+              category={rel.data.category}
+              title={rel.data.title}
+              summary={rel.data.summary}
+              date={rel.data.date}
+              readingTime={rel.data.readingTime}
+            />
+          </li>
+        ))}
+      </ul>
+    </Section>
+  )}
+
+  {/* CTA band — talk to a member of the practice */}
+  <section class="relative bg-surface-dark text-ink-on-dark on-dark overflow-hidden">
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 pointer-events-none"
+      style="background:
+        radial-gradient(100% 80% at 80% 30%, hsl(217 50% 22% / 0.45), transparent 60%),
+        radial-gradient(120% 90% at 10% 80%, hsl(217 65% 9% / 0.5), transparent 65%);"
+    ></div>
+
+    <div class="relative mx-auto max-w-screen-default px-6 sm:px-8 lg:px-12 py-24 md:py-36">
+      <div class="grid gap-12 md:grid-cols-[1.4fr_1fr] md:items-end">
+        <div>
+          <Hairline color="light" widthPct={28} class="mb-10" />
+          <Heading
+            size="display-xl"
+            as="h2"
+            class="text-ink-on-dark text-balance max-w-2xl"
+          >
+            Talk to a member of the practice.
+          </Heading>
+          <p class="mt-7 max-w-xl text-lg leading-relaxed text-ink-muted-on-dark">
+            A reading like this is a sample of how Heritage thinks. A conversation is where the firm actually meets the family.
+          </p>
+        </div>
+
+        <div class="md:justify-self-end">
+          <Button
+            href={`${base}/contact/`}
+            variant="on-dark"
+            size="lg"
+            ariaLabel="Talk to a member of the practice"
+          >
+            Request a conversation
+          </Button>
+          <p class="mt-5 text-[13px] tracking-[0.04em] text-ink-muted-on-dark max-w-xs">
+            Or write to <a href="mailto:info@heritagesllc.com" class="text-ink-on-dark underline underline-offset-4 decoration-[hsl(0_0%_100%/0.4)]">info@heritagesllc.com</a>. We answer in person, not by chatbot.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style is:global>
+  /* Pull-quote treatment inside an insight body — Cormorant, generous,
+     copper hairline that mirrors the brand's identity accent. Scoped via
+     .insight-body so it only applies to the rendered MDX content. */
+  .insight-body blockquote {
+    font-family: "Cormorant Garamond", Cormorant, Garamond, serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(1.6rem, 2.6vw, 2rem);
+    line-height: 1.3;
+    color: hsl(var(--text-default));
+    border-left: 2px solid hsl(var(--brand-copper));
+    margin: 2.5rem 0;
+    padding-left: 1.5rem;
+    quotes: none;
+  }
+  .insight-body blockquote p::before,
+  .insight-body blockquote p::after {
+    content: "";
+  }
+
+  /* Tighter, editorial spacing for the body wrapper. The MDX files
+     internally use <Prose>, which already applies prose-editorial.
+     This rule only tunes outer margins. */
+  .insight-body > .prose {
+    margin: 0;
+  }
+</style>

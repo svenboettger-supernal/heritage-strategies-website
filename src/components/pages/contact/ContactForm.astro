@@ -1,0 +1,173 @@
+---
+import Button from "@components/Button.astro";
+
+/**
+ * Editorial contact form. Sits inside a white card on the parchment ground.
+ * Posts via GET to a mailto: URL. Astro is a static site, so submission
+ * opens the visitor's email client populated with the inquiry. No JS state.
+ */
+
+const inquiringAs = [
+  "A family principal",
+  "A family-office staff member",
+  "An advisor (attorney, accountant, trustee)",
+  "A press inquiry",
+  "A career inquiry",
+  "Other",
+];
+
+const situations = [
+  "Generational wealth planning",
+  "Business succession / liquidity event",
+  "Insurance & case design",
+  "Employer benefits (Heritage Benefit Solutions)",
+  "Not yet sure",
+];
+
+const inputClass = [
+  "block w-full",
+  "bg-surface-card border border-input rounded shadow-input",
+  "px-3 py-2.5 text-[15px] text-ink placeholder:text-ink-placeholder",
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy focus:border-brand-navy",
+  "transition-colors duration-fast",
+].join(" ");
+
+const labelClass =
+  "text-xs font-medium tracking-[0.14em] text-ink-muted uppercase mb-2 block";
+---
+
+<form
+  method="GET"
+  action="mailto:info@heritagesllc.com"
+  enctype="text/plain"
+  class="bg-surface-card border border-default rounded p-8 md:p-10 shadow-card-soft"
+>
+  {/* hidden subject: sets the mailto subject line */}
+  <input
+    type="hidden"
+    name="subject"
+    value="Heritage Strategies, new inquiry"
+  />
+
+  <div class="grid gap-7 md:gap-8">
+    {/* Name + Email row */}
+    <div class="grid gap-7 md:gap-8 md:grid-cols-2">
+      <div>
+        <label for="name" class={labelClass}>
+          Full name
+          <span aria-hidden="true" class="ml-1 text-brand-copper normal-case tracking-normal">*</span>
+        </label>
+        <input
+          id="name"
+          name="Name"
+          type="text"
+          required
+          autocomplete="name"
+          placeholder="Your name"
+          class={inputClass}
+        />
+      </div>
+
+      <div>
+        <label for="email" class={labelClass}>
+          Email
+          <span aria-hidden="true" class="ml-1 text-brand-copper normal-case tracking-normal">*</span>
+        </label>
+        <input
+          id="email"
+          name="Email"
+          type="email"
+          required
+          autocomplete="email"
+          placeholder="name@example.com"
+          class={inputClass}
+        />
+      </div>
+    </div>
+
+    {/* Phone */}
+    <div>
+      <label for="phone" class={labelClass}>
+        Phone
+        <span class="ml-2 normal-case tracking-normal text-ink-placeholder font-normal">
+          optional
+        </span>
+      </label>
+      <input
+        id="phone"
+        name="Phone"
+        type="tel"
+        autocomplete="tel"
+        placeholder="212.485.1536"
+        class={inputClass}
+      />
+    </div>
+
+    {/* Inquiring as */}
+    <div>
+      <label for="inquiring-as" class={labelClass}>
+        I am inquiring as
+        <span aria-hidden="true" class="ml-1 text-brand-copper normal-case tracking-normal">*</span>
+      </label>
+      <select
+        id="inquiring-as"
+        name="Inquiring as"
+        required
+        class={[inputClass, "appearance-none pr-10 bg-no-repeat bg-[right_0.75rem_center] bg-[length:1rem_1rem]"].join(" ")}
+        style="background-image: url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='hsl(217 18% 36%)' stroke-width='1.5'><path d='M5 8l5 5 5-5'/></svg>&quot;);"
+      >
+        <option value="" disabled selected>Select one</option>
+        {inquiringAs.map((opt) => (
+          <option value={opt}>{opt}</option>
+        ))}
+      </select>
+    </div>
+
+    {/* Situation */}
+    <div>
+      <label for="situation" class={labelClass}>
+        Situation
+        <span class="ml-2 normal-case tracking-normal text-ink-placeholder font-normal">
+          optional
+        </span>
+      </label>
+      <select
+        id="situation"
+        name="Situation"
+        class={[inputClass, "appearance-none pr-10 bg-no-repeat bg-[right_0.75rem_center] bg-[length:1rem_1rem]"].join(" ")}
+        style="background-image: url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='hsl(217 18% 36%)' stroke-width='1.5'><path d='M5 8l5 5 5-5'/></svg>&quot;);"
+      >
+        <option value="" selected>Select one, or leave blank</option>
+        {situations.map((opt) => (
+          <option value={opt}>{opt}</option>
+        ))}
+      </select>
+    </div>
+
+    {/* Message */}
+    <div>
+      <label for="message" class={labelClass}>
+        Message
+        <span aria-hidden="true" class="ml-1 text-brand-copper normal-case tracking-normal">*</span>
+      </label>
+      <textarea
+        id="message"
+        name="Message"
+        rows="5"
+        required
+        placeholder="A sentence or two about what brings you to Heritage."
+        class={[inputClass, "resize-y leading-relaxed"].join(" ")}
+      ></textarea>
+    </div>
+
+    {/* Submit + note */}
+    <div class="mt-2 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+      <Button type="submit" variant="primary" size="lg" class="w-full md:w-auto">
+        Send
+      </Button>
+      <p class="text-[12px] leading-relaxed text-ink-muted md:max-w-[24rem] md:text-right">
+        Heritage will reply within two business days. All inquiries are treated as confidential.
+      </p>
+    </div>
+  </div>
+</form>

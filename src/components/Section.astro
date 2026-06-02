@@ -1,0 +1,47 @@
+---
+import Container from "@components/Container.astro";
+
+export interface Props {
+  /** Visual background — controls surface color + text inversion. */
+  background?: "page" | "card" | "muted" | "dark";
+  /** Container max-width. */
+  width?: "narrow" | "prose" | "default" | "wide";
+  /** Vertical padding scale. */
+  padding?: "tight" | "default" | "loose" | "none";
+  /** Semantic HTML element. */
+  as?: string;
+  /** Extra Tailwind classes for the outer section. */
+  class?: string;
+  /** Optional id for in-page anchor navigation. */
+  id?: string;
+}
+
+const {
+  background = "page",
+  width = "default",
+  padding = "default",
+  as: Tag = "section",
+  class: className = "",
+  id,
+} = Astro.props;
+
+const bgClass: Record<NonNullable<Props["background"]>, string> = {
+  page: "bg-surface-page text-ink",
+  card: "bg-surface-card text-ink",
+  muted: "bg-surface-muted text-ink",
+  dark: "bg-surface-dark text-ink-on-dark on-dark",
+};
+
+const padClass: Record<NonNullable<Props["padding"]>, string> = {
+  none: "",
+  tight: "py-10 md:py-14",
+  default: "py-16 md:py-24",
+  loose: "py-24 md:py-36",
+};
+---
+
+<Tag id={id} class:list={[bgClass[background], padClass[padding], className]}>
+  <Container width={width}>
+    <slot />
+  </Container>
+</Tag>

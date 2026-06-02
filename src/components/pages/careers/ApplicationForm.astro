@@ -1,0 +1,143 @@
+---
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import Button from "@components/Button.astro";
+import { getCollection } from "astro:content";
+
+const open = await getCollection("roles", ({ data }) => data.status === "open");
+open.sort((a, b) => b.data.posted.getTime() - a.data.posted.getTime());
+
+const inputClass = [
+  "w-full bg-surface-card border border-input shadow-input rounded",
+  "px-3.5 py-2.5 text-[14.5px] text-ink",
+  "placeholder:text-ink-placeholder",
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy",
+  "focus:border-brand-navy",
+  "transition-colors duration-fast",
+].join(" ");
+
+const labelClass = "block text-[13px] font-medium tracking-[0.04em] uppercase text-ink-muted";
+const helperClass = "mt-1.5 text-[12.5px] leading-relaxed text-ink-muted";
+---
+
+<Section background="page" padding="loose" width="default" id="apply">
+  <div class="grid gap-16 lg:grid-cols-[1fr_2fr] items-start">
+    <div>
+      <Eyebrow>Apply</Eyebrow>
+      <Heading size="display-lg" class="mt-5 text-balance">
+        Send the firm a note.
+      </Heading>
+      <p class="mt-6 font-editorial text-[1.0625rem] leading-[1.6] text-ink-muted">
+        Every application is read by a partner. There is no automated screen, no recruiter middle layer, and no ATS keyword filter. If your background fits, you will hear back from a real person at Heritage within five business days.
+      </p>
+      <p class="mt-5 font-editorial text-[1.0625rem] leading-[1.6] text-ink-muted">
+        Submissions and follow-up correspondence are held in confidence. The firm understands that a serious practitioner may not be in a position to advertise a job search.
+      </p>
+    </div>
+
+    <form
+      method="GET"
+      action="mailto:careers@heritagesllc.com"
+      enctype="text/plain"
+      class="bg-surface-card border border-default rounded p-8 md:p-10"
+    >
+      <input type="hidden" name="subject" value="Application: Heritage Strategies" />
+
+      <fieldset class="grid gap-6">
+        <legend class="sr-only">Application form</legend>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <div>
+            <label for="applicant-name" class={labelClass}>
+              Full name <span class="text-brand-copper" aria-hidden="true">·</span>
+              <span class="sr-only">required</span>
+            </label>
+            <input
+              id="applicant-name"
+              name="name"
+              type="text"
+              required
+              autocomplete="name"
+              placeholder="Jane Doe"
+              class={`mt-2 ${inputClass}`}
+            />
+          </div>
+
+          <div>
+            <label for="applicant-email" class={labelClass}>
+              Email <span class="text-brand-copper" aria-hidden="true">·</span>
+              <span class="sr-only">required</span>
+            </label>
+            <input
+              id="applicant-email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              placeholder="jane.doe@example.com"
+              class={`mt-2 ${inputClass}`}
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="applicant-role" class={labelClass}>Role of interest</label>
+          <select
+            id="applicant-role"
+            name="role"
+            class={`mt-2 ${inputClass} appearance-none bg-no-repeat`}
+            style="background-image: url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none' stroke='%23475569' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='3 5 7 9 11 5'/></svg>&quot;); background-position: right 0.75rem center; background-size: 14px;"
+          >
+            <option value="Introduction / general interest">Introduction / general interest</option>
+            {open.map((entry) => (
+              <option value={entry.data.title}>{entry.data.title}</option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label for="applicant-linkedin" class={labelClass}>LinkedIn URL</label>
+          <input
+            id="applicant-linkedin"
+            name="linkedin"
+            type="url"
+            inputmode="url"
+            autocomplete="url"
+            placeholder="https://www.linkedin.com/in/..."
+            class={`mt-2 ${inputClass}`}
+          />
+          <p class={helperClass}>Optional. A profile link is helpful but never required.</p>
+        </div>
+
+        <div>
+          <label for="applicant-why" class={labelClass}>Why Heritage</label>
+          <textarea
+            id="applicant-why"
+            name="message"
+            rows="4"
+            required
+            placeholder="What draws you to this kind of practice, and what would you bring to it?"
+            class={`mt-2 ${inputClass} resize-y leading-relaxed`}
+          ></textarea>
+        </div>
+
+        <div>
+          <span class={labelClass}>Attach resume</span>
+          <p class="mt-2 font-editorial text-[1rem] leading-[1.55] text-ink">
+            Please include a PDF as an attachment after pressing send. Most email clients open a draft on submit; attach the document there before sending.
+          </p>
+        </div>
+
+        <div class="mt-2 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <Button variant="primary" size="lg" type="submit">
+            Send application
+          </Button>
+          <p class="text-[12.5px] leading-relaxed text-ink-muted max-w-md">
+            Response within five business days. Applications are reviewed in confidence by a partner at the firm.
+          </p>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</Section>

@@ -1,0 +1,58 @@
+---
+/**
+ * On-brand placeholder card for sections that require production photography
+ * Heritage has not yet provided. Renders a sized block with a subtle texture
+ * and a comment, so the page never has visible "broken image" gaps.
+ */
+export interface Props {
+  aspect?: "portrait" | "landscape" | "square" | "wide";
+  label?: string;
+  onDark?: boolean;
+  class?: string;
+}
+
+const { aspect = "landscape", label = "Production photography", onDark = false, class: className = "" } = Astro.props;
+
+const aspectClass: Record<NonNullable<Props["aspect"]>, string> = {
+  portrait: "aspect-[3/4]",
+  landscape: "aspect-[16/10]",
+  square: "aspect-square",
+  wide: "aspect-[21/9]",
+};
+---
+
+<div
+  class:list={[
+    "relative w-full overflow-hidden rounded",
+    aspectClass[aspect],
+    onDark ? "bg-surface-dark-panel" : "bg-surface-muted",
+    "border",
+    onDark ? "border-on-dark" : "border-default",
+    className,
+  ]}
+  role="img"
+  aria-label={label}
+>
+  {/* Subtle texture: layered radial gradients to evoke the existing Heritage hero atmosphere */}
+  <div
+    aria-hidden="true"
+    class="absolute inset-0"
+    style="background: radial-gradient(120% 80% at 30% 30%, hsl(var(--brand-copper) / 0.10), transparent 60%), radial-gradient(140% 100% at 80% 80%, hsl(var(--brand-navy) / 0.12), transparent 65%);"
+  ></div>
+  {/* Hairline crossing the placeholder, echoing Heritage's signature streak */}
+  <span
+    aria-hidden="true"
+    class="absolute left-[10%] right-[10%] top-[58%] h-px"
+    style={onDark ? "background: hsl(0 0% 100% / 0.18);" : "background: hsl(var(--brand-navy) / 0.18);"}
+  ></span>
+
+  <span
+    class:list={[
+      "absolute bottom-3 left-3 text-[11px] tracking-[0.18em] uppercase",
+      onDark ? "text-ink-muted-on-dark" : "text-ink-muted",
+    ]}
+  >
+    {label}
+  </span>
+  {/* placeholder: production photography to be supplied by Heritage per SOW §6.2 */}
+</div>

@@ -1,0 +1,211 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Section from "@components/Section.astro";
+import Heading from "@components/Heading.astro";
+import Eyebrow from "@components/Eyebrow.astro";
+import FAQ from "@components/FAQ.astro";
+import ServiceCard from "@components/pages/services/ServiceCard.astro";
+import CTABand from "@components/pages/services/CTABand.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const services = (await getCollection("services")).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const pillars = [
+  {
+    eyebrow: "Data-driven holistic approach",
+    title: "Plans drawn against the real balance sheet.",
+    body: "Every plan begins with a complete inventory of assets across every entity, account, policy, and trust. Heritage does not work from summary statements. The full picture is assembled, reconciled, and dated before a single design decision is made.",
+  },
+  {
+    eyebrow: "Accountability for execution",
+    title: "What is decided is what gets done.",
+    body: "A plan that is never executed is a plan that did not exist. Heritage holds attorneys, trustees, and operating teams to the calendar. Each open item carries an owner and a date. Refresh cycles run on schedule whether or not the principals ask.",
+  },
+  {
+    eyebrow: "Evolves with the landscape",
+    title: "The plan moves when the law moves.",
+    body: "Tax regimes shift. Operating businesses change shape. Generations transition. Heritage rebuilds the model against the current facts and the current code each year, so the family is not relying on assumptions written for a tax world that no longer exists.",
+  },
+];
+
+const faqs = [
+  {
+    question: "What is the Heritage Book?",
+    answer:
+      "The Heritage Book is the firm's proprietary methodology for representing a family's full estate picture. It consolidates asset schedules, maps trust language to actual dollar flows, models estate distributions at any age and any tax regime, and keeps every artifact under version history. The family owns the document. Heritage maintains it.",
+  },
+  {
+    question: "Who do we work with?",
+    answer:
+      "Heritage works with ultra-high-net-worth families, founders preparing a liquidity event, owners planning a business succession, and trustees of large irrevocable trusts. The common thread is concentration, complexity, or a multi-generational horizon that the standard advisor model is not equipped to hold.",
+  },
+  {
+    question: "How do we engage with our existing attorneys and accountants?",
+    answer:
+      "Heritage works alongside the family's existing counsel. We do not replace the drafting attorney or the CPA. We provide the data picture, the modeling, and the accountability layer that allows those advisors to do their best work. Most engagements begin by reading every existing trust document line by line.",
+  },
+  {
+    question: "What is the typical engagement length?",
+    answer:
+      "Engagements are ongoing. The Heritage Book is a living document that is refreshed at least annually and updated whenever a triggering event occurs. The firm has served families continuously for over a decade, and the partners bring over sixty years of combined experience to the work.",
+  },
+  {
+    question: "What is the firm's regulatory affiliation?",
+    answer:
+      "Securities and investment advisory services are offered through M Holdings Securities, Inc., a registered broker-dealer and investment advisor, member FINRA and SIPC. Heritage Strategies LLC is independently owned and operated and is a member of M Financial Group. Form CRS and FINRA BrokerCheck are available on request.",
+  },
+  {
+    question: "Where is Heritage based?",
+    answer:
+      "Heritage is headquartered at 135 Crossways Park Drive, Woodbury, New York. The firm serves families across the United States and coordinates with their advisors wherever they sit.",
+  },
+  {
+    question: "Does the firm accept commissions on product placement?",
+    answer:
+      "Heritage's posture is fiduciary, not transactional. The firm's compensation, where commissions or fees apply, is disclosed in writing at engagement. The work product, the Heritage Book itself, is not a sales channel for any carrier or manager.",
+  },
+  {
+    question: "How is the practice organized across services?",
+    answer:
+      "The firm carries three connected practices under one roof. The Heritage Book methodology underpins all client work. Estate and Business Continuity is the family-side practice. Heritage Benefit Solutions is the employer-side practice that serves the operating businesses inside those families and other mid-market employers. Engagements move between practices as the family's situation changes.",
+  },
+];
+---
+
+<Layout
+  title="Services | Heritage Strategies"
+  description="Estate planning, business continuity, and employer benefits, organized around a single living document the family controls."
+  pathname="/services/"
+>
+  {/* Editorial hero — parchment */}
+  <Section background="page" padding="loose" width="default">
+    <div class="grid gap-12 md:grid-cols-[1.4fr_1fr] md:items-end">
+      <div>
+        <Eyebrow>Our practice</Eyebrow>
+        <Heading size="display-xl" as="h1" class="mt-8 text-balance">
+          What Heritage does.
+        </Heading>
+        <p class="mt-8 max-w-prose text-[1.2rem] leading-relaxed font-editorial text-ink">
+          Estate planning, business continuity, and employer benefits, organized around a single living document the family controls.
+        </p>
+      </div>
+
+      <aside class="md:justify-self-end md:max-w-xs">
+        <p class="eyebrow text-[11.5px] mb-3">The shape of the work</p>
+        <ul class="space-y-3 text-[14.5px] leading-relaxed text-ink-muted">
+          <li class="flex items-baseline gap-3">
+            <span
+              class="font-mono text-[12px] text-brand-copper"
+              data-figures="tabular"
+            >01</span>
+            <span>The Heritage Book methodology</span>
+          </li>
+          <li class="flex items-baseline gap-3">
+            <span
+              class="font-mono text-[12px] text-brand-copper"
+              data-figures="tabular"
+            >02</span>
+            <span>Estate and business continuity</span>
+          </li>
+          <li class="flex items-baseline gap-3">
+            <span
+              class="font-mono text-[12px] text-brand-copper"
+              data-figures="tabular"
+            >03</span>
+            <span>Heritage Benefit Solutions</span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </Section>
+
+  {/* Three large service cards, stacked, with hairline separators */}
+  <Section background="muted" padding="default" width="default">
+    <header class="mb-12 max-w-prose">
+      <Eyebrow>Three practices, one document</Eyebrow>
+      <Heading size="display-lg" as="h2" class="mt-6 text-balance">
+        Built on a single living plan the family owns.
+      </Heading>
+    </header>
+
+    <div class="bg-surface-card border border-default">
+      <div class="px-6 md:px-12">
+        {services.map((service, idx) => (
+          <ServiceCard
+            eyebrow={service.data.eyebrow ?? "Service"}
+            title={service.data.title}
+            summary={service.data.summary}
+            bullets={service.data.bullets ?? []}
+            href={`${base}${service.data.deepDive ?? ""}`}
+            index={idx + 1}
+          />
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  {/* Why this works — three columns drawn from scrape positioning */}
+  <Section background="page" padding="default" width="default">
+    <header class="mb-14 max-w-prose">
+      <Eyebrow>Why this works</Eyebrow>
+      <Heading size="display-lg" as="h2" class="mt-6 text-balance">
+        The discipline behind the document.
+      </Heading>
+      <p class="mt-6 text-[1.0625rem] leading-relaxed text-ink-muted max-w-prose">
+        Heritage is an estate-planning multi-family office whose foundation originated from comprehensive estate and business continuity planning. The partners bring more than sixty years of combined experience to families and the operating companies that built their wealth.
+      </p>
+    </header>
+
+    <div class="grid gap-10 md:gap-12 md:grid-cols-3">
+      {pillars.map((p, idx) => (
+        <div class="flex flex-col gap-5">
+          <div class="flex items-baseline gap-3">
+            <span
+              class="font-mono text-[12px] tracking-[0.14em] text-brand-copper"
+              data-figures="tabular"
+            >
+              {String(idx + 1).padStart(2, "0")}
+            </span>
+            <p class="eyebrow text-[11.5px]">{p.eyebrow}</p>
+          </div>
+          <span
+            aria-hidden="true"
+            class="block h-px w-12 bg-default"
+          ></span>
+          <h3 class="font-display font-medium text-[1.6rem] leading-[1.25] text-ink text-balance">
+            {p.title}
+          </h3>
+          <p class="text-[15px] leading-relaxed text-ink-muted">{p.body}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  {/* FAQ */}
+  <Section background="muted" padding="default" width="default">
+    <div class="grid gap-12 md:grid-cols-[1fr_1.6fr] md:gap-16">
+      <header>
+        <Eyebrow>Common questions</Eyebrow>
+        <Heading size="display-lg" as="h2" class="mt-6 text-balance">
+          Questions families ask.
+        </Heading>
+        <p class="mt-6 text-[15px] leading-relaxed text-ink-muted max-w-xs">
+          A starting set. Specifics of fee structure, regulatory disclosure, and engagement scope are reviewed in a confidential conversation.
+        </p>
+      </header>
+      <FAQ items={faqs} />
+    </div>
+  </Section>
+
+  <CTABand
+    eyebrow="Begin a conversation"
+    heading="Schedule a confidential conversation."
+    body="A single conversation, with the partners directly, is the right place to start. Heritage does not lead with a proposal. The first meeting is for listening."
+    ctaLabel="Schedule a confidential conversation"
+    background="dark"
+  />
+</Layout>

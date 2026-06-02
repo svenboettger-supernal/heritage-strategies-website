@@ -1,0 +1,73 @@
+---
+import PlaceholderImage from "@components/PlaceholderImage.astro";
+
+export interface Props {
+  href: string;
+  category: string;
+  title: string;
+  summary: string;
+  date: Date;
+  readingTime?: string;
+}
+
+const { href, category, title, summary, date, readingTime } = Astro.props;
+
+const formatter = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<article
+  class="flex flex-col h-full group"
+  data-insight-card
+  data-category={category}
+>
+  <a
+    href={href}
+    class="block no-underline text-ink"
+    aria-label={`Read insight: ${title}`}
+  >
+    <PlaceholderImage aspect="landscape" label={category} />
+  </a>
+
+  <div class="mt-6 flex flex-col flex-1">
+    <div class="flex items-center gap-3 text-[12px] tracking-[0.06em] uppercase text-ink-muted">
+      <span class="font-medium">{category}</span>
+      <span aria-hidden="true" class="opacity-60">·</span>
+      <time
+        datetime={date.toISOString()}
+        data-figures="tabular"
+        class="font-medium"
+      >
+        {formatter.format(date)}
+      </time>
+    </div>
+
+    <h3 class="mt-5 font-display font-medium text-[1.6rem] leading-snug text-balance text-ink">
+      <a
+        href={href}
+        class="no-underline text-ink hover:text-brand-navy transition-colors duration-fast"
+      >
+        {title}
+      </a>
+    </h3>
+
+    <p class="mt-4 text-[15.5px] leading-relaxed text-ink-muted line-clamp-3 font-editorial">
+      {summary}
+    </p>
+
+    <div class="mt-auto pt-7 flex items-center gap-4 text-[13px] text-ink-muted">
+      {readingTime && (
+        <span data-figures="tabular">{readingTime} read</span>
+      )}
+      <a
+        href={href}
+        class="ml-auto font-medium tracking-[0.01em] text-brand-navy no-underline border-b border-[hsl(var(--brand-navy)/0.35)] hover:border-brand-navy pb-0.5"
+      >
+        Read insight →
+      </a>
+    </div>
+  </div>
+</article>

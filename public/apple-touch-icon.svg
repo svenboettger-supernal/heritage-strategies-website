@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="Heritage Strategies">
+  <rect width="180" height="180" fill="hsl(217 55% 14%)"/>
+  <defs>
+    <radialGradient id="wax2" cx="42%" cy="35%" r="58%">
+      <stop offset="0%" stop-color="hsl(22 65% 58%)"/>
+      <stop offset="55%" stop-color="hsl(20 55% 48%)"/>
+      <stop offset="100%" stop-color="hsl(15 50% 30%)"/>
+    </radialGradient>
+  </defs>
+  <g transform="translate(20,20)">
+    <path d="M70 6
+             C 100 6 122 24 128 54
+             C 134 80 122 110 96 124
+             C 76 134 50 132 32 120
+             C 12 106 4 76 12 50
+             C 18 24 42 6 70 6 Z"
+          fill="url(#wax2)" stroke="hsl(15 55% 22%)" stroke-width="1.5"/>
+    <text x="38" y="88" font-family="'Cormorant Garamond', serif" font-size="46" font-weight="600" fill="hsl(15 60% 18%)">H</text>
+    <text x="68" y="96" font-family="'Cormorant Garamond', serif" font-size="46" font-weight="600" fill="hsl(15 60% 18%)">S</text>
+  </g>
+</svg>
