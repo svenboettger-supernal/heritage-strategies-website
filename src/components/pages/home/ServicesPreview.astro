@@ -23,7 +23,7 @@ const services = ordered
     </div>
     <a
       href={`${base}/services/`}
-      class="text-[14px] font-medium tracking-[0.01em] text-brand-navy hover:text-brand-navy-hover underline underline-offset-4 decoration-1 shrink-0"
+      class="text-[14px] font-medium tracking-[0.01em] text-surface-navy hover:text-surface-dark underline underline-offset-4 decoration-1 shrink-0"
     >
       All services →
     </a>
@@ -37,16 +37,16 @@ const services = ordered
         <li>
           <a
             href={href}
-            class="group flex h-full flex-col bg-surface-card border border-default rounded p-7 md:p-8 no-underline transition-colors duration-fast hover:border-strong"
+            class="group flex h-full flex-col bg-surface-card border border-rule rounded p-7 md:p-8 no-underline transition-colors duration-fast hover:border-rule"
           >
             <Eyebrow>{service.data.eyebrow ?? "Service"}</Eyebrow>
-            <h3 class="mt-5 font-display font-medium text-[1.7rem] leading-snug text-ink text-balance group-hover:text-brand-navy transition-colors duration-fast">
+            <h3 class="mt-5 font-display font-normal text-[1.7rem] leading-snug text-ink text-balance group-hover:text-surface-navy transition-colors duration-fast">
               {service.data.title}
             </h3>
             <p class="mt-5 text-[15px] leading-relaxed text-ink-muted line-clamp-3">
               {service.data.summary}
             </p>
-            <span class="mt-auto pt-8 text-[13px] font-medium tracking-[0.01em] text-brand-navy">
+            <span class="mt-auto pt-8 text-[13px] font-medium tracking-[0.01em] text-surface-navy">
               Explore the service →
             </span>
           </a>

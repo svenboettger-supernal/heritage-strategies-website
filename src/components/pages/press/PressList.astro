@@ -20,7 +20,7 @@ export interface Props {
 const { eyebrow, heading, items } = Astro.props;
 ---
 
-<section class="border-t border-default pt-16 md:pt-20">
+<section class="border-t border-rule pt-16 md:pt-20">
   <header class="mb-10 md:mb-14">
     <Eyebrow>{eyebrow}</Eyebrow>
     <Heading size="display-md" as="h2" class="mt-5 text-balance">
@@ -28,7 +28,7 @@ const { eyebrow, heading, items } = Astro.props;
     </Heading>
   </header>
 
-  <div class="border-t border-default">
+  <div class="border-t border-rule">
     {items.map((item) => (
       <PressEntry
         date={item.date}

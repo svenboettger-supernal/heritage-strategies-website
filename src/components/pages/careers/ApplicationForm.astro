@@ -9,11 +9,11 @@ const open = await getCollection("roles", ({ data }) => data.status === "open");
 open.sort((a, b) => b.data.posted.getTime() - a.data.posted.getTime());
 
 const inputClass = [
-  "w-full bg-surface-card border border-input shadow-input rounded",
+  "w-full bg-surface-card border border-rule shadow-input rounded",
   "px-3.5 py-2.5 text-[14.5px] text-ink",
   "placeholder:text-ink-placeholder",
-  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy",
-  "focus:border-brand-navy",
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface-navy",
+  "focus:border-surface-navy",
   "transition-colors duration-fast",
 ].join(" ");
 
@@ -28,10 +28,10 @@ const helperClass = "mt-1.5 text-[12.5px] leading-relaxed text-ink-muted";
       <Heading size="display-lg" class="mt-5 text-balance">
         Send the firm a note.
       </Heading>
-      <p class="mt-6 font-editorial text-[1.0625rem] leading-[1.6] text-ink-muted">
+      <p class="mt-6 prose-editorial text-[1.0625rem] leading-[1.6] text-ink-muted">
         Every application is read by a partner. There is no automated screen, no recruiter middle layer, and no ATS keyword filter. If your background fits, you will hear back from a real person at Heritage within five business days.
       </p>
-      <p class="mt-5 font-editorial text-[1.0625rem] leading-[1.6] text-ink-muted">
+      <p class="mt-5 prose-editorial text-[1.0625rem] leading-[1.6] text-ink-muted">
         Submissions and follow-up correspondence are held in confidence. The firm understands that a serious practitioner may not be in a position to advertise a job search.
       </p>
     </div>
@@ -40,7 +40,7 @@ const helperClass = "mt-1.5 text-[12.5px] leading-relaxed text-ink-muted";
       method="GET"
       action="mailto:careers@heritagesllc.com"
       enctype="text/plain"
-      class="bg-surface-card border border-default rounded p-8 md:p-10"
+      class="bg-surface-card border border-rule rounded p-8 md:p-10"
     >
       <input type="hidden" name="subject" value="Application: Heritage Strategies" />
 
@@ -50,7 +50,7 @@ const helperClass = "mt-1.5 text-[12.5px] leading-relaxed text-ink-muted";
         <div class="grid gap-6 md:grid-cols-2">
           <div>
             <label for="applicant-name" class={labelClass}>
-              Full name <span class="text-brand-copper" aria-hidden="true">·</span>
+              Full name <span class="text-bronze" aria-hidden="true">·</span>
               <span class="sr-only">required</span>
             </label>
             <input
@@ -66,7 +66,7 @@ const helperClass = "mt-1.5 text-[12.5px] leading-relaxed text-ink-muted";
 
           <div>
             <label for="applicant-email" class={labelClass}>
-              Email <span class="text-brand-copper" aria-hidden="true">·</span>
+              Email <span class="text-bronze" aria-hidden="true">·</span>
               <span class="sr-only">required</span>
             </label>
             <input
@@ -124,13 +124,13 @@ const helperClass = "mt-1.5 text-[12.5px] leading-relaxed text-ink-muted";
 
         <div>
           <span class={labelClass}>Attach resume</span>
-          <p class="mt-2 font-editorial text-[1rem] leading-[1.55] text-ink">
+          <p class="mt-2 prose-editorial text-[1rem] leading-[1.55] text-ink">
             Please include a PDF as an attachment after pressing send. Most email clients open a draft on submit; attach the document there before sending.
           </p>
         </div>
 
         <div class="mt-2 flex flex-wrap items-center gap-x-6 gap-y-3">
-          <Button variant="primary" size="lg" type="submit">
+          <Button variant="primary" type="submit">
             Send application
           </Button>
           <p class="text-[12.5px] leading-relaxed text-ink-muted max-w-md">

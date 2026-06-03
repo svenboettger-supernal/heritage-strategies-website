@@ -26,10 +26,10 @@ const {
 const ordinal = String(index).padStart(2, "0");
 ---
 
-<article class="grid gap-10 md:grid-cols-[auto_1fr] md:gap-16 py-12 md:py-16 border-t border-default first:border-t-0">
+<article class="grid gap-10 md:grid-cols-[auto_1fr] md:gap-16 py-12 md:py-16 border-t border-rule first:border-t-0">
   <div class="flex md:flex-col items-start gap-6 md:gap-4 md:pt-2">
     <span
-      class="font-mono text-[13px] tracking-[0.12em] text-brand-copper"
+      class="font-mono text-[13px] tracking-[0.12em] text-bronze"
       data-figures="tabular"
       aria-hidden="true"
     >
@@ -43,23 +43,23 @@ const ordinal = String(index).padStart(2, "0");
       <Heading size="display-md" as="h2" class="text-balance">
         {title}
       </Heading>
-      <p class="mt-6 max-w-prose text-[1.125rem] leading-[1.65] font-editorial text-ink">
+      <p class="mt-6 max-w-prose text-[1.125rem] leading-[1.65] prose-editorial text-ink">
         {summary}
       </p>
       <div class="mt-10">
-        <Button href={href} variant="primary" size="md">
+        <Button href={href} variant="primary">
           {ctaLabel}
         </Button>
       </div>
     </div>
 
     {bullets.length > 0 && (
-      <ul class="divide-y divide-[hsl(var(--border-default))] border-t border-default self-start">
+      <ul class="divide-y divide-[hsl(var(--rule))] border-t border-rule self-start">
         {bullets.map((item) => (
           <li class="py-3.5 text-[15px] leading-relaxed text-ink-muted flex gap-3">
             <span
               aria-hidden="true"
-              class="mt-2 inline-block h-px w-3 shrink-0 bg-brand-copper"
+              class="mt-2 inline-block h-px w-3 shrink-0 bg-bronze"
             ></span>
             <span>{item}</span>
           </li>

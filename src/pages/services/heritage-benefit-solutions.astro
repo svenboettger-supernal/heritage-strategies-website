@@ -121,7 +121,7 @@ const faqs = [
         <Heading size="display-xl" as="h1" class="mt-8 text-balance">
           Heritage Benefit Solutions.
         </Heading>
-        <p class="mt-8 max-w-prose text-[1.2rem] leading-relaxed font-editorial text-ink">
+        <p class="mt-8 max-w-prose text-[1.2rem] leading-relaxed prose-editorial text-ink">
           Employer-side employee benefits, funding strategy, and compliance support. Designed for businesses that want to attract and retain top talent without surrendering the bottom line.
         </p>
         <p class="mt-5 max-w-prose text-[1.0625rem] leading-relaxed text-ink-muted">
@@ -132,15 +132,15 @@ const faqs = [
       <aside class="md:justify-self-end md:max-w-xs">
         <p class="eyebrow text-[11.5px] mb-3">At a glance</p>
         <dl class="space-y-3 text-[14.5px] leading-relaxed">
-          <div class="flex justify-between gap-6 border-b border-default pb-2">
+          <div class="flex justify-between gap-6 border-b border-rule pb-2">
             <dt class="text-ink-muted">Practice</dt>
             <dd class="text-ink">Employer benefits</dd>
           </div>
-          <div class="flex justify-between gap-6 border-b border-default pb-2">
+          <div class="flex justify-between gap-6 border-b border-rule pb-2">
             <dt class="text-ink-muted">Group benefits</dt>
             <dd class="text-ink" data-figures="tabular">11 lines</dd>
           </div>
-          <div class="flex justify-between gap-6 border-b border-default pb-2">
+          <div class="flex justify-between gap-6 border-b border-rule pb-2">
             <dt class="text-ink-muted">Funding structures</dt>
             <dd class="text-ink" data-figures="tabular">12 options</dd>
           </div>
@@ -204,7 +204,7 @@ const faqs = [
     <Heading size="display-md" as="h2" class="mt-6 text-balance">
       Access through the largest general agency in the country.
     </Heading>
-    <p class="mt-6 text-[1.125rem] leading-[1.65] font-editorial text-ink max-w-prose">
+    <p class="mt-6 text-[1.125rem] leading-[1.65] prose-editorial text-ink max-w-prose">
       Heritage Benefit Solutions works with Benefit Mall, the largest general agency in the United States, and a curated set of additional carrier partners. The general-agency relationship gives the firm access to a full spectrum of funding solutions across carriers, which is what makes the catalog above a real catalog and not a single-carrier menu.
     </p>
     <p class="mt-5 text-[1.0625rem] leading-relaxed text-ink-muted max-w-prose">
@@ -223,10 +223,10 @@ const faqs = [
 
     <div class="grid gap-10 md:gap-12 md:grid-cols-3">
       {rationale.map((r, idx) => (
-        <div class="flex flex-col gap-5 bg-surface-card border border-default p-8">
+        <div class="flex flex-col gap-5 bg-surface-card border border-rule p-8">
           <div class="flex items-baseline gap-3">
             <span
-              class="font-mono text-[12px] tracking-[0.14em] text-brand-copper"
+              class="font-mono text-[12px] tracking-[0.14em] text-bronze"
               data-figures="tabular"
             >
               {String(idx + 1).padStart(2, "0")}
@@ -237,7 +237,7 @@ const faqs = [
             aria-hidden="true"
             class="block h-px w-10 bg-default"
           ></span>
-          <h3 class="font-display font-medium text-[1.5rem] leading-[1.25] text-ink text-balance">
+          <h3 class="font-display font-normal text-[1.5rem] leading-[1.25] text-ink text-balance">
             {r.title}
           </h3>
           <p class="text-[15px] leading-relaxed text-ink-muted">{r.body}</p>

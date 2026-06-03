@@ -11,7 +11,7 @@ const { items, onDark = false, class: className = "" } = Astro.props;
 <ul
   class:list={[
     "divide-y border-t border-b",
-    onDark ? "divide-[hsl(var(--border-on-dark))] border-on-dark" : "divide-[hsl(var(--border-default))] border-default",
+    onDark ? "divide-[hsl(var(--rule-dark))] border-rule-dark" : "divide-[hsl(var(--rule))] border-rule",
     className,
   ]}
 >

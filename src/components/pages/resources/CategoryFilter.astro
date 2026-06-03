@@ -10,7 +10,7 @@ const all = ["All", ...categories];
 ---
 
 <nav
-  class="border-y border-default bg-surface-page"
+  class="border-y border-rule bg-surface-page"
   aria-label="Filter insights by category"
 >
   <div class="mx-auto max-w-screen-default px-6 sm:px-8 lg:px-12 py-6">
@@ -31,8 +31,8 @@ const all = ["All", ...categories];
           class:list={[
             "category-pill inline-flex items-center justify-center rounded font-sans font-medium tracking-[0.01em] transition-colors duration-fast px-4 py-2 text-[13px] border",
             idx === 0
-              ? "bg-brand-navy text-ink-on-dark border-brand-navy"
-              : "bg-transparent text-ink border-default hover:border-strong hover:bg-surface-muted",
+              ? "bg-surface-navy text-ink-on-dark border-surface-navy"
+              : "bg-transparent text-ink border-rule hover:border-rule hover:bg-surface-muted",
           ]}
           aria-pressed={idx === 0 ? "true" : "false"}
         >
@@ -68,26 +68,26 @@ const all = ["All", ...categories];
           p.classList.remove(
             "bg-transparent",
             "text-ink",
-            "border-default",
-            "hover:border-strong",
+            "border-rule",
+            "hover:border-rule",
             "hover:bg-surface-muted"
           );
           p.classList.add(
-            "bg-brand-navy",
+            "bg-surface-navy",
             "text-ink-on-dark",
-            "border-brand-navy"
+            "border-surface-navy"
           );
         } else {
           p.classList.remove(
-            "bg-brand-navy",
+            "bg-surface-navy",
             "text-ink-on-dark",
-            "border-brand-navy"
+            "border-surface-navy"
           );
           p.classList.add(
             "bg-transparent",
             "text-ink",
-            "border-default",
-            "hover:border-strong",
+            "border-rule",
+            "hover:border-rule",
             "hover:bg-surface-muted"
           );
         }

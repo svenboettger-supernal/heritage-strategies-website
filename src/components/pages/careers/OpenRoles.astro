@@ -28,23 +28,23 @@ const rendered = await Promise.all(
     <Heading size="display-lg" class="mt-5 text-balance">
       Roles currently open at Heritage.
     </Heading>
-    <p class="mt-6 font-editorial text-[1.0625rem] leading-[1.6] text-ink-muted">
+    <p class="mt-6 prose-editorial text-[1.0625rem] leading-[1.6] text-ink-muted">
       Each listing below is a tailored description of a seat that exists today on the firm's bench, written by the partner the role reports to. If a posting interests you, send a note. We respond to every application.
     </p>
   </div>
 
   {open.length === 0 ? (
-    <div class="mt-16 border-t border-default pt-12 max-w-screen-prose">
-      <p class="font-editorial text-[1.25rem] leading-[1.55] text-ink text-balance">
+    <div class="mt-16 border-t border-rule pt-12 max-w-screen-prose">
+      <p class="prose-editorial text-[1.25rem] leading-[1.55] text-ink text-balance">
         No open roles at this time.
       </p>
-      <p class="mt-5 font-editorial text-[1.0625rem] leading-[1.6] text-ink-muted max-w-prose">
+      <p class="mt-5 prose-editorial text-[1.0625rem] leading-[1.6] text-ink-muted max-w-prose">
         We always welcome introductions from practitioners we should know. If your background sits in trusts and estates, large-case underwriting, family-office operations, or insurance and case design, we would like to hear from you.
       </p>
       <div class="mt-8">
         <Button
           variant="primary"
-          size="md"
+         
           href="mailto:careers@heritagesllc.com?subject=Introduction%20%E2%80%93%20Heritage%20Strategies"
         >
           Send an introduction
@@ -52,13 +52,13 @@ const rendered = await Promise.all(
       </div>
     </div>
   ) : (
-    <ul class="mt-16 border-t border-default">
+    <ul class="mt-16 border-t border-rule">
       {rendered.map(({ entry, Content }) => (
-        <li class="border-b border-default py-10 md:py-14">
+        <li class="border-b border-rule py-10 md:py-14">
           <div class="grid gap-8 md:grid-cols-[1fr_2fr] items-start">
             <div>
               <Eyebrow>{entry.data.department}</Eyebrow>
-              <h3 class="mt-4 font-display font-medium text-[1.75rem] md:text-[2rem] leading-[1.2] text-ink text-balance">
+              <h3 class="mt-4 font-display font-normal text-[1.75rem] md:text-[2rem] leading-[1.2] text-ink text-balance">
                 {entry.data.title}
               </h3>
               <p class="mt-4 text-[13px] tracking-[0.02em] text-ink-muted">
@@ -71,12 +71,12 @@ const rendered = await Promise.all(
             </div>
 
             <div>
-              <p class="font-editorial text-[1.0625rem] leading-[1.6] text-ink">
+              <p class="prose-editorial text-[1.0625rem] leading-[1.6] text-ink">
                 {entry.data.summary}
               </p>
 
               <details class="mt-6 group">
-                <summary class="inline-flex items-center gap-2 cursor-pointer list-none text-[14px] font-medium text-brand-navy hover:text-brand-navy-hover">
+                <summary class="inline-flex items-center gap-2 cursor-pointer list-none text-[14px] font-medium text-surface-navy hover:text-surface-dark">
                   <span class="group-open:hidden">Read full description</span>
                   <span class="hidden group-open:inline">Hide full description</span>
                   <svg
@@ -102,7 +102,7 @@ const rendered = await Promise.all(
               <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                 <Button
                   variant="primary"
-                  size="md"
+                 
                   href={`mailto:careers@heritagesllc.com?subject=Application%20%E2%80%93%20${encodeURIComponent(entry.data.title)}`}
                   ariaLabel={`Apply for ${entry.data.title} via email`}
                 >
@@ -110,7 +110,7 @@ const rendered = await Promise.all(
                 </Button>
                 <a
                   href={`mailto:careers@heritagesllc.com?subject=Question%20%E2%80%93%20${encodeURIComponent(entry.data.title)}`}
-                  class="text-[14px] font-medium text-brand-navy hover:text-brand-navy-hover no-underline border-b border-default pb-1 hover:border-strong"
+                  class="text-[14px] font-medium text-surface-navy hover:text-surface-dark no-underline border-b border-rule pb-1 hover:border-rule"
                 >
                   Ask a question first
                 </a>

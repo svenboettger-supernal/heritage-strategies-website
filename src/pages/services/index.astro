@@ -89,7 +89,7 @@ const faqs = [
         <Heading size="display-xl" as="h1" class="mt-8 text-balance">
           What Heritage does.
         </Heading>
-        <p class="mt-8 max-w-prose text-[1.2rem] leading-relaxed font-editorial text-ink">
+        <p class="mt-8 max-w-prose text-[1.2rem] leading-relaxed prose-editorial text-ink">
           Estate planning, business continuity, and employer benefits, organized around a single living document the family controls.
         </p>
       </div>
@@ -99,21 +99,21 @@ const faqs = [
         <ul class="space-y-3 text-[14.5px] leading-relaxed text-ink-muted">
           <li class="flex items-baseline gap-3">
             <span
-              class="font-mono text-[12px] text-brand-copper"
+              class="font-mono text-[12px] text-bronze"
               data-figures="tabular"
             >01</span>
             <span>The Heritage Book methodology</span>
           </li>
           <li class="flex items-baseline gap-3">
             <span
-              class="font-mono text-[12px] text-brand-copper"
+              class="font-mono text-[12px] text-bronze"
               data-figures="tabular"
             >02</span>
             <span>Estate and business continuity</span>
           </li>
           <li class="flex items-baseline gap-3">
             <span
-              class="font-mono text-[12px] text-brand-copper"
+              class="font-mono text-[12px] text-bronze"
               data-figures="tabular"
             >03</span>
             <span>Heritage Benefit Solutions</span>
@@ -132,7 +132,7 @@ const faqs = [
       </Heading>
     </header>
 
-    <div class="bg-surface-card border border-default">
+    <div class="bg-surface-card border border-rule">
       <div class="px-6 md:px-12">
         {services.map((service, idx) => (
           <ServiceCard
@@ -165,7 +165,7 @@ const faqs = [
         <div class="flex flex-col gap-5">
           <div class="flex items-baseline gap-3">
             <span
-              class="font-mono text-[12px] tracking-[0.14em] text-brand-copper"
+              class="font-mono text-[12px] tracking-[0.14em] text-bronze"
               data-figures="tabular"
             >
               {String(idx + 1).padStart(2, "0")}
@@ -176,7 +176,7 @@ const faqs = [
             aria-hidden="true"
             class="block h-px w-12 bg-default"
           ></span>
-          <h3 class="font-display font-medium text-[1.6rem] leading-[1.25] text-ink text-balance">
+          <h3 class="font-display font-normal text-[1.6rem] leading-[1.25] text-ink text-balance">
             {p.title}
           </h3>
           <p class="text-[15px] leading-relaxed text-ink-muted">{p.body}</p>

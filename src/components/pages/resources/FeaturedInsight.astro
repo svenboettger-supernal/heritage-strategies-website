@@ -39,16 +39,16 @@ const formatter = new Intl.DateTimeFormat("en-US", {
       {category}
     </p>
 
-    <h2 class="mt-4 font-display font-medium text-display-lg leading-[1.1] tracking-[-0.015em] text-ink text-balance">
+    <h2 class="mt-4 font-display font-normal text-display-lg leading-[1.1] tracking-[-0.015em] text-ink text-balance">
       <a
         href={href}
-        class="no-underline text-ink hover:text-brand-navy transition-colors duration-fast"
+        class="no-underline text-ink hover:text-surface-navy transition-colors duration-fast"
       >
         {title}
       </a>
     </h2>
 
-    <p class="mt-6 max-w-prose font-editorial text-[1.125rem] leading-[1.65] text-ink-muted">
+    <p class="mt-6 max-w-prose prose-editorial text-[1.125rem] leading-[1.65] text-ink-muted">
       {summary}
     </p>
 
@@ -71,7 +71,7 @@ const formatter = new Intl.DateTimeFormat("en-US", {
     </div>
 
     <div class="mt-10">
-      <Button href={href} variant="primary" size="md">
+      <Button href={href} variant="primary">
         Read insight →
       </Button>
     </div>

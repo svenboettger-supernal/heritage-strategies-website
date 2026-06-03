@@ -46,7 +46,7 @@ function firstParagraph(body: string): string {
 
         <p class="eyebrow mt-3">{p.data.role}</p>
 
-        <p class="mt-5 text-[15.5px] leading-[1.65] font-editorial text-ink">
+        <p class="mt-5 text-[15.5px] leading-[1.65] prose-editorial text-ink">
           {firstParagraph(p.body)}
         </p>
 
@@ -63,7 +63,7 @@ function firstParagraph(body: string): string {
 
         <a
           href={`${base}/about/#${p.slug}`}
-          class="mt-7 inline-flex items-center gap-2 text-[13px] font-medium tracking-[0.02em] text-brand-navy hover:text-brand-navy-hover no-underline border-b border-default hover:border-strong pb-1 self-start"
+          class="mt-7 inline-flex items-center gap-2 text-[13px] font-medium tracking-[0.02em] text-surface-navy hover:text-surface-dark no-underline border-b border-rule hover:border-rule pb-1 self-start"
         >
           Read full bio
           <span aria-hidden="true">→</span>

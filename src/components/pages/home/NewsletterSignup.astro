@@ -3,7 +3,7 @@ import Eyebrow from "@components/Eyebrow.astro";
 ---
 
 <aside
-  class="bg-surface-page border-t border-default"
+  class="bg-surface-page border-t border-rule"
   aria-label="Heritage Insights newsletter"
 >
   <div class="mx-auto max-w-screen-default px-6 sm:px-8 lg:px-12 py-16 md:py-20">
@@ -45,18 +45,18 @@ import Eyebrow from "@components/Eyebrow.astro";
             autocomplete="email"
             required
             placeholder="you@example.com"
-            class="flex-1 bg-surface-card border border-input rounded px-4 py-3 text-[15px] text-ink placeholder:text-ink-placeholder shadow-input focus:outline-none focus:ring-2 focus:ring-brand-navy focus:border-brand-navy"
+            class="flex-1 bg-surface-card border border-rule rounded px-4 py-3 text-[15px] text-ink placeholder:text-ink-placeholder shadow-input focus:outline-none focus:ring-2 focus:ring-surface-navy focus:border-surface-navy"
           />
           <button
             type="submit"
-            class="inline-flex items-center justify-center bg-brand-navy text-ink-on-dark rounded px-6 py-3 text-sm font-medium tracking-[0.01em] hover:bg-brand-navy-hover transition-colors duration-fast"
+            class="inline-flex items-center justify-center bg-surface-navy text-ink-on-dark rounded px-6 py-3 text-sm font-medium tracking-[0.01em] hover:bg-surface-dark transition-colors duration-fast"
           >
             Subscribe
           </button>
         </div>
 
         <p class="text-[12px] leading-relaxed text-ink-muted mt-1 max-w-md">
-          Subscribing opens your mail client with a pre-addressed message to info@heritagesllc.com. Your address is not stored on this site. See our <a href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/privacy/`} class="text-brand-navy underline underline-offset-2 decoration-[hsl(var(--brand-navy)/0.4)]">privacy policy</a>.
+          Subscribing opens your mail client with a pre-addressed message to info@heritagesllc.com. Your address is not stored on this site. See our <a href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/privacy/`} class="text-surface-navy underline underline-offset-2 decoration-[hsl(var(--surface-navy)/0.4)]">privacy policy</a>.
         </p>
       </form>
     </div>

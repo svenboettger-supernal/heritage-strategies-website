@@ -4,7 +4,7 @@ export interface Props {
   size?: "display-xl" | "display-lg" | "display-md" | "display-sm" | "h3" | "h4" | "h5";
   /** Semantic HTML level. Defaults to size-matched (display sizes → h2 unless overridden). */
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  /** Toggle Cormorant Garamond display serif. Defaults to true for display sizes, false otherwise. */
+  /** Toggle Source Serif 4 display serif. Defaults to true for display sizes, false otherwise. */
   display?: boolean;
   class?: string;
   balance?: boolean;
@@ -35,7 +35,7 @@ const sizeClass: Record<NonNullable<Props["size"]>, string> = {
 <Tag
   class:list={[
     sizeClass[size],
-    isDisplay ? "font-display font-medium" : "font-sans",
+    isDisplay ? "font-display font-normal" : "font-sans",
     balance && "text-balance",
     className,
   ]}

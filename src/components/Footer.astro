@@ -1,5 +1,5 @@
 ---
-import WaxSeal from "@components/WaxSeal.astro";
+import Logo from "@components/Logo.astro";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const year = new Date().getFullYear();
@@ -43,7 +43,7 @@ const cols = [
   <div class="mx-auto max-w-screen-wide px-6 sm:px-8 lg:px-12 py-16 md:py-20">
     <div class="grid gap-12 md:gap-16 md:grid-cols-[1.4fr_repeat(3,1fr)]">
       <div>
-        <WaxSeal orientation="vertical" size={64} onDark />
+        <Logo size="footer" onDark ariaLabel="Heritage Strategies LLC" />
         <p class="mt-6 max-w-xs text-sm leading-relaxed text-ink-muted-on-dark">
           An estate-planning multi-family office serving ultra-high-net-worth families and their advisors since 2009.
         </p>
@@ -62,7 +62,7 @@ const cols = [
               <li>
                 <a
                   href={link.href}
-                  class="text-sm text-ink-on-dark no-underline hover:underline underline-offset-4 decoration-1"
+                  class="no-underline text-sm text-ink-on-dark hover:underline underline-offset-4 decoration-1"
                 >
                   {link.label}
                 </a>
@@ -74,7 +74,7 @@ const cols = [
     </div>
   </div>
 
-  <div class="border-t border-on-dark">
+  <div class="border-t border-rule-dark">
     <div class="mx-auto max-w-screen-wide px-6 sm:px-8 lg:px-12 py-8">
       <p class="text-[12.5px] leading-relaxed text-ink-muted-on-dark max-w-screen-prose">
         Securities and Investment Advisory Services offered through M Holdings Securities, Inc., a Registered Broker/Dealer and Investment Advisor, Member FINRA/SIPC. Heritage Strategies LLC is independently owned and operated. Heritage Strategies LLC is a Member of M Financial Group.
@@ -88,11 +88,11 @@ const cols = [
           © {year} Heritage Strategies LLC. All rights reserved. Tracking #3985052.2
         </p>
         <ul class="flex flex-wrap items-center gap-x-5 gap-y-2 text-[12.5px]">
-          <li><a href={`${base}/privacy/`} class="text-ink-muted-on-dark no-underline hover:text-ink-on-dark">Privacy</a></li>
-          <li><a href={`${base}/terms/`} class="text-ink-muted-on-dark no-underline hover:text-ink-on-dark">Terms</a></li>
-          <li><a href={`${base}/accessibility/`} class="text-ink-muted-on-dark no-underline hover:text-ink-on-dark">Accessibility</a></li>
-          <li><a href="https://brokercheck.finra.org/" target="_blank" rel="noopener noreferrer" class="text-ink-muted-on-dark no-underline hover:text-ink-on-dark">FINRA BrokerCheck</a></li>
-          <li><a href="https://www.sec.gov/about/forms/formcrs.pdf" target="_blank" rel="noopener noreferrer" class="text-ink-muted-on-dark no-underline hover:text-ink-on-dark">Form CRS</a></li>
+          <li><a href={`${base}/privacy/`} class="no-underline text-ink-muted-on-dark hover:text-ink-on-dark">Privacy</a></li>
+          <li><a href={`${base}/terms/`} class="no-underline text-ink-muted-on-dark hover:text-ink-on-dark">Terms</a></li>
+          <li><a href={`${base}/accessibility/`} class="no-underline text-ink-muted-on-dark hover:text-ink-on-dark">Accessibility</a></li>
+          <li><a href="https://brokercheck.finra.org/" target="_blank" rel="noopener noreferrer" class="no-underline text-ink-muted-on-dark hover:text-ink-on-dark">FINRA BrokerCheck</a></li>
+          <li><a href="https://www.sec.gov/about/forms/formcrs.pdf" target="_blank" rel="noopener noreferrer" class="no-underline text-ink-muted-on-dark hover:text-ink-on-dark">Form CRS</a></li>
         </ul>
       </div>
     </div>

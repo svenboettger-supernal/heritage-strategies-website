@@ -18,14 +18,14 @@ const totalStr = String(total).padStart(2, "0");
   class:list={[
     "relative flex flex-col gap-5 pt-8 md:pt-10",
     "border-t",
-    onDark ? "border-on-dark" : "border-default",
+    onDark ? "border-rule-dark" : "border-rule",
   ]}
 >
   {/* Copper pip on the hairline */}
   <span
     aria-hidden="true"
     class="absolute -top-[3px] left-0 h-1.5 w-1.5 rounded-full"
-    style="background: hsl(var(--brand-copper));"
+    style="background: hsl(var(--bronze));"
   ></span>
 
   <div class="flex items-baseline justify-between gap-4">

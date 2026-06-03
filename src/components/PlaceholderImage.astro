@@ -25,9 +25,9 @@ const aspectClass: Record<NonNullable<Props["aspect"]>, string> = {
   class:list={[
     "relative w-full overflow-hidden rounded",
     aspectClass[aspect],
-    onDark ? "bg-surface-dark-panel" : "bg-surface-muted",
+    onDark ? "bg-surface-navy-card" : "bg-surface-muted",
     "border",
-    onDark ? "border-on-dark" : "border-default",
+    onDark ? "border-rule-dark" : "border-rule",
     className,
   ]}
   role="img"
@@ -37,13 +37,13 @@ const aspectClass: Record<NonNullable<Props["aspect"]>, string> = {
   <div
     aria-hidden="true"
     class="absolute inset-0"
-    style="background: radial-gradient(120% 80% at 30% 30%, hsl(var(--brand-copper) / 0.10), transparent 60%), radial-gradient(140% 100% at 80% 80%, hsl(var(--brand-navy) / 0.12), transparent 65%);"
+    style="background: radial-gradient(120% 80% at 30% 30%, hsl(var(--bronze) / 0.10), transparent 60%), radial-gradient(140% 100% at 80% 80%, hsl(var(--surface-navy) / 0.12), transparent 65%);"
   ></div>
   {/* Hairline crossing the placeholder, echoing Heritage's signature streak */}
   <span
     aria-hidden="true"
     class="absolute left-[10%] right-[10%] top-[58%] h-px"
-    style={onDark ? "background: hsl(0 0% 100% / 0.18);" : "background: hsl(var(--brand-navy) / 0.18);"}
+    style={onDark ? "background: hsl(0 0% 100% / 0.18);" : "background: hsl(var(--surface-navy) / 0.18);"}
   ></span>
 
   <span

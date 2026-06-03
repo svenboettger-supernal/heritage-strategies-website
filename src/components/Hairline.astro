@@ -10,13 +10,6 @@ export interface Props {
 }
 
 const { color = "auto", widthPct = 60, straight = false, class: className = "" } = Astro.props;
-
-const colorClass =
-  color === "light"
-    ? "bg-white/40"
-    : color === "dark"
-    ? "bg-default"
-    : "bg-default";
 ---
 
 <span
@@ -24,8 +17,7 @@ const colorClass =
   class:list={[
     "block h-px",
     !straight && "-rotate-[1deg] origin-left",
-    colorClass,
     className,
   ]}
-  style={`width: ${widthPct}%; background-color: ${color === "light" ? "hsl(0 0% 100% / 0.35)" : "hsl(var(--border-default))"};`}
+  style={`width: ${widthPct}%; background-color: ${color === "light" ? "hsl(0 0% 100% / 0.35)" : "hsl(var(--rule))"};`}
 ></span>

@@ -143,7 +143,7 @@ const jsonLd = {
 
       <p
         data-insights-empty
-        class="hidden mt-16 text-center text-[14px] text-ink-muted font-editorial"
+        class="hidden mt-16 text-center text-[14px] text-ink-muted prose-editorial"
         style="display: none;"
       >
         No insights in this category yet. New writing arrives on the firm's own schedule.
@@ -160,7 +160,7 @@ const jsonLd = {
         <Heading size="display-lg" as="h2" class="mt-5 text-balance">
           The longer reads.
         </Heading>
-        <p class="mt-6 max-w-prose text-[1.0625rem] leading-relaxed text-ink-muted font-editorial">
+        <p class="mt-6 max-w-prose text-[1.0625rem] leading-relaxed text-ink-muted prose-editorial">
           Working papers and field guides drawn from a decade of practice. Each is sent on request, in confidence, with a brief note from the partner who owns the material.
         </p>
       </div>
@@ -198,7 +198,7 @@ const jsonLd = {
         <Heading size="display-md" as="h2" class="mt-5 text-balance">
           The Heritage Book in ninety seconds.
         </Heading>
-        <p class="mt-6 max-w-prose text-[1.0625rem] leading-relaxed text-ink-muted font-editorial">
+        <p class="mt-6 max-w-prose text-[1.0625rem] leading-relaxed text-ink-muted prose-editorial">
           Tom Fanning Jr. walks through a real Heritage Book engagement, end to end. What gets read on day one, what gets modeled in the first month, what the family sees at the annual refresh.
         </p>
       </div>
@@ -207,7 +207,7 @@ const jsonLd = {
 
   {/* Newsletter signup — quiet, single-field */}
   <aside
-    class="bg-surface-page border-t border-default"
+    class="bg-surface-page border-t border-rule"
     aria-label="Heritage Insights newsletter"
   >
     <div class="mx-auto max-w-screen-default px-6 sm:px-8 lg:px-12 py-16 md:py-20">
@@ -217,7 +217,7 @@ const jsonLd = {
           <p class="mt-4 font-display text-[1.75rem] leading-snug text-balance text-ink">
             Heritage Insights, sent occasionally.
           </p>
-          <p class="mt-4 text-[14.5px] leading-relaxed text-ink-muted font-editorial">
+          <p class="mt-4 text-[14.5px] leading-relaxed text-ink-muted prose-editorial">
             Quarterly at most. No product pitches, no third-party offers, no urgency.
           </p>
         </div>
@@ -252,15 +252,15 @@ const jsonLd = {
               autocomplete="email"
               required
               placeholder="you@example.com"
-              class="flex-1 bg-surface-card border border-input rounded px-4 py-3 text-[15px] text-ink placeholder:text-ink-placeholder shadow-input focus:outline-none focus:ring-2 focus:ring-brand-navy focus:border-brand-navy"
+              class="flex-1 bg-surface-card border border-rule rounded px-4 py-3 text-[15px] text-ink placeholder:text-ink-placeholder shadow-input focus:outline-none focus:ring-2 focus:ring-surface-navy focus:border-surface-navy"
             />
-            <Button type="submit" variant="primary" size="md">
+            <Button type="submit" variant="primary">
               Subscribe to Heritage Insights
             </Button>
           </div>
 
           <p class="text-[12px] leading-relaxed text-ink-muted mt-1 max-w-md">
-            Subscribing opens your mail client with a pre-addressed message to info@heritagesllc.com. Your address is not stored on this site. See our <a href={`${base}/privacy/`} class="text-brand-navy underline underline-offset-2 decoration-[hsl(var(--brand-navy)/0.4)]">privacy policy</a>.
+            Subscribing opens your mail client with a pre-addressed message to info@heritagesllc.com. Your address is not stored on this site. See our <a href={`${base}/privacy/`} class="text-surface-navy underline underline-offset-2 decoration-[hsl(var(--surface-navy)/0.4)]">privacy policy</a>.
           </p>
         </form>
       </div>
@@ -273,8 +273,8 @@ const jsonLd = {
       aria-hidden="true"
       class="absolute inset-0 pointer-events-none"
       style="background:
-        radial-gradient(100% 80% at 80% 30%, hsl(217 50% 22% / 0.45), transparent 60%),
-        radial-gradient(120% 90% at 10% 80%, hsl(217 65% 9% / 0.5), transparent 65%);"
+        radial-gradient(100% 80% at 80% 30%, hsl(215 57% 14% / 0.45), transparent 60%),
+        radial-gradient(120% 90% at 10% 80%, hsl(218 60% 9% / 0.5), transparent 65%);"
     ></div>
 
     <div class="relative mx-auto max-w-screen-default px-6 sm:px-8 lg:px-12 py-24 md:py-36">
@@ -297,7 +297,7 @@ const jsonLd = {
           <Button
             href={`${base}/contact/`}
             variant="on-dark"
-            size="lg"
+           
             ariaLabel="Talk to a member of the practice"
           >
             Request a conversation

@@ -19,7 +19,7 @@ const dateLabel = new Intl.DateTimeFormat("en-US", {
 const isoDate = date.toISOString().slice(0, 10);
 ---
 
-<article class="grid grid-cols-1 md:grid-cols-[10rem_1fr] gap-x-10 gap-y-3 py-10 first:pt-0 border-b border-default last:border-b-0">
+<article class="grid grid-cols-1 md:grid-cols-[10rem_1fr] gap-x-10 gap-y-3 py-10 first:pt-0 border-b border-rule last:border-b-0">
   <div class="md:pt-2">
     <time
       datetime={isoDate}
@@ -33,13 +33,13 @@ const isoDate = date.toISOString().slice(0, 10);
   <div class="max-w-screen-prose">
     <p class="eyebrow">{publication}</p>
 
-    <h3 class="mt-3 font-display font-medium text-[1.6rem] leading-[1.2] tracking-[-0.005em] text-ink text-balance">
+    <h3 class="mt-3 font-display font-normal text-[1.6rem] leading-[1.2] tracking-[-0.005em] text-ink text-balance">
       {url ? (
         <a
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          class="no-underline text-ink hover:text-brand-navy transition-colors duration-fast"
+          class="no-underline text-ink hover:text-surface-navy transition-colors duration-fast"
         >
           {title}
           <svg
@@ -61,7 +61,7 @@ const isoDate = date.toISOString().slice(0, 10);
     </h3>
 
     {summary && (
-      <p class="mt-4 font-editorial text-[1.0625rem] leading-[1.65] text-ink-muted">
+      <p class="mt-4 prose-editorial text-[1.0625rem] leading-[1.65] text-ink-muted">
         {summary}
       </p>
     )}

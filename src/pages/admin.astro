@@ -4,7 +4,7 @@ import Heading from "@components/Heading.astro";
 import Eyebrow from "@components/Eyebrow.astro";
 import Button from "@components/Button.astro";
 import Hairline from "@components/Hairline.astro";
-import WaxSeal from "@components/WaxSeal.astro";
+import Logo from "@components/Logo.astro";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -22,9 +22,7 @@ const description = "Heritage editorial CMS, restricted access.";
     <div class="flex-1 flex flex-col items-center justify-center px-6 sm:px-8 lg:px-12 py-20">
       <div class="w-full max-w-screen-narrow">
         <div class="flex flex-col items-center text-center">
-          <a href={`${base}/`} class="no-underline" aria-label="Heritage Strategies, return to public site">
-            <WaxSeal orientation="vertical" size={88} onDark />
-          </a>
+          <Logo size="footer" onDark href={`${base}/`} ariaLabel="Heritage Strategies, return to public site" />
 
           <div class="mt-12 w-full">
             <Eyebrow class="mb-6">Restricted access</Eyebrow>
@@ -37,7 +35,7 @@ const description = "Heritage editorial CMS, restricted access.";
               <Hairline color="light" widthPct={22} />
             </div>
 
-            <p class="font-editorial text-[17px] md:text-[18px] leading-[1.7] text-ink-muted-on-dark max-w-prose mx-auto">
+            <p class="prose-editorial text-[17px] md:text-[18px] leading-[1.7] text-ink-muted-on-dark max-w-prose mx-auto">
               This is the content management interface for the Heritage Strategies website. Access requires firm credentials. The interface is provisioned by the Content Master AI Employee engagement and will be available to the editorial team once that workstream is finalized.
             </p>
 
@@ -45,13 +43,12 @@ const description = "Heritage editorial CMS, restricted access.";
               <Button
                 href="mailto:info@heritagesllc.com?subject=CMS%20Access%20Request"
                 variant="on-dark"
-                size="md"
               >
                 Request access
               </Button>
               <a
                 href={`${base}/`}
-                class="font-sans text-[13px] tracking-[0.02em] text-ink-muted-on-dark no-underline hover:text-ink-on-dark underline-offset-4 hover:underline"
+                class="no-underline font-sans text-[13px] tracking-[0.02em] text-ink-muted-on-dark hover:text-ink-on-dark underline-offset-4 hover:underline"
               >
                 Return to public site &rarr;
               </a>
@@ -61,7 +58,7 @@ const description = "Heritage editorial CMS, restricted access.";
       </div>
     </div>
 
-    <div class="border-t border-on-dark">
+    <div class="border-t border-rule-dark">
       <div class="mx-auto max-w-screen-wide px-6 sm:px-8 lg:px-12 py-6">
         <p
           class="font-sans text-[12px] tracking-[0.02em] text-ink-muted-on-dark"

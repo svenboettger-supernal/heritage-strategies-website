@@ -39,7 +39,7 @@ const destinations = [
 
       <Hairline widthPct={32} class="mb-10" />
 
-      <p class="font-editorial text-[19px] md:text-[20px] leading-[1.65] text-ink max-w-screen-narrow">
+      <p class="prose-editorial text-[19px] md:text-[20px] leading-[1.65] text-ink max-w-screen-narrow">
         If you arrived here from a link inside the site, please write to <a href="mailto:info@heritagesllc.com" class="text-ink underline-offset-4">info@heritagesllc.com</a> so we can fix it. Otherwise, the table of contents below may help.
       </p>
 
@@ -47,10 +47,10 @@ const destinations = [
         <p class="eyebrow mb-6">Table of contents</p>
         <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-1 max-w-screen-narrow">
           {destinations.map((d) => (
-            <li class="border-b border-default last:border-b-0 sm:[&:nth-last-child(2)]:border-b-0">
+            <li class="border-b border-rule last:border-b-0 sm:[&:nth-last-child(2)]:border-b-0">
               <a
                 href={d.href}
-                class="block py-3 font-sans text-[15px] text-ink no-underline hover:text-brand-navy-hover hover:underline underline-offset-4 decoration-1"
+                class="block py-3 font-sans text-[15px] text-ink no-underline hover:text-surface-dark hover:underline underline-offset-4 decoration-1"
               >
                 {d.label}
               </a>
@@ -59,11 +59,11 @@ const destinations = [
         </ul>
       </nav>
 
-      <div class="mt-20 pt-10 border-t border-default">
-        <p class="font-editorial italic text-[18px] leading-relaxed text-ink-muted max-w-screen-narrow mb-6">
+      <div class="mt-20 pt-10 border-t border-rule">
+        <p class="prose-editorial italic text-[18px] leading-relaxed text-ink-muted max-w-screen-narrow mb-6">
           When in doubt, talk to a member of the firm.
         </p>
-        <Button href={`${base}/contact/`} variant="primary" size="md">Contact</Button>
+        <Button href={`${base}/contact/`} variant="primary">Contact</Button>
       </div>
     </div>
   </Section>

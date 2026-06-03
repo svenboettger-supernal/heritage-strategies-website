@@ -73,7 +73,9 @@ const schemas = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
   <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
   <link rel="apple-touch-icon" href={`${base}/apple-touch-icon.svg`} />
 
-  <!-- Preconnect (not strictly needed for self-hosted fonts via @fontsource, but harmless) -->
+  <!-- Fonts are loaded from Google Fonts via @import in global.css; preconnects below speed up the handshake. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="sitemap" href={`${base}/sitemap-index.xml`} />
 
   <!-- JSON-LD: Organization (always) + page-specific -->

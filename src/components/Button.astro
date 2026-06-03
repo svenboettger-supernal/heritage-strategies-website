@@ -1,7 +1,20 @@
 ---
+/**
+ * Button — direct port of the heritage-brand demo's `.btn` system.
+ *
+ * Five variants:
+ *  - primary    (filled navy on light surfaces)
+ *  - secondary  (navy-outlined on light surfaces)
+ *  - ghost      (rule-bordered, navy text)
+ *  - on-dark    (filled white + navy text, for placing on navy hero panels)
+ *  - on-dark-secondary (transparent + white border + white text, for placing on navy)
+ *
+ * Per brand demo: padding 14px 26px, border-radius 3px, font-size 13px,
+ * letter-spacing 0.14em, font-weight 500, uppercase, line-height 1.
+ * Width is content-sized (w-fit + self-start) so flex parents never stretch.
+ */
 export interface Props {
-  variant?: "primary" | "ghost" | "on-dark" | "ghost-on-dark" | "text";
-  size?: "sm" | "md" | "lg";
+  variant?: "primary" | "secondary" | "ghost" | "on-dark" | "on-dark-secondary";
   href?: string;
   type?: "button" | "submit" | "reset";
   class?: string;
@@ -9,11 +22,11 @@ export interface Props {
   ariaLabel?: string;
   rel?: string;
   target?: string;
+  arrow?: boolean;
 }
 
 const {
   variant = "primary",
-  size = "md",
   href,
   type = "button",
   class: className = "",
@@ -21,36 +34,21 @@ const {
   ariaLabel,
   rel,
   target,
+  arrow = false,
 } = Astro.props;
-
-const sizeClass: Record<NonNullable<Props["size"]>, string> = {
-  sm: "px-4 py-2 text-[13px]",
-  md: "px-5 py-2.5 text-sm",
-  lg: "px-7 py-3.5 text-[15px]",
-};
 
 const variantClass: Record<NonNullable<Props["variant"]>, string> = {
   primary:
-    "bg-brand-navy text-ink-on-dark hover:bg-brand-navy-hover border border-brand-navy",
+    "bg-surface-navy text-white border border-surface-navy hover:bg-surface-dark hover:border-surface-dark",
+  secondary:
+    "bg-transparent text-surface-navy border border-surface-navy hover:bg-surface-navy hover:text-white",
   ghost:
-    "bg-transparent text-ink border border-default hover:border-strong hover:bg-surface-muted",
+    "bg-transparent text-surface-navy border border-rule hover:bg-surface-muted",
   "on-dark":
-    "bg-ink-on-dark text-brand-navy border border-ink-on-dark hover:bg-surface-muted",
-  "ghost-on-dark":
-    "bg-transparent text-ink-on-dark border border-on-dark hover:bg-surface-dark-panel",
-  text:
-    "bg-transparent text-brand-navy hover:text-brand-navy-hover px-0 py-0 underline underline-offset-4 decoration-1",
+    "bg-white text-surface-navy border border-white hover:bg-[#E4ECF7] hover:border-[#E4ECF7]",
+  "on-dark-secondary":
+    "bg-transparent text-white border border-white hover:bg-white/10",
 };
-
-const baseClass =
-  "inline-flex items-center justify-center gap-2 rounded font-sans font-medium tracking-[0.01em] transition-colors duration-fast disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy";
-
-const classList = [
-  baseClass,
-  variantClass[variant],
-  variant !== "text" && sizeClass[size],
-  className,
-];
 
 const Tag = href ? "a" : "button";
 ---
@@ -62,7 +60,31 @@ const Tag = href ? "a" : "button";
   target={href ? target : undefined}
   aria-label={ariaLabel}
   aria-disabled={disabled ? "true" : undefined}
-  class:list={classList}
+  class:list={[
+    "btn btn-strategies",
+    "inline-flex w-fit max-w-full self-start whitespace-nowrap items-center justify-center gap-2",
+    "font-sans font-medium uppercase no-underline transition-colors duration-fast",
+    "disabled:opacity-50 disabled:cursor-not-allowed",
+    variantClass[variant],
+    className,
+  ]}
 >
   <slot />
+  {arrow && (
+    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <path d="M1 5h12M9 1l4 4-4 4" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )}
 </Tag>
+
+<style>
+  /* Direct port of brand-demo .btn — sizing identical for every variant. */
+  .btn-strategies {
+    padding: 14px 26px;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    border-radius: 3px;
+    border-bottom-width: 1px;
+  }
+</style>

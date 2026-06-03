@@ -35,21 +35,21 @@ const lectures = [
 ];
 ---
 
-<section class="border-t border-default pt-16 md:pt-20">
+<section class="border-t border-rule pt-16 md:pt-20">
   <header class="mb-10 md:mb-14 max-w-screen-prose">
     <Eyebrow>Speaking &amp; lecturing</Eyebrow>
     <Heading size="display-md" as="h2" class="mt-5 text-balance">
       Lectures by Mr. Fanning.
     </Heading>
-    <p class="mt-6 font-editorial text-[1.0625rem] leading-[1.65] text-ink-muted">
+    <p class="mt-6 prose-editorial text-[1.0625rem] leading-[1.65] text-ink-muted">
       Mr. Fanning lectures for corporations, insurance companies, and accounting and law firms on estate planning and business strategy. Recent and recurring topics include:
     </p>
   </header>
 
   {/* placeholder: Heritage to provide specific lectures, dates, venues per SOW §6.3 */}
-  <ol class="border-t border-default">
+  <ol class="border-t border-rule">
     {lectures.map((lecture, idx) => (
-      <li class="grid grid-cols-1 md:grid-cols-[3.5rem_1fr_14rem] gap-x-10 gap-y-3 py-8 border-b border-default">
+      <li class="grid grid-cols-1 md:grid-cols-[3.5rem_1fr_14rem] gap-x-10 gap-y-3 py-8 border-b border-rule">
         <span
           data-figures="tabular"
           class="font-mono text-[0.8125rem] text-ink-muted pt-1"
@@ -60,10 +60,10 @@ const lectures = [
 
         <div class="max-w-screen-prose">
           <p class="eyebrow">{lecture.venue}</p>
-          <h3 class="mt-3 font-display font-medium text-[1.45rem] leading-[1.25] tracking-[-0.005em] text-ink text-balance">
+          <h3 class="mt-3 font-display font-normal text-[1.45rem] leading-[1.25] tracking-[-0.005em] text-ink text-balance">
             {lecture.title}
           </h3>
-          <p class="mt-3 font-editorial text-[1rem] leading-[1.6] text-ink-muted">
+          <p class="mt-3 prose-editorial text-[1rem] leading-[1.6] text-ink-muted">
             For {lecture.audience}.
           </p>
         </div>

@@ -1,0 +1,60 @@
+---
+/**
+ * Logo wrapper — single source of truth for the Heritage Strategies lockup.
+ * Always renders the real `heritage-logo.webp` file. Never recreates the seal as SVG.
+ *
+ * For dark surfaces, the logo's wax-seal red has insufficient AA contrast against navy,
+ * so we render it on a warm-white pill background as the brand reference directs.
+ */
+export interface Props {
+  /** Pixel height of the logo image. */
+  size?: "nav" | "footer" | "section" | "small";
+  /** Render on a warm-white pill background when placed on a dark surface. */
+  onDark?: boolean;
+  /** Optional href — if set, wraps the image in an anchor. */
+  href?: string;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const {
+  size = "nav",
+  onDark = false,
+  href,
+  ariaLabel = "Heritage Strategies LLC",
+  class: className = "",
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const sizeMap: Record<NonNullable<Props["size"]>, number> = {
+  nav: 40,
+  footer: 56,
+  section: 32,
+  small: 24,
+};
+const heightPx = sizeMap[size];
+
+const Tag = href ? "a" : "span";
+---
+
+<Tag
+  href={href}
+  aria-label={ariaLabel}
+  class:list={[
+    "inline-flex items-center no-underline",
+    onDark && "rounded-md bg-[hsl(44_36%_93%)] px-3 py-2",
+    className,
+  ]}
+  style={`min-height: ${heightPx}px;`}
+>
+  <img
+    src={`${base}/heritage-logo.webp`}
+    alt={ariaLabel}
+    height={heightPx}
+    width="auto"
+    style={`height: ${heightPx}px; width: auto;`}
+    decoding="async"
+    loading="eager"
+  />
+</Tag>

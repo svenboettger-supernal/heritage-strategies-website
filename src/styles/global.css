@@ -1,72 +1,65 @@
-/* ---------- Font loading (must come before any other rule) ---------- */
-@import "@fontsource/cormorant-garamond/400.css";
-@import "@fontsource/cormorant-garamond/500.css";
-@import "@fontsource/cormorant-garamond/600.css";
-@import "@fontsource/eb-garamond/400.css";
-@import "@fontsource/eb-garamond/500.css";
-@import "@fontsource/eb-garamond/600-italic.css";
-@import "@fontsource/inter/400.css";
-@import "@fontsource/inter/500.css";
-@import "@fontsource/inter/600.css";
-@import "@fontsource/inter/700.css";
-@import "@fontsource/jetbrains-mono/400.css";
+/* ---------- Font loading (must come before any other rule) ----------
+   Loaded directly from Google Fonts to mirror the heritage-brand reference repo.
+   Source Serif 4 here ships BOTH axes (opsz 8..60 + wght 300..700), so the
+   `font-variation-settings: "opsz" 60` directive on display headings actually
+   resolves to the display-optimized glyphs.
+
+   The previous self-hosted serif packages have been removed — the new system
+   uses Source Serif 4 for every serif role and Inter for every sans role. */
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ---------- Heritage brand tokens (HSL components only) ---------- */
+/* ---------- Heritage brand tokens (direct port from heritage-brand reference repo) ---------- */
 :root {
-  /* surfaces */
-  --surface-page: 38 28% 96%;
-  --surface-card: 0 0% 100%;
-  --surface-muted: 38 22% 92%;
-  --surface-dark: 217 55% 14%;
-  --surface-dark-panel: 217 50% 18%;
-
-  /* brand */
-  --brand-navy: 217 50% 22%;
-  --brand-navy-hover: 217 65% 14%;
-  --brand-copper: 20 55% 48%;
-  --brand-copper-deep: 18 60% 32%;
-  --brand-copper-tint: 20 35% 94%;
+  /* surfaces — cool near-white default, blue undertones (matches heritage-brand) */
+  --surface-page: 214 47% 97%;       /* #F5F8FC — cool near-white, default page */
+  --surface-card: 0 0% 100%;         /* #FFFFFF — true white card / table */
+  --surface-muted: 214 51% 94%;      /* #E8EEF6 — tinted blue panel (brand demo "surface-2") */
+  --surface-deep: 214 41% 90%;       /* #DDE6F1 — deeper blue tint (brand demo "surface-3") */
+  --surface-navy: 215 57% 14%;       /* #0F1E36 — the brand demo "navy" */
+  --surface-navy-card: 215 50% 18%;  /* card sitting inside navy panel */
+  --surface-dark: 218 60% 9%;        /* #0A1628 — brand demo "navy-deep" */
 
   /* text */
-  --text-default: 217 40% 12%;
-  --text-muted: 217 18% 36%;
-  --text-placeholder: 217 12% 52%;
-  --text-on-dark: 38 24% 94%;
-  --text-muted-on-dark: 38 14% 70%;
+  --text-ink: 218 27% 14%;           /* #1B2230 — body on light */
+  --text-muted: 220 11% 41%;         /* #5C6573 — metadata (brand demo "muted") */
+  --text-placeholder: 220 9% 60%;
+  --text-on-dark: 0 0% 100%;         /* #FFFFFF — pure white on navy for crispness (brand demo "on-dark") */
+  --text-muted-on-dark: 218 21% 75%; /* #B0BCD0 — brand demo "on-dark-muted" */
 
-  /* borders (alpha included via rgb-style fallback in css below) */
-  --border-default: 217 40% 12% / 0.10;
-  --border-input: 217 40% 12% / 0.14;
-  --border-strong: 217 40% 12% / 0.18;
-  --border-on-dark: 38 24% 94% / 0.12;
+  /* structural */
+  --bronze: 35 26% 43%;              /* #8C7351 — 1px hairlines only, never a fill */
+  --state-blue: 214 50% 34%;         /* #2C5282 — focus / active / info ONLY (brand demo "state") */
+  --rule: 214 32% 91%;               /* #E1E7EF — cool gray-blue hairline (brand demo "rule") */
+  --rule-soft: 214 47% 95%;          /* #EEF2F8 — softer hairline */
+  --rule-dark: 218 27% 28%;          /* hairline on navy */
 
   /* status */
-  --status-success-bg: 140 30% 95%;
-  --status-success-fg: 146 50% 26%;
-  --status-success-br: 140 30% 82%;
-  --status-warning-bg: 38 60% 94%;
-  --status-warning-fg: 28 70% 32%;
-  --status-warning-br: 38 55% 78%;
+  --status-success-bg: 150 30% 94%;
+  --status-success-fg: 150 50% 22%;
+  --status-success-br: 150 30% 70%;
+  --status-warning-bg: 46 50% 92%;
+  --status-warning-fg: 46 60% 24%;
+  --status-warning-br: 46 50% 70%;
   --status-error-bg: 8 50% 95%;
   --status-error-fg: 4 56% 40%;
   --status-error-br: 8 50% 84%;
-  --status-info-bg: 217 40% 95%;
-  --status-info-fg: 217 55% 28%;
-  --status-info-br: 217 35% 80%;
+  --status-info-bg: 214 50% 94%;
+  --status-info-fg: 214 50% 28%;
+  --status-info-br: 214 50% 70%;
 
-  /* viz palette */
-  --viz-0: 217 50% 22%;
-  --viz-1: 210 24% 48%;
-  --viz-2: 20 55% 48%;
-  --viz-3: 150 16% 42%;
-  --viz-4: 340 22% 42%;
-  --viz-5: 38 50% 50%;
-  --viz-6: 28 14% 52%;
-  --viz-7: 220 6% 46%;
+  /* viz palette (no red, no orange) */
+  --viz-0: 220 38% 35%;
+  --viz-1: 35 26% 55%;
+  --viz-2: 140 18% 38%;
+  --viz-3: 295 16% 38%;
+  --viz-4: 50 28% 64%;
+  --viz-5: 210 32% 50%;
+  --viz-6: 340 18% 38%;
+  --viz-7: 220 6% 55%;
 }
 
 /* ---------- Base reset on top of Tailwind preflight ---------- */
@@ -80,31 +73,35 @@
 
   body {
     background-color: hsl(var(--surface-page));
-    color: hsl(var(--text-default));
+    color: hsl(var(--text-ink));
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    line-height: 1.55;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   }
 
-  /* Display headings — Cormorant Garamond, only on marketing surfaces; app uses Inter */
+  /* Display sizes — Source Serif 4 with full opsz axis (loaded from Google Fonts). */
   .font-display,
   .display h1,
   .display h2 {
-    font-family: "Cormorant Garamond", Cormorant, Garamond, serif;
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-family: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+    font-weight: 400;
+    font-variation-settings: "opsz" 60;
+    letter-spacing: -0.005em;
   }
 
-  /* Editorial body */
+  /* Serif body (rare — used for editorial pull quotes / long-form). */
+  .serif-body,
   .prose-editorial {
-    font-family: "EB Garamond", Garamond, Georgia, serif;
+    font-family: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+    font-variation-settings: "opsz" 14;
     font-size: 1.125rem;
     line-height: 1.65;
     font-feature-settings: "onum" 1, "kern" 1, "liga" 1;
   }
 
-  /* Tabular figures in data contexts */
+  /* Tabular figures in dense data */
   table,
   .figure,
   .sheet,
@@ -116,9 +113,9 @@
     font-feature-settings: "tnum" 1, "kern" 1;
   }
 
-  /* Focus ring — global */
+  /* Focus ring — Reserved Blue, the only blue in the system */
   :focus-visible {
-    outline: 2px solid hsl(var(--brand-navy));
+    outline: 2px solid hsl(var(--state-blue));
     outline-offset: 2px;
     border-radius: 2px;
   }
@@ -133,11 +130,12 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+    .wave path { animation: none !important; }
   }
 
   /* Selection */
   ::selection {
-    background: hsl(var(--brand-navy));
+    background: hsl(var(--surface-navy));
     color: hsl(var(--text-on-dark));
   }
 
@@ -149,64 +147,113 @@
     height: auto;
   }
 
-  /* Anchor defaults — heritage navy on light */
-  a {
-    color: hsl(var(--brand-navy));
-    text-decoration-color: hsl(var(--brand-navy) / 0.35);
-    text-underline-offset: 3px;
-    text-decoration-thickness: 1px;
-    transition: color 250ms ease, text-decoration-color 250ms ease;
+  /* Anchor defaults — navy on light, hairline underline.
+     Exclude any anchor carrying a "btn" class fragment, a bg-* class, or no-underline. */
+  a:not([class*="btn"]):not([class*="bg-"]):not(.no-underline) {
+    color: hsl(var(--surface-navy));
+    text-decoration: none;
+    border-bottom: 1px solid hsl(var(--rule));
+    transition: border-color 200ms ease-out, color 200ms ease-out;
   }
-  a:hover {
-    color: hsl(var(--brand-navy-hover));
-    text-decoration-color: hsl(var(--brand-navy-hover));
+  a:not([class*="btn"]):not([class*="bg-"]):not(.no-underline):hover {
+    border-bottom-color: hsl(var(--surface-navy));
+  }
+  /* Logo lockups (anchors that wrap an <img>) never carry an underline. */
+  a:has(> img) {
+    border-bottom: none;
+    color: inherit;
   }
 
-  /* Headings on dark surfaces */
-  .on-dark a {
+  .on-dark {
     color: hsl(var(--text-on-dark));
-    text-decoration-color: hsl(var(--text-on-dark) / 0.4);
   }
-  .on-dark a:hover {
+  /* Body links inside .on-dark surfaces: pure-white text + dark-rule underline.
+     Exclude any anchor carrying a "btn" class fragment or a bg-* class so Button styles win. */
+  .on-dark a:not([class*="btn"]):not([class*="bg-"]):not(.no-underline) {
     color: hsl(var(--text-on-dark));
-    text-decoration-color: hsl(var(--text-on-dark));
+    border-bottom-color: hsl(var(--rule-dark));
+  }
+  .on-dark a:not([class*="btn"]):not([class*="bg-"]):not(.no-underline):hover {
+    border-bottom-color: hsl(var(--text-on-dark));
   }
 }
 
 @layer components {
-  /* The signature thin hairline used once per major section break.
-     Reads as the diagonal light streak on the existing Heritage hero. */
-  .hairline {
-    height: 1px;
-    width: 60%;
-    background: hsl(var(--border-default));
-    transform: rotate(-1.5deg);
-    transform-origin: left center;
-    margin: 0 auto;
+  /* Signature heading-subheading pattern (brand demo "section__title / section__lede") */
+  .section-title-block { display: block; }
+  .section-eyebrow {
+    font-family: Inter, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: hsl(var(--bronze));
+    text-transform: uppercase;
+    margin: 0 0 1.5rem 0;
   }
-  .on-dark .hairline {
-    background: hsl(0 0% 100% / 0.32);
+  .on-dark .section-eyebrow {
+    color: hsl(35 26% 64%); /* bronze lifted for AA on dark */
+  }
+  .section-heading {
+    font-family: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+    font-variation-settings: "opsz" 60;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: hsl(var(--surface-navy));
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.005em;
+  }
+  .on-dark .section-heading { color: hsl(var(--text-on-dark)); }
+  .section-subheading {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+    line-height: 1.5;
+    color: hsl(var(--text-muted));
+    margin: 0;
+  }
+  .on-dark .section-subheading { color: hsl(var(--text-muted-on-dark)); }
+
+  /* Bronze 1px hairline (structural only — never a fill) */
+  .hairline-bronze {
+    height: 1px;
+    background: hsl(var(--bronze));
+    opacity: 0.45;
+    width: 100%;
   }
 
-  /* Small-caps eyebrow */
+  /* Cool gray-blue rule (internal section divider) */
+  .rule {
+    height: 1px;
+    background: hsl(var(--rule));
+    width: 100%;
+  }
+  .on-dark .rule { background: hsl(var(--rule-dark)); }
+
+  /* Eyebrow utility */
   .eyebrow {
     font-family: Inter, sans-serif;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: hsl(var(--bronze));
     text-transform: uppercase;
-    color: hsl(var(--text-muted));
   }
   .on-dark .eyebrow {
-    color: hsl(var(--text-muted-on-dark));
+    color: hsl(35 26% 64%);
   }
 
   /* Card surface */
   .card {
     background: hsl(var(--surface-card));
-    border: 1px solid hsl(var(--border-default));
+    border: 1px solid hsl(var(--rule));
     border-radius: 4px;
     padding: 1.5rem;
+  }
+  .card-surface {
+    background: hsl(var(--surface-card));
+    border: 1px solid hsl(var(--rule));
+    border-radius: 4px;
   }
 
   /* Generic content section spacing */
@@ -221,23 +268,8 @@
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  .text-pretty {
-    text-wrap: pretty;
-  }
-  /* Force borders to read with alpha-included tokens (Tailwind's border-color doesn't auto-merge alpha) */
-  .border-default {
-    border-color: hsl(var(--border-default));
-  }
-  .border-input {
-    border-color: hsl(var(--border-input));
-  }
-  .border-strong {
-    border-color: hsl(var(--border-strong));
-  }
-  .border-on-dark {
-    border-color: hsl(var(--border-on-dark));
-  }
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
+  .border-rule       { border-color: hsl(var(--rule)); }
+  .border-rule-dark  { border-color: hsl(var(--rule-dark)); }
 }

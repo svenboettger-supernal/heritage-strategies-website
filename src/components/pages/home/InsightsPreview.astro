@@ -28,7 +28,7 @@ const formatter = new Intl.DateTimeFormat("en-US", {
     </div>
     <a
       href={`${base}/resources/`}
-      class="text-[14px] font-medium tracking-[0.01em] text-brand-navy hover:text-brand-navy-hover underline underline-offset-4 decoration-1 shrink-0"
+      class="text-[14px] font-medium tracking-[0.01em] text-surface-navy hover:text-surface-dark underline underline-offset-4 decoration-1 shrink-0"
     >
       All insights →
     </a>
@@ -51,10 +51,10 @@ const formatter = new Intl.DateTimeFormat("en-US", {
               </time>
             </div>
 
-            <h3 class="mt-5 font-display font-medium text-[1.65rem] leading-snug text-balance text-ink">
+            <h3 class="mt-5 font-display font-normal text-[1.65rem] leading-snug text-balance text-ink">
               <a
                 href={href}
-                class="no-underline text-ink hover:text-brand-navy transition-colors duration-fast"
+                class="no-underline text-ink hover:text-surface-navy transition-colors duration-fast"
               >
                 {insight.data.title}
               </a>
@@ -68,7 +68,7 @@ const formatter = new Intl.DateTimeFormat("en-US", {
               {insight.data.readingTime && <span>{insight.data.readingTime} read</span>}
               <a
                 href={href}
-                class="ml-auto font-medium tracking-[0.01em] text-brand-navy no-underline border-b border-[hsl(var(--brand-navy)/0.35)] hover:border-brand-navy pb-0.5"
+                class="ml-auto font-medium tracking-[0.01em] text-surface-navy no-underline border-b border-[hsl(var(--surface-navy)/0.35)] hover:border-surface-navy pb-0.5"
               >
                 Read insight →
               </a>

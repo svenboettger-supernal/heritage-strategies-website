@@ -8,16 +8,16 @@ export interface Props {
 const { eyebrow, title, body } = Astro.props;
 ---
 
-<article class="relative bg-surface-card border border-default p-7 md:p-8 flex flex-col gap-3 h-full">
+<article class="relative bg-surface-card border border-rule p-7 md:p-8 flex flex-col gap-3 h-full">
   {/* Copper corner pip — identity accent, used once per card */}
   <span
     aria-hidden="true"
     class="absolute top-0 left-0 h-2 w-2 -translate-x-px -translate-y-px"
-    style="background: hsl(var(--brand-copper));"
+    style="background: hsl(var(--bronze));"
   ></span>
 
   <p class="eyebrow text-[11.5px]">{eyebrow}</p>
-  <h4 class="font-display font-medium text-[1.5rem] leading-[1.2] text-ink text-balance mt-1">
+  <h4 class="font-display font-normal text-[1.5rem] leading-[1.2] text-ink text-balance mt-1">
     {title}
   </h4>
   <p class="mt-2 text-[15px] leading-relaxed text-ink-muted">{body}</p>

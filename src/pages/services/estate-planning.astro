@@ -139,7 +139,7 @@ const faqs = [
         <Heading size="display-xl" as="h1" class="mt-8 text-balance">
           Estate and business continuity.
         </Heading>
-        <p class="mt-8 max-w-prose text-[1.2rem] leading-relaxed font-editorial text-ink">
+        <p class="mt-8 max-w-prose text-[1.2rem] leading-relaxed prose-editorial text-ink">
           {summary}
         </p>
       </div>
@@ -147,15 +147,15 @@ const faqs = [
       <aside class="md:justify-self-end md:max-w-xs">
         <p class="eyebrow text-[11.5px] mb-3">At a glance</p>
         <dl class="space-y-3 text-[14.5px] leading-relaxed">
-          <div class="flex justify-between gap-6 border-b border-default pb-2">
+          <div class="flex justify-between gap-6 border-b border-rule pb-2">
             <dt class="text-ink-muted">Practice</dt>
             <dd class="text-ink">Estate &amp; continuity</dd>
           </div>
-          <div class="flex justify-between gap-6 border-b border-default pb-2">
+          <div class="flex justify-between gap-6 border-b border-rule pb-2">
             <dt class="text-ink-muted">Engagement</dt>
             <dd class="text-ink">Ongoing</dd>
           </div>
-          <div class="flex justify-between gap-6 border-b border-default pb-2">
+          <div class="flex justify-between gap-6 border-b border-rule pb-2">
             <dt class="text-ink-muted">Refresh cadence</dt>
             <dd class="text-ink" data-figures="tabular">Annual, minimum</dd>
           </div>
@@ -182,7 +182,7 @@ const faqs = [
         <article class="flex flex-col gap-4">
           <div class="flex items-baseline gap-4">
             <span
-              class="font-mono text-[12.5px] tracking-[0.14em] text-brand-copper"
+              class="font-mono text-[12.5px] tracking-[0.14em] text-bronze"
               data-figures="tabular"
             >
               {String(idx + 1).padStart(2, "0")}
@@ -192,7 +192,7 @@ const faqs = [
               class="block h-px w-12 bg-default"
             ></span>
           </div>
-          <h3 class="font-display font-medium text-[1.65rem] leading-[1.2] text-ink text-balance">
+          <h3 class="font-display font-normal text-[1.65rem] leading-[1.2] text-ink text-balance">
             {b.title}
           </h3>
           <p class="text-[15.5px] leading-relaxed text-ink-muted max-w-prose">
@@ -239,7 +239,7 @@ const faqs = [
             Drawn from a four-generation operating family, shared with permission, anonymized at client request.
           </p>
         </div>
-        <div class="bg-surface-card border border-default p-8 md:p-12">
+        <div class="bg-surface-card border border-rule p-8 md:p-12">
           <Quote
             attribution={testimonial.data.attribution}
             anonymized={testimonial.data.anonymized}

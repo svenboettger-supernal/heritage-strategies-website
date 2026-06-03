@@ -21,24 +21,24 @@ const downloads = [
 ];
 ---
 
-<section class="border-t border-default pt-16 md:pt-20">
+<section class="border-t border-rule pt-16 md:pt-20">
   <div class="grid gap-12 md:grid-cols-[1fr_1.2fr] md:gap-x-16">
     <div class="max-w-screen-prose">
       <Eyebrow>Press resources</Eyebrow>
       <Heading size="display-md" as="h2" class="mt-5 text-balance">
         A small media kit.
       </Heading>
-      <p class="mt-6 font-editorial text-[1.0625rem] leading-[1.65] text-ink-muted">
+      <p class="mt-6 prose-editorial text-[1.0625rem] leading-[1.65] text-ink-muted">
         Heritage Strategies maintains a quiet set of brand assets and approved biographies for press, conference, and publication use. Each is available on request from the firm.
       </p>
-      <p class="mt-4 font-editorial text-[1rem] leading-[1.65] text-ink-muted">
+      <p class="mt-4 prose-editorial text-[1rem] leading-[1.65] text-ink-muted">
         We respond to journalists, conference organizers, and editorial researchers within two business days.
       </p>
     </div>
 
-    <ul class="border-t border-default">
+    <ul class="border-t border-rule">
       {downloads.map((item) => (
-        <li class="border-b border-default py-6 grid grid-cols-[1fr_auto] gap-x-6 items-center">
+        <li class="border-b border-rule py-6 grid grid-cols-[1fr_auto] gap-x-6 items-center">
           <div>
             <p class="font-sans font-semibold text-[1rem] text-ink leading-tight">
               {item.label}
@@ -52,7 +52,7 @@ const downloads = [
           </div>
           <a
             href={`mailto:press@heritagesllc.com?subject=${item.subject}`}
-            class="inline-flex items-center justify-center gap-2 rounded border border-default px-4 py-2 text-[13px] font-medium tracking-[0.01em] text-ink hover:border-strong hover:bg-surface-muted transition-colors duration-fast no-underline"
+            class="inline-flex items-center justify-center gap-2 rounded border border-rule px-4 py-2 text-[13px] font-medium tracking-[0.01em] text-ink hover:border-rule hover:bg-surface-muted transition-colors duration-fast no-underline"
           >
             Request
             <svg

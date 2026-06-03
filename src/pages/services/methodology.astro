@@ -6,8 +6,9 @@ import Heading from "@components/Heading.astro";
 import Eyebrow from "@components/Eyebrow.astro";
 import FAQ from "@components/FAQ.astro";
 import Prose from "@components/Prose.astro";
-import WaxSeal from "@components/WaxSeal.astro";
+import Logo from "@components/Logo.astro";
 import PlaceholderImage from "@components/PlaceholderImage.astro";
+import ContinuousWave from "@components/ContinuousWave.astro";
 import ProcessStep from "@components/pages/services/ProcessStep.astro";
 import CTABand from "@components/pages/services/CTABand.astro";
 
@@ -103,23 +104,15 @@ const faqs = [
     <div
       aria-hidden="true"
       class="absolute inset-0 pointer-events-none"
-      style="background:
-        radial-gradient(110% 70% at 20% 25%, hsl(217 50% 22% / 0.55), transparent 62%),
-        radial-gradient(140% 90% at 85% 80%, hsl(217 65% 9% / 0.55), transparent 70%);"
+      style="background: radial-gradient(ellipse 80% 60% at 50% 38%, #1B3358 0%, #0F1E36 55%, #08121F 100%);"
     ></div>
-
-    {/* Signature hairline */}
-    <span
-      aria-hidden="true"
-      class="absolute left-[8%] right-[18%] top-[58%] h-px -rotate-[2deg] origin-left"
-      style="background: linear-gradient(90deg, hsl(0 0% 100% / 0), hsl(0 0% 100% / 0.42) 28%, hsl(0 0% 100% / 0.42) 72%, hsl(0 0% 100% / 0));"
-    ></span>
+    <ContinuousWave tone="on-dark" />
 
     <div class="relative mx-auto w-full max-w-screen-default px-6 sm:px-8 lg:px-12 py-28 md:py-36">
       <div class="grid gap-12 md:grid-cols-[1.5fr_1fr] md:items-end">
         <div class="max-w-3xl">
           <div class="flex items-center gap-4">
-            <WaxSeal orientation="mark-only" size={56} onDark ariaLabel="Heritage Strategies wax seal" />
+            <Logo size="section" onDark ariaLabel="Heritage Strategies LLC" />
             <Eyebrow class="text-ink-muted-on-dark">Methodology</Eyebrow>
           </div>
 
@@ -213,7 +206,7 @@ const faqs = [
       A document built to outlast the people who built it.
     </Heading>
 
-    <Prose size="lg" class="mt-10">
+    <Prose class="mt-10">
       <p>
         The Heritage Book is not a binder. A binder is a static thing. The Book is a working set of artifacts that the family, the trustees, and the attorneys read from, mark up, and refresh on a fixed cadence. The discipline is in the cadence, not in the document.
       </p>
